@@ -1,7 +1,6 @@
-% Lab 1: Introduction to ArcGIS
-% Fundamentals of GIS (GUS/ENST 3062, GUS 5062)
-  Prof. Lee Hachadoorian
-% Version 1.1
+# Introduction to ArcGIS
+
+## Version 1.1
 
 Purpose of the lab: To introduce the ArcGIS software package and its basic data management, display, and analysis components.
 
