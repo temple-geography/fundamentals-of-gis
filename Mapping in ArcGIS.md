@@ -30,43 +30,25 @@ Here, you will learn dot density and choropleth mapping using tract-level popula
 
 Open ArcMap and add the `Tracts_2010` shapefile.  Open the attribute table.  Note the columns (referred to technically as "fields") in the attribute table.  These fields contain data on the following:
 
-+--------------+---------------------------------------------------------------------------------------------------------+
 | Field Name   | Description                                                                                             |
-+==============+=========================================================================================================+
+|--------------|---------------------------------------------------------------------------------------------------------|
 | `GEO_ID2`    | Unique identifying number for each Census Tract                                                         |
-+--------------+---------------------------------------------------------------------------------------------------------+
 | `GEO_DISPLA` | The descriptive name of each Census Tract                                                               |
-+--------------+---------------------------------------------------------------------------------------------------------+
 | `ALAND10`    | Area of each Census Tract (square feet)                                                                 |
-+--------------+---------------------------------------------------------------------------------------------------------+
 | `TOTALPOP`   | 2010, Population, Number - Total population in 2010.                                                    |
-+--------------+---------------------------------------------------------------------------------------------------------+
 | `MEDIANAGE`  | 2010,Median Age – The median age of all people living in each Census Tract, 2010                        |
-+--------------+---------------------------------------------------------------------------------------------------------+
 | `_1RACE`     | 2010, One Race - Total population that identifies with one race in 2010                                 |
-+--------------+---------------------------------------------------------------------------------------------------------+
 | `WHITE`      | 2010, Whites, Number - Total number of White people in 2010                                             |
-+--------------+---------------------------------------------------------------------------------------------------------+
 | `BLACK`      | 2010, Black or African-American, Number - Total number of Black or African-American people in 2010      |
-+--------------+---------------------------------------------------------------------------------------------------------+
 | `AMINDIAN`   | 2010, American Indian, Number - Total number of American Indian people in 2010                          |
-+--------------+---------------------------------------------------------------------------------------------------------+
 | `ASIAN`      | 2010, Asian, Number - Total number of Asian people in 2010                                              |
-+--------------+---------------------------------------------------------------------------------------------------------+
 | `OTHER`      | 2010, Other race, Number - Total number that identify with a race other than those listed above in 2010 |
-+--------------+---------------------------------------------------------------------------------------------------------+
 | `_2RACES`    | 2010, Two Races - Total population that identifies with more than one race in 2010                      |
-+--------------+---------------------------------------------------------------------------------------------------------+
 | `HISPANIC`   | 2010, Hispanic, Number - Total number of Hispanic people in 2010                                        |
-+--------------+---------------------------------------------------------------------------------------------------------+
 | `NONHISPANI` | 2010, Nonhispanic, Number - Total number of Nonhispanic people in 2010                                  |
-+--------------+---------------------------------------------------------------------------------------------------------+
 | `TOTHOUSING` | 2010, Housing units, Total number of housing units in 2010                                              |
-+--------------+---------------------------------------------------------------------------------------------------------+
 | `OCCUPIED`   | 2010, Occupied housing units, Total number of occupied housing units in 2010                            |
-+--------------+---------------------------------------------------------------------------------------------------------+
 | `VACANT`     | 2010, Vacant housing units, Total number of vacant housing units in 2010                                |
-+--------------+---------------------------------------------------------------------------------------------------------+
 
 Right click on the word `TOTALPOP` and choose "Sort Descending".  You can see the range in population values by scrolling down the table.  Do an attribute query on `TOTALPOP` selecting the highest population tracts, say, those tracts with `TOTALPOP` values greater than 7000.  Do you see a spatial pattern, or clustering, of high population tracts?
 
@@ -141,12 +123,12 @@ Insert a North arrow by going to the Insert menu and choosing `North Arrow` and 
 
 Now insert a legend by going to the Insert menu and choosing `Legend`.  A wizard appears to walk you through a series of choices.
 
-#. Press Next
-#. In the Legend Title box type "People/sq. feet"
-#. Press Next
-#. Press Next
-#. Press Next 
-#. Press Finish
+1. Press Next
+2. In the Legend Title box type "People/sq. feet"
+3. Press Next
+4. Press Next
+5. Press Next 
+6. Press Finish
 
 Note you can change any of these settings by double clicking the legend in the view window.
 
