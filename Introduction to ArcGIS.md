@@ -10,9 +10,9 @@ ArcGIS is composed primarily of two individual applications: ArcCatalog and ArcM
 
 ArcCatalog is used for data management.  It is similar to a file manager ("My Computer" in Windows) but is customized for managing geospatial data.  On the left side of the screen folders and data files appear.  On the right side of the screen information about individual data files appear.
 
-Click the "Connect to Folder" button with the yellow arrow pointing to the right, and navigate to `S:\GUS_3062_Pearsall` and click OK.  This directory will appear as a folder on the left side of the window.  This folder contains all the data for the course labs.
+In ArcGIS, the file browser will not work until you "Connect" to folders on your storage device. Click the "Connect to Folder" button with the yellow arrow pointing to the right, and navigate to the `S:` drive and click OK. (**NOTE:** If you have already copied the data to a flash drive or to a local hard drive, connect to that drive instead!) This directory will appear as a folder on the left side of the window.
 
-Every time you begin a new lab, you will need to "Connect to Folder" to access the data for the lab. Please make a note of this step!
+While you *can* connect to a subfolder, I recommend against doing so. The file browser will be slightly slower, but much less cluttered. If you are working on your own laptop or home computer, you will only have to do this once. Depending on lab policies, computer maintenance, disk reimaging, etc., you *may* have to "Connect to Folder" each time you sit at a lab computer. You may also find that over the course of the term, the list of folder connections grows increasingly lengthy as students in various courses add connections to many folders for different courses, labs, and projects.
 
 Once you are connected, navigate to the `Lab_data` folder, then the `Philadelphia_only` subfolder using the Catalog Tree on the left-hand side of ArcCatalog. You will be able to see all of the files in the main ArcCatalog window.  Note the different graphic symbols for different types of files.  The files are point, line, and polygon files in the shapefile format.  As you will see, most GIS data are encoded geometrically as sets of either points, lines, or polygons.  We will learn more about different file formats later.
 
