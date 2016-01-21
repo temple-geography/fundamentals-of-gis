@@ -245,7 +245,7 @@ In your report describe the spatial distribution of median age---i.e. where is i
 Getting Started
 ---------------
 
-Use the settings in the Symbology window to experiment with different automated and manual class break settings. As you experiment look at the graph and the class break lines. Think about which class break method does the best job of grouping tracts with similar median household income values together in the same class.
+Use the settings in the Symbology window to experiment with different automated and manual class break settings. As you experiment look at the graph and the class break lines. Think about which class break method does the best job of grouping tracts with similar median age values together in the same class.
 
 Requirements
 ------------
