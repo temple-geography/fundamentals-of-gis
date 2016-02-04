@@ -260,13 +260,13 @@ Putting it all together, our SQL statement looks like this:
 
 ``` sql
 SELECT *
-FROM `se_tracts2010` JOIN sf1_tractsse
-  USING (geoid)
+FROM se_tracts2010 JOIN s1701_tractsse
+  USING (geoid2)
 ```
 
 You can execute this to see the resulting table, but what we really want is to be able to map this. To add the resulting table to the map canvas, check “Load as new layer” at the bottom.
 
-When you check “Load as new layer”, some additional options becoem available. Make sure that “Column with unique values” is set to `id`, and “Geometry columns” is set to `geom`. (DB Manager will make some reasonable guesses, so it is possible that these will already be set correctly.) Optionally, assign a layer name. (Otherwise, DB Manager will just assign the generic name “QueryLayer”.) Then hit the Load now! button.
+When you check “Load as new layer”, some additional options becoem available. Pick the “Column with unique values” from the dropdown. Depending on your version of QGIS, it might will default to `id` or `pk`, or it might have a different name if you overrode the default when you imported the tables. Make sure “Geometry columns” is set to `geom`. (DB Manager will make some reasonable guesses, so it is possible that these will already be set correctly.) Optionally, assign a layer name. (Otherwise, DB Manager will just assign the generic name “QueryLayer”.) Then hit the Load now! button.
 
 ![](images/QgisSqlWindowJoinSyntax.png) 
 
