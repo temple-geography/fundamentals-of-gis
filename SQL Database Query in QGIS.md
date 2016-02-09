@@ -72,7 +72,7 @@ After you see the success dialog, hit Refresh on the toolbar. The table you just
 
 Now do the same thing to import `S1701_tractsSE.dbf`.
 
-> **IMPORTANT NOTE:** QGIS registers a specific path to the SpatiaLite database.[3] If you change computers (for example, if you do not complete the lab in one sitting), when you open DB Manager you will not see your `SuperfundProject.sqlite` database. In order to connect to the database, do the following:
+> **IMPORTANT NOTE:** *If you change computers* (for example, if you do not complete the lab in one sitting), when you open DB Manager you will not see your `SuperfundProject.sqlite` database. QGIS registers a specific path to the SpatiaLite database.[3] In order to connect to the database, do the following:
 >
 > 1.  Choose Layer→Add Layer→Add SpatiaLite Layer, or press the Add SpatiaLite Layer ![](images/QgisAddSpatiaLiteLayerButton.png) button.
 > 2.  In the Add SpatiaLite Tables(s) dialog, click the New button.
@@ -80,6 +80,8 @@ Now do the same thing to import `S1701_tractsSE.dbf`.
 > 4.  Hit Open.
 >
 > You can now hit Connect to add layers from this database, or just hit Close. The database is now registered, and you can open DB Manager to continue to the lab exercise.
+>
+> **To be clear, this is only necessary *if* you change computers.** You do not have connect to the DB if you are continuing work at a computer where the SpatiaLite database is already registered.
 
 ### Loading Spatial Tables
 
@@ -90,13 +92,18 @@ We will start with the Superfund layer.
 1.  Again, click Import layer/file. Browse to and select the `Superfund.shp` file.
 2.  Browse to and select `Superfund.shp`.
 3.  Assign a table name.
-4.  Make sure to check Create spatial index. Do this whenever you import a spatial layer, as it will speed up spatial queries.
-5.  Hit OK.
-6.  Since the PRJ file is missing, you should immediately see the Coordinate Reference System Selector dialog.[4] The coordinates are in lat-long using NAD83 (North American Datum 1983). QGIS, and most (maybe even all) open source geospatial projects use EPSG Spatial Reference IDs, so you can find the correct CRS by typing `NAD83` in the Filter textbox, or by typing in the code `4269`:
+4.  For the name of the primary key column, different versions of QGIS default to `id` or `pk`. If the textbox is blank, it seems that the default value will be `pk`. The name doesn’t really matter, but you will need to refer to it when you load a query layer later in the exercise. If you want to choose the column name, check the box and set the name to your preference.
+5.  For the name of the geometry column, the default should be `geom`, though the default may not be visible. If the textbox is blank, you can leave it alone.
+6.  Make sure to check Create spatial index. Do this whenever you import a spatial layer, as it will speed up spatial queries.
+
+    ![](images/QgisDbManagerImportVectorLayer.png) 
+
+7.  Hit OK.
+8.  Since the PRJ file is missing, you should immediately see the Coordinate Reference System Selector dialog.[4] The coordinates are in lat-long using NAD83 (North American Datum 1983). QGIS, and most (maybe even all) open source geospatial projects use EPSG Spatial Reference IDs, so you can find the correct CRS by typing `NAD83` in the Filter textbox, or by typing in the code `4269`:
 
     ![](images/QgisCoordinateReferenceSystemSelector.png) 
 
-7.  After selecting the CRS in the lower pane, hit OK.
+9.  After selecting the CRS in the lower pane, hit OK.
 
 > **IMPORTANT NOTE:** DB Manager does allow you to delete layers from a SpatiaLite database. Unfortunately, it doesn’t correctly update metadata in the database. Therefore, if you make a mistake during the import, do *not* delete the layer and attempt to re-import it. Instead, without deleting the table, redo the import steps, but make sure to check the box labelled “Replace destination table (if exists)”.
 
@@ -132,9 +139,11 @@ Now lets import the tracts layer.
 1.  Back in QGIS DB Manager, choose Import layer/file.
 2.  Browse to and select `SE_tracts2010.shp`.
 3.  Assign a table name.
-4.  Make sure to check Create spatial index. Do this whenever you import a spatial layer, as it will speed up spatial queries.
-5.  Click the checkbox next to Source SRID, and set the value to the SRID that you determined by Prj2EPSG.
-6.  Hit OK.
+4.  Name of primary key column may optionally be set. If not set, it will default to `id` or `pk`.
+5.  Name of geometry column may optionally be set. If not set, it will default to `geom`.
+6.  Click the checkbox next to Source SRID, and set the value to the SRID that you determined by Prj2EPSG.
+7.  Make sure to check Create spatial index. Do this whenever you import a spatial layer, as it will speed up spatial queries.
+8.  Hit OK.
 
 Refresh the `SuperfundProject.sqlite` database. You should now see all of the tables that you added. The attribute data (for spatial or nonspatial tables) can be viewed by selecting the table and clicking the Table tab. For spatial layers you can also preview the geometries by selecting the Preview tab.
 
@@ -260,13 +269,15 @@ Putting it all together, our SQL statement looks like this:
 
 ``` sql
 SELECT *
-FROM se_tracts2010 JOIN s1701_tractsse
+FROM se_tracts2010 JOIN sf1_tracts
   USING (geoid2)
 ```
 
-You can execute this to see the resulting table, but what we really want is to be able to map this. To add the resulting table to the map canvas, check “Load as new layer” at the bottom.
+You can execute this to see the resulting table.
 
-When you check “Load as new layer”, some additional options becoem available. Pick the “Column with unique values” from the dropdown. Depending on your version of QGIS, it might will default to `id` or `pk`, or it might have a different name if you overrode the default when you imported the tables. Make sure “Geometry columns” is set to `geom`. (DB Manager will make some reasonable guesses, so it is possible that these will already be set correctly.) Optionally, assign a layer name. (Otherwise, DB Manager will just assign the generic name “QueryLayer”.) Then hit the Load now! button.
+What we really want is to be able to map this. We’re going to make a choropleth map of the poverty rate by tract in SE Pennsylvane. Modify the previous SQL statement to join to table `s1701_tractsse` (which has the poverty data) instead of `sf1_tracts`. Optionally, you can also choose specific columns to return, instead of using `*` to return all columns (but read ahead to the next steps to see which columns you will need). To add the resulting table to the map canvas, check “Load as new layer” at the bottom.
+
+When you check “Load as new layer”, some additional options becoem available. Pick the “Column with unique values” from the dropdown. This name will be whatever name you assigned to the primary key during the import process. As discussed earlier, if you accepted the default primary key name, it will be `id` or `pk` depending on your version of QGIS. Make sure “Geometry columns” is set to `geom`. (DB Manager will make some reasonable guesses, so it is possible that these will already be set correctly.) Optionally, assign a layer name. (Otherwise, DB Manager will just assign the generic name “QueryLayer”.) Then hit the Load now! button.
 
 ![](images/QgisSqlWindowJoinSyntax.png) 
 
@@ -294,7 +305,7 @@ Some notes:
 
 1.  As with aliasing columns, I have aliased the table names so as to avoid having to retype them when I refer to them elsewhere in the query. By writing `se_tracts2010 AS t`, I can then use `t` instead of `se_tracts2010` when I refer to the geometry column as `t.geom`.
 2.  For the spatial join to work, the layers have to be in the same spatial reference system. Since the Superfunds layer is in NAD83, I use the function `Transform(s.geom, 2272)` to transform the layer to the same projection as the tracts layer, SRID 2272 = State Plane Pennsylvania South.
-3.  Finally, if you scan the resultset, you may notice that some tracts appear more than once. note that some tracts appear more than once. This is because the `JOIN` operation returns one row for *each* row of the left table that matches *each* row of the right table on the `JOIN` operator. Since some tracts have more than one Superfund site in them, they will appear more than once. We will correct this later by using the `DISTINCT` keyword to make sure that each tract id only appears once.
+3.  Finally, if you scan the resultset, you may notice that some tracts appear more than once. This is because the `JOIN` operation returns one row for *each* row of the left table that matches *each* row of the right table on the `JOIN` operator. Since some tracts have more than one Superfund site in them, they will appear more than once. We will correct this later by using the `DISTINCT` keyword to make sure that each tract id only appears once.
 
 SQL `GROUP BY` and Aggregate Functions
 --------------------------------------
