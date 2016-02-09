@@ -339,7 +339,7 @@ Moreso than in previous labs, the tutorial has walked you through everything tha
 
 ## Grading Rubric
 
-To be marked complete, your report must meet the followign requirements:
+To be marked complete, your report must meet the following requirements:
 
 * **Analysis**: Report includes information on the mean poverty rate for all Census Tracts in southeastern PA, the mean poverty rate for all Census Tracts that intersect a Superfund site, and a discussion of the relationship between poverty and Superfund sites.
 * **Writing**: Report thoroughly addresses all sections, employs appropriate technical language, and is free of grammatical mistakes.
