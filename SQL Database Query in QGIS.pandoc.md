@@ -294,14 +294,16 @@ Some notes:
 SQL also allows us to use the `GROUP BY` clause to determine aggregate values (sums, averages, etc.) for groups of rows. Let's say we want to know the poverty rate for all of Southeast Pennsylvania. We would add up all the people living in poverty, and divide it by our population (optionally, multiply by 100 to convert to a percentage). SQL lets us do this in one simple statement:
 
 ```sql
-SELECT sum(hc02_vc01) AS poverty_count, sum(hc01_vc01) AS total_pop, 100.0 * sum(hc02_vc01) / sum(hc01_vc01) AS poverty_pct
+SELECT sum(hc02_vc01) AS poverty_count, sum(hc01_vc01) AS total_pop, 
+  100.0 * sum(hc02_vc01) / sum(hc01_vc01) AS poverty_pct
 FROM s1701_tractsse
 ```
 
 Combining all of our previous work, we can join by attribute to the tracts, join by location to the Superfund sites, and calculate the poverty rate for *only those tracts which contain Superfund sites*:
 
 ```sql
-SELECT sum(hc02_vc01) AS poverty_count, sum(hc01_vc01) AS total_pop, 100.0 * sum(hc02_vc01) / sum(hc01_vc01) AS poverty_pct
+SELECT sum(hc02_vc01) AS poverty_count, sum(hc01_vc01) AS total_pop, 
+  100.0 * sum(hc02_vc01) / sum(hc01_vc01) AS poverty_pct
 FROM s1701_tractsse JOIN (
   SELECT DISTINCT geoid2
   FROM se_tracts2010 AS t JOIN superfund AS s
