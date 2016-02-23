@@ -68,17 +68,17 @@ Here, you will learn how to use ArcMap to perform a buffer operation on points a
 
 2.  The Buffer tool can be accessed two ways. For quick access, from the Geoprocessing menu, select Buffer.
 
-The Buffer tool can also be accessed from the ArcToolbox. Open ArcToolbox in ArcMap, and go to Analysis Tools→Proximity→Buffer.
+    The Buffer tool can also be accessed from the ArcToolbox. Open ArcToolbox in ArcMap, and go to Analysis Tools→Proximity→Buffer.
 
-    ![](images/ArcToolboxBuffer.png)\ 
+    ![](images/ArcToolboxBuffer.png) 
 
-1.  Drag `educ_utm` into the input features box. Call the output shapefile `educ_buf5k` and make sure it saves to your workspace (which might or might not be the default location). For the Distance box, under Linear Unit, enter 5000 meters. For Dissolve Type choose `ALL`. Leave the rest of the options as the defaults. Press OK.
+3.  Drag `educ_utm` into the input features box. Call the output shapefile `educ_buf5k` and make sure it saves to your workspace (which might or might not be the default location). For the Distance box, under Linear Unit, enter 5000 meters. For Dissolve Type choose `ALL`. Leave the rest of the options as the defaults. Press OK.
 
-2.  View the new `educ_buf5k` shapefile in ArcMap. Zoom in to where there are clusters of schools to see how the buffers merge together (i.e. are dissolved as single polygons in these locations).
+4.  View the new `educ_buf5k` shapefile in ArcMap. Zoom in to where there are clusters of schools to see how the buffers merge together (i.e. are dissolved as single polygons in these locations).
 
-3.  Repeat the buffer operation with this shapefile (`educ_utm`), experimenting with different settings in the Buffer tool. For example, change the distance in the Linear Unit option to a larger value and try the `NONE` dissolve option. Note that the operation can take a lot of time given certain settings. These types of operations can require significant processing power.
+5.  Repeat the buffer operation with this shapefile (`educ_utm`), experimenting with different settings in the Buffer tool. For example, change the distance in the Linear Unit option to a larger value and try the `NONE` dissolve option. Note that the operation can take a lot of time given certain settings. These types of operations can require significant processing power.
 
-4.  Open the attribute table for `educ_buf5k`. Note that although there are multiple polygons displayed on screen, there is only a single record in the attribute table. This is because in a shapefile (ESRI’s implementation of the spaghetti vector data model) multiple features can be associated with a single record. It is often better to have an individual record for each feature. To make this conversion, where each polygon is represented as a single record in the attribute table, go to ArcToolbox→Data Management Tools→Features→Multipart to Singlepart and input `edu_buf5k` and name the output `edu_buf5k_single`. Open the output table from the resulting shapefile and confirm that it has multiple records—one for each feature.
+6.  Open the attribute table for `educ_buf5k`. Note that although there are multiple polygons displayed on screen, there is only a single record in the attribute table. This is because in a shapefile (ESRI’s implementation of the spaghetti vector data model) multiple features can be associated with a single record. It is often better to have an individual record for each feature. To make this conversion, where each polygon is represented as a single record in the attribute table, go to ArcToolbox→Data Management Tools→Features→Multipart to Singlepart and input `edu_buf5k` and name the output `edu_buf5k_single`. Open the output table from the resulting shapefile and confirm that it has multiple records—one for each feature.
 
 When you are finished, close ArcMap.
 

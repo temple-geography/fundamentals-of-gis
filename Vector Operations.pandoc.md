@@ -64,11 +64,11 @@ Here, you will learn how to use ArcMap to perform a buffer operation on points a
 1. Add `educ_utm.shp` to ArcMap.  
 
 2. The Buffer tool can be accessed two ways. For quick access, from the Geoprocessing menu, select Buffer. 
-
-   The Buffer tool can also be accessed from the ArcToolbox. Open ArcToolbox in ArcMap, and go to Analysis Tools→Proximity→Buffer. 
-
+    
+    The Buffer tool can also be accessed from the ArcToolbox. Open ArcToolbox in ArcMap, and go to Analysis Tools→Proximity→Buffer. 
+    
     ![](images/ArcToolboxBuffer.png)\ 
-
+    
 3. Drag `educ_utm` into the input features box. Call the output shapefile `educ_buf5k` and make sure it saves to your workspace (which  might or might not be the default location). For the Distance box, under Linear Unit, enter 5000 meters. For Dissolve Type choose `ALL`. Leave the rest of the options as the defaults. Press OK.
 
 4. View the new `educ_buf5k`  shapefile in ArcMap.  Zoom in to where there are clusters of schools to see how the buffers merge together (i.e. are dissolved as single polygons in these locations).  
