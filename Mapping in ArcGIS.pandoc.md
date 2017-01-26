@@ -1,6 +1,6 @@
 # Mapping in ArcGIS
 
-## Version 1.1
+## Version 1.2
 
 Purpose of the lab: 
 
@@ -175,27 +175,30 @@ Once you are happy with your map layout, you can export map as a standalone grap
 
 The objective of this assignment is to 
 
-1. Describe the spatial distribution of median age in Philadelphia in Philadelphia using choropleth mapping
-2. Examine the effect of using different class break schemes in choropleth mapping 
+1. Examine the effect of using different class break schemes in choropleth mapping 
+2. Focus on effective layout and design
 
 ## Deliverables
 
-Turn in a report addressing these objectives.  The report should include three choropleth maps of median age for Philadelphia, each with a different class break scheme:
+You will turn in one map page, made up of four individual maps, on dot density and three choropleths. The map should be exported to PDF.
 
-1. equal interval classification scheme with five classes and Yellow-Brown color ramp
-2. quantile classification scheme with five classes and Yellow-Green-Blue color ramp
-3. any other automated or manual class break scheme with the color ramp of your choosing. 
+Pick one racial category, such as `ASIAN` or `BLACK`, that you would like to map in the choropleth maps. This will be normalized by `TOTALPOP`, which will turn it into a ratio. The four data frames should use the following symbolization:
 
-Each map should be properly formatted and include a legend, north arrow, scale bar, title, and credits (e.g. data source and spatial reference information). Your name should appear in the credits as the Cartographer. Please note that these data were downloaded from the US Census American Factfinder website.
+1. a dot density map of the following categories: `WHITE`, `BLACK`, `AMINDIAN`, `ASIAN`, `OTHER`, `_2RACE`
+2. a choropleth equal interval classification scheme of your chosen race category with five classes and Yellow-Brown color ramp
+3. a quantile classification scheme of your chosen race category with five classes and Yellow-Green-Blue color ramp
+4. a choropleth natural breaks scheme of your chosen race category with the color ramp selected from [ColorBrewer](http://colorbrewer2.org)
 
-In your report describe the spatial distribution of median age---i.e. where is it high and where is it low---as well as the power of the different types of class break methods in capturing this distribution. 
+Each individual map contain a legend and a subtitle. The map page should have a title. As long as you keep the scale consistent, the entire map page can share one north arrow and scale bar. The page should also have credits (e.g. data source and spatial reference information). Your name should appear in the credits as the Cartographer. Please note that these data were downloaded from the US Census American Factfinder website.
+
+In addition to the map, you should submit a brief discussion (250-500 words) of the effect that the different choropleth schemes have on map interpretation. Do they influence the viewers judgment of how prevalent that demographic group lives in Philadelphia, or the degree of concentration of that group? Comparison with the dot density map will help you in this evaluation. What are the advantages of dot density vs. choropleth mapping?
 
 ## Getting Started
 
-Use the settings in the Symbology window to experiment with different automated and manual class break settings.  As you experiment look at the graph and the class break lines.  Think about which class break method does the best job of grouping tracts with similar median age values together in the same class. 
+The individual maps are each "data frames". A data frame is a collection of layers. You will use the same `Tracts_2010` layer in each data frame, so the easiest way to create the data frames is to add the `Tracts_2010` layer, switch to Layout View, and then copy and paste the data frame four times.
 
 ## Requirements
 
-1. Analysis: Report includes a detailed explanation of the power of different types of class break methods for capturing the distribution of median age.
+1. Analysis: Detailed explanation of the power of different types of class break methods for capturing the distribution of demographic groups, as well as comparison with dot density mapping.
 2. Writing: Report thoroughly addresses all sections, employs appropriate technical language, and is free of grammatical mistakes.
-3. Figures: Report includes three choropleth maps that correctly display median age with each class break method. Each map should be well formatted to include all map layout components.
+3. Figures: Map that is overall visually balanced that includes the four consituent maps described above.
