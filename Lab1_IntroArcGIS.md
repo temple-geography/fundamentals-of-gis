@@ -104,7 +104,7 @@ This section aims to show you that shapefiles are composed of many files that yo
 5.  Select and copy *all* of the NJ\_counties files and paste these files into the 'newcensus' folder.
 6.  Open the ArcMap software and add the NJ\_counties shapefile from the 'newcensus' folder to ArcGIS (use the + data button)
 7.  Go back to File Explorer and copy the other files (NJ\_Cities, NJ\_tracts\_NAD, Passenger\_Railroad\_Lines\_in\_New\_Jersey) from the census folder to the 'newcensus' folder
-8.  Add these files to the map
+8.  Add these files to the map.
 9.  Save your map document (project) as Lab1v2.mxd. **Always take note of where you are saving files and projects.**
 10. Close ArcMap completely.
 
@@ -210,7 +210,7 @@ Identify Features
 
 The identify tool allows you to quickly get attribute information about a geographic feature. Let's try to get info about the counties.
 
-1.  Select the 'Identify' tool and click on one of the Counties. The Identify window will appear
+1.  Select the 'Identify' tool ![](images/ArcMapIdentifyTool.png) and click on one of the Counties. The Identify window will appear
 2.  If you are not getting info about the counties then you will need to change the "Identify from" layer in the dropdown at the top of the window.
 3.  **What field names show up when you click on one of the counties?** \_\_\_\_\_\_
 4.  Try using this tool on the other map layers.
@@ -240,6 +240,8 @@ Opening the Attribute Table
 1.  Add NJ\_tracts\_NAD---Click Add Data ![](images/ArcMapAddDataButton.png), navigate to the census folder and add NJ\_tracts\_NAD.
 2.  Place the NJ\_tracts\_NAD file on top of NJ counties.
 3.  Right-click the NJ\_tracts\_NAD layer in the TOC and select 'Open Attribute Table' from the popup menu.
+
+    ![](images/ArcMapOpenAttributeTable.png) 
 
 The table containing the records for the NJ\_tracts\_NAD should open
 
