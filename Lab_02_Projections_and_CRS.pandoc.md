@@ -1,16 +1,25 @@
-Projections and Coordinate Transformations Lab Exercise
+---
+title: Working with Projections and Coordinate Reference Systems
+author: Lee Hachadoorian
+---
 
-1. Identify coordinate system
-2. Define Projection - when is it necessary?
-3. Change projection for display (data frame)
-4. Reproject
+**Purpose:** To introduce concepts in map projection, and common operations in working with coordinate reference systems. To learn how to make more complex map layouts for reference cartography.
+
+At the end of this exercise you will be able to:
+
+1. Download from online online repositories of geographic data
+2. Identify a spatial layer's coordinate system
+3. Change the display projection of a data frame
+4. Reproject spatial data
+5. Fix missing spatial reference information
+6. Create a layout with multiple maps
 
 # Finding Geospatial Data Online
 
 In the first exercise, you were provided the data you needed to complete the assignment. Sometimes GIS practitioners create their own data (something you will get experience with later this semester), but often we turn to online sources for ready-to-go data. We will download data from two websites which exemplify the kinds of online data available:
 
-* [Natural Earth](http://www.naturalearthdata.com/) is an example of a single-purpose website. It provides global data, both physical (rivers, land masses) and cultural (poltical boundaries, populated places) specifically for cartography at medium to small scale.
-* [PASDA (The Pennsylvania Geospatial Clearinghouse)](http://www.pasda.psu.edu/) is an example of a **geoportal**, a website that collects geospatial data from many different sources organized around a particular theme or region of interest. Unsurprisngly, PASDA, hosts data related to Pennsylvania, and is maintained by Pennsylvania State University. PASDA hosts data provided by local governments, federal and state agencies, nonprofits, and academic institutions.
+* [**Natural Earth**](http://www.naturalearthdata.com/) is an example of a single-purpose website. It provides global data, both physical (rivers, land masses) and cultural (poltical boundaries, populated places) specifically for cartography at medium to small scale.
+* [**PASDA** (The Pennsylvania Geospatial Clearinghouse)](http://www.pasda.psu.edu/) is an example of a **geoportal**, a website that collects geospatial data from many different sources organized around a particular theme or region of interest. Unsurprisngly, PASDA, hosts data related to Pennsylvania, and is maintained by Pennsylvania State University. PASDA hosts data provided by local governments, federal and state agencies, nonprofits, and academic institutions.
 
 Because geospatial data can be quite large, downloads are typically provided in ZIP files. These files must be unzipped before use (they cannot be read directly by ArcMap, though some other GIS software can read data stored in a ZIP archive). Therefore, over and over again in this exercise, and throughout the term, and for any future GIS job you have or project you undertake, you will have to repeat the following steps:
 
@@ -19,11 +28,16 @@ Because geospatial data can be quite large, downloads are typically provided in 
 2. Unzip the archive. The lab computers have [7-Zip](http://www.7-zip.org/) installed on them. In File Explorer, right-click the file and choose **7-Zip → Extract Here** or **7-Zip → Extract to "*folder_name*"**.
 3. If desired, organize the extracted files. You could store all the files in a single folder, or create subfolders by theme, region, or source. There is no right way to do this. But the wrong way is to not have a plan, and then be unable to find your data when you need it.
 
-Keeping these steps in mind, download the following data:
+Keeping these steps in mind, download the following data from [PASDA](http://www.pasda.psu.edu/):
 
-* DRWI_Municipalities2016
-* PhiladelphiaStreetCenterlines2016
-* Natural Earth small-scale physical layers. Use the "Download all 110m physical themes" link.
+* The Delaware River Watershed Municipalities 2016 data contributed by Natural Lands Trust
+* The Philadelphia Street Centerlines 2016 data contributed by the City of Philadelphia
+
+In each case, no instructions are given here so that you can get familiar with searching a geoportal for data.
+
+For the Natural Earth data, start at the [Natural Earth Downloads page](http://www.naturalearthdata.com/downloads/). Browse the different categories of data. Think about the different uses for large, medium, and small scale data. Look through the different files available in the cultural, physical, and raster themes. After exploring the different data available, go to the download page for small scale physical layers. At the top of the page, select the link to "Download all 110m physical themes".
+
+Remember to unzip all of the downloaded data from both PASDA and Natural Earth, and organize the files into folders with names that you will understand so that you will be able to find the data later in this exercise and in the future.
 
 # Understanding Coordinate Reference Systems
 
@@ -47,7 +61,7 @@ Open the layer properties for the roads layer by double-clicking on the name in 
 
 If SP Pennsylvania South is an appropriate CRS for Philly area data, why does the road grid look skewed? The reason is that the data frame is still set to NAD83 (lat-long), and ArcMap is using "on the fly" reprojection to show the road network in NAD83. If you want to view the data in SP Pennsylvania South, you can change the data frame CRS. Open the data frame properties and go to the Coordinate System tab. Notice the top pane has four folders: Favorites, Geographic Coordinate Systems, Projected Coordinate Systems, and Layers. Expand the Layers folder. This will display the CRSes used by all loaded layers (in this case two). Select "NAD_1983_StatePlane_Pennsylvania_South_FIPS_3702_Feet" from the list and hit OK. 
 
-![](images/Lab2Fig2.png)\ 
+![](images/Lab2Fig1.png)\ 
 
 The roads network and Philly borders should now look "right". This is because SP Pennsylvania South is a **conformal** projection, which means that it preserves local angles (often casually we say it "preserves shapes"). Conformal projections are ideal for route-finding, which is why Google Maps uses "Web Mercator", a conformal projection.
 
@@ -68,7 +82,7 @@ All projections introduce distortions to **distance, direction, area,** and/or *
     * US National Atlas Equal Area (Hint: This is a Continental projection)
     * WGS 1984 World Mercator
 
-**To turn in:** Submit your measurements of the area of Philadelphia in Acres for reach of the four CRSes. Write a few sentences describing the purpose and use of each CRS. Assuming that SP Pennsylvania South measurement represents the true value, explain why each other measurement is close or far from this value. You may refer to the textbook or to Google searches, but make sure that your submission is entirely your own words.
+**To turn in:** Submit your measurements of the area of Philadelphia in Acres for each of the four CRSes. Write a few sentences describing the purpose and use of each CRS. Assuming that SP Pennsylvania South measurement represents the true value, explain why each other measurement is close or far from this value. You may refer to the textbook or to Google searches, but make sure that your submission is entirely your own words.
 
 ## Reprojecting Geospatial Data
 
@@ -200,9 +214,31 @@ You need to think carefully about what map elements to include, and whether an e
 2. **Source:** All of the maps use the same data (from Natural Earth), so you should include one source line.
 3. **Author:** Credit yourself (once) as the cartographer.
 4. **North Arrow:** North arrows only make sense when North is in a consistent direction, which is the case for the World Mercator map, but not for the Robinson or Goode Homolosine map. For this layout, North arrows would just add clutter, so I recommend omitting them entirely.
+5. **Scale:** A scale bar or scale statement is often used. Again, for this layout, this would add clutter. On the other hand, as part of the goal is to show the impact of different projections, understanding scale may be important. Think about whether you want to include scale bars, and how you can place them so that they are useful to your presentation.
+
+Think through these items, and include items 1, 2, and 3. Use your judgment regarding 4 and 5.
 
 ## Finishing Touches
 
 The world represented in different projections will fill the available space differently. Experiment with resizing and repositioning the data frame, and using the zoom, to create a visually balanced layout. Try  to fill the white space, while still leaving some breathing room among the four maps.
 
-**To turn in:** Make sure your map includes the indicated elements, including your name. Export your map to PDF. Describe the four map projections you used, particularly with regard to which of the four map properties they preserve. What purpose does each projection serve? Refer to the ArcMap [List of supported map projections](http://desktop.arcgis.com/en/arcmap/latest/map/projections/list-of-supported-map-projections.htm) for information.
+Certain projections will occupy more of the data frame. For example, cylindrical projections will display as big rectangles, while many other projections like the Robinson will be an oval, leaving white space around the edges. Try to *not* have the heavy visual elements all to one side.
+
+When you place additional map elements, like title, credits, scale bars, you may need to reposition or resize the four projected maps. You may need to change the default font size or positioning of the title and other text elements. You may need to reposition scale bars or North arrows, if you chose to include any. White space should be distributed around the map, and filled with map elements where possible.
+
+**To turn in:** Make sure your map includes the indicated elements, including your name. Export your map to PDF. Describe the four map projections you used, particularly with regard to which of the four map properties they preserve. What purpose does each projection serve? What limitations does each have? Refer to the ArcMap [List of supported map projections](http://desktop.arcgis.com/en/arcmap/latest/map/projections/list-of-supported-map-projections.htm) for information, but make sure that your submission is entirely your own words.
+
+# DELIVERABLES
+
+Submit the map with four global projections as a PDF.
+
+Submit a document with the following answers or discussion, repeated from earlier in the exercise:
+
+1. What were the measurements of the area of Philadelphia in Acres for each of the following four CRSes:
+    * SP Pennsylvania South
+    * NAD 1983 UTM Zone 18N
+    * US National Atlas Equal Area
+    * WGS 1984 World Mercator
+    Write a few sentences describing the purpose and use of each CRS. Assuming that SP Pennsylvania South measurement represents the true value, explain why each other measurement is close or far from this value. You may refer to the textbook or to Google searches, but make sure that your submission is entirely your own words.
+2. Describe the four map projections you used, particularly with regard to which of the four map properties they preserve. What purpose does each projection serve? What limitations does each have? Refer to the ArcMap [List of supported map projections](http://desktop.arcgis.com/en/arcmap/latest/map/projections/list-of-supported-map-projections.htm) for information, but make sure that your submission is entirely your own words.
+
