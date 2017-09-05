@@ -246,7 +246,8 @@ Submit a document with the following answers or discussion, repeated from earlie
     -   SP Pennsylvania South
     -   NAD 1983 UTM Zone 18N
     -   US National Atlas Equal Area
-    -   WGS 1984 World Mercator Write a few sentences describing the purpose and use of each CRS. Assuming that SP Pennsylvania South measurement represents the true value, explain why each other measurement is close or far from this value. You may refer to the textbook or to Google searches, but make sure that your submission is entirely your own words.
+    -   WGS 1984 World Mercator
 
+    Write a few sentences describing the purpose and use of each CRS. Assuming that SP Pennsylvania South measurement represents the true value, explain why each other measurement is close or far from this value. You may refer to the textbook or to Google searches, but make sure that your submission is entirely your own words.
 2.  Describe the four map projections you used, particularly with regard to which of the four map properties they preserve. What purpose does each projection serve? What limitations does each have? Refer to the ArcMap [List of supported map projections](http://desktop.arcgis.com/en/arcmap/latest/map/projections/list-of-supported-map-projections.htm) for information, but make sure that your submission is entirely your own words.
 
