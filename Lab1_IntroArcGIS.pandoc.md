@@ -1,10 +1,13 @@
-# Lab 1: Introduction to ArcGIS
+---
+title: Introduction to ArcGIS
+author: Kevin Henry
+---
 
 **Purpose:** To introduce ArcGIS and its basic data management, display, and analysis components. You will learn how to work with map layers, query attribute tables and geographic features, and create maps.
 
 Throughout the lab you will find questions which appear in boldface and are followed by a blank. Keep track of your answers, as you will submit them for evaluation, along with a map. These questions are repeated at the end of the document.
 
-# Exploring ArcMap 10
+# Exploring ArcMap 10.x
 
 ## Opening ArcMap and Adding Map Layers
 
