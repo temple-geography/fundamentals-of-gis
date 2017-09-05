@@ -4,7 +4,7 @@ This repository contains lab exercises for an introductory class in Geographic I
 
 We have attempted to genericize the labs, so that they can be used apart from any particular lab setting. This means that the exercises do not include due dates, course numbers, instructor names, etc. The exercises are intended to be completed in the following sequence:
 
-1. [Introduction to ArcGIS](Lab1_IntroArcGIS.md) ([pdf](Lab1_IntroArcGIS.pdf)) (1 week)
+1. [Introduction to ArcGIS](Lab_01_Introduction_to_ArcGIS.md) ([pdf](Lab_01_Introduction_to_ArcGIS.pdf)) (1 week)
 2. [Projections and Coordinate Reference Systems](Lab_02_Projections_and_CRS.md) ([pdf](Lab_02_Projections_and_CRS.pdf)) (1 week)
 3. [Thematic Cartography](Lab_03_Thematic_Mapping.md) ([pdf](Lab_03_Thematic_Mapping.pdf)) (2 weeks)
 4. [Tables and Attribute Data](Lab_04_Tables_and_Attribute_Data.md) ([pdf](Lab_04_Tables_and_Attribute_Data.pdf)) (2 weeks)
