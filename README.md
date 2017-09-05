@@ -4,13 +4,13 @@ This repository contains lab exercises for an introductory class in Geographic I
 
 We have attempted to genericize the labs, so that they can be used apart from any particular lab setting. This means that the exercises do not include due dates, course numbers, instructor names, etc. The exercises are intended to be completed in the following sequence:
 
-1. [Introduction to ArcGIS](Lab1_IntroArcGIS.md) (1 week)
-2. [Projections and Coordinate Reference Systems](Lab_02_Projections_and_CRS.md) (1 week)
-3. [Thematic Cartography](Lab_03_Thematic_Mapping.md) (2 weeks)
-4. [Tables and Attribute Data](Lab_04_Tables_and_Attribute_Data.md) (2 weeks)
-5. [Digitization/Creating and Editing Map Data](Lab_05_Creating_Geographic_Data.md) (2 weeks)
-6. [Vector Operations/Overlay Analysis](Lab_06_Vector_Operations.md) (2 weeks)
-7. [Introduction to Raster Analysis](Lab_07_Raster_Analysis.md) (2 weeks)
+1. [Introduction to ArcGIS](Lab1_IntroArcGIS.md) ([pdf](Lab1_IntroArcGIS.pdf)) (1 week)
+2. [Projections and Coordinate Reference Systems](Lab_02_Projections_and_CRS.md) ([pdf](Lab_02_Projections_and_CRS.pdf)) (1 week)
+3. [Thematic Cartography](Lab_03_Thematic_Mapping.md) ([pdf](Lab_03_Thematic_Mapping.pdf)) (2 weeks)
+4. [Tables and Attribute Data](Lab_04_Tables_and_Attribute_Data.md) ([pdf](Lab_04_Tables_and_Attribute_Data.pdf)) (2 weeks)
+5. [Digitization/Creating and Editing Map Data](Lab_05_Creating_Geographic_Data.md) ([pdf](Lab_05_Creating_Geographic_Data.pdf)) (2 weeks)
+6. [Vector Operations/Overlay Analysis](Lab_06_Vector_Operations.md) ([pdf](Lab_06_Vector_Operations.pdf)) (2 weeks)
+7. [Introduction to Raster Analysis](Lab_07_Raster_Analysis.md) ([pdf](Lab_07_Raster_Analysis.pdf)) (2 weeks)
 
 An additional lab exercise is planned to be created for use in future terms:
 
