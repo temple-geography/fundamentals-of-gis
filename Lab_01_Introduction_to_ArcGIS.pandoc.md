@@ -16,7 +16,7 @@ Throughout the lab you will find questions which appear in boldface and are foll
 3. Click the Add Data Button ![](images/ArcMapAddDataButton.png).
 4. In the Add Data browser window click 'Connect to Folder' ![](images/ArcMapConnectToFolderButton.png)
 5. Navigate to the location of the lab1 folder. Select the data folder lab1 and then click OK. **Note:** After you have connected to a data folder you will be able to connect directly to this folder in the future without having to repeat this step.
-6. Double click the census folder and inside the census folder select NJ\_Cities, NJ\_counties, NJ\_tracts\_NAD, and Passenger\_Railroad\_Lines\_in\_New\_Jersey. Hold the Ctrl key down to select more than one file.
+6. Double click the census folder and inside the census folder select NJ\_Cities, NJ\_counties, NJ\_tracts\_NAD, and Passenger\_Railroad\_Lines\_in\_New\_Jersey. Hold the `Ctrl` key down to select more than one file.
 7. Click Add. The files now appear as map **layers** in ArcMap's Table of Contents. These layers include the three kinds of **vector** data: **points** (NJ\_Cities), **lines** (Passenger\_Railroad\_Lines\_in\_New\_Jersey), and **polygons** (NJ\_counties, and NJ\_tracts).
 
 ![](images/Lab1Fig1.png)\ 
@@ -94,7 +94,7 @@ This section aims to show you that shapefiles are composed of many
 files that you must transport all together in one group to another
 location. Additionally, it is important to note where all of the files are stored for each project that you work on.
 
-1. Open File Explorer in Windows. This can be accessed from the Start Menu, or by clicking This PC on the desktop. But the fastest way to do this is to hit `Win` + `E` on the keyboard. 
+1. Open File Explorer in Windows. This can be accessed from the Start Menu, or by clicking This PC on the desktop. (**Hint:** On your own computer, the fastest way to do this is `Win`+`E` on the keyboard. This shortcut is not enabled on the TU lab computers.)
 2. Navigate to the census folder from lab1. Open the folder and examine the NJ\_counties shapefile. There should be 8 files with the base name NJ\_counties.
 2. **What file extensions are part of the NJ\_counties shapefile?** ______
 3. Create a new folder within the lab1 folder. Call it 'newcensus'
@@ -388,10 +388,10 @@ When you are satisfied with the map, you will export it using two different imag
 7. Confirm that you are still in the lab1 folder.
 8. Hit Save.
 9. Open Google Chrome (or any image viewer or web browser that you have installed on your computer).
-10. Press `Ctrl` + `O` for "File Open". Open Lab1v2.png (or whatever you named your PNG export).
-11. Use the `Ctrl` + `+` keys and `Ctrl` + `-` keys to zoom in and out on the image. What do you notice about the image quality as you zoom in?
+10. Press `Ctrl`+`O` for "File Open". Open Lab1v2.png (or whatever you named your PNG export).
+11. Use the `Ctrl`+`+` keys and `Ctrl`+`-` keys to zoom in and out on the image. What do you notice about the image quality as you zoom in?
 12. Open Lab1v2.svg (or whatever you named your SVG export).
-13. Use the `Ctrl` + `+` keys and `Ctrl` + `-` keys to zoom in and out on the image. What do you notice about the image quality as you zoom in? **What difference to you observe in the image quality between the PNG and SVG file formats? What difference do you observe in the file sizes?** ______
+13. Use the `Ctrl`+`+` keys and `Ctrl`+`-` keys to zoom in and out on the image. What do you notice about the image quality as you zoom in? **What difference to you observe in the image quality between the PNG and SVG file formats? What difference do you observe in the file sizes?** ______
 14. Completely close ArcMap.
 
 # ASSIGNMENT

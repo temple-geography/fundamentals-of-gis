@@ -13,7 +13,7 @@ Opening ArcMap and Adding Map Layers
 3.  Click the Add Data Button ![](images/ArcMapAddDataButton.png).
 4.  In the Add Data browser window click 'Connect to Folder' ![](images/ArcMapConnectToFolderButton.png)
 5.  Navigate to the location of the lab1 folder. Select the data folder lab1 and then click OK. **Note:** After you have connected to a data folder you will be able to connect directly to this folder in the future without having to repeat this step.
-6.  Double click the census folder and inside the census folder select NJ\_Cities, NJ\_counties, NJ\_tracts\_NAD, and Passenger\_Railroad\_Lines\_in\_New\_Jersey. Hold the Ctrl key down to select more than one file.
+6.  Double click the census folder and inside the census folder select NJ\_Cities, NJ\_counties, NJ\_tracts\_NAD, and Passenger\_Railroad\_Lines\_in\_New\_Jersey. Hold the `Ctrl` key down to select more than one file.
 7.  Click Add. The files now appear as map **layers** in ArcMap's Table of Contents. These layers include the three kinds of **vector** data: **points** (NJ\_Cities), **lines** (Passenger\_Railroad\_Lines\_in\_New\_Jersey), and **polygons** (NJ\_counties, and NJ\_tracts).
 
 ![](images/Lab1Fig1.png) 
@@ -94,7 +94,7 @@ Copying Shapefiles between Folders
 
 This section aims to show you that shapefiles are composed of many files that you must transport all together in one group to another location. Additionally, it is important to note where all of the files are stored for each project that you work on.
 
-1.  Open File Explorer in Windows. This can be accessed from the Start Menu, or by clicking This PC on the desktop. But the fastest way to do this is to hit `Win` + `E` on the keyboard.
+1.  Open File Explorer in Windows. This can be accessed from the Start Menu, or by clicking This PC on the desktop. (**Hint:** On your own computer, the fastest way to do this is `Win`+`E` on the keyboard. This shortcut is not enabled on the TU lab computers.)
 2.  Navigate to the census folder from lab1. Open the folder and examine the NJ\_counties shapefile. There should be 8 files with the base name NJ\_counties.
 3.  **What file extensions are part of the NJ\_counties shapefile?** \_\_\_\_\_\_
 4.  Create a new folder within the lab1 folder. Call it 'newcensus'
@@ -316,7 +316,6 @@ Find all census tracts with a population less than or equal to 1,500:
 4.  We will use a criteria to find only those tracts with a population less than or equal to 1,500. We can enter this criteria in two ways:
     1.  Double-click `Pop2005` in the upper listbox. Notice it appears in the lower textbox. Then Select the `<=` operator ("less than or equals"). Finally, type `1500` directly into the lower text box. ***Do not use commas in numeric values. I.e., do not type*** `1,500`.
     2.  Alternatively, you can enter the complete formula directly into the lower listbox: `"Pop2005" <= 1500`.
-
 5.  Press Apply.
 6.  81 records should have been selected
 7.  **What's the Total Population for these selected records?**
@@ -381,7 +380,6 @@ We have been working in a view called "Data View", which is most useful for data
     3.  North Arrow.
     4.  Scale Bar.
     5.  Text---When the textbox first appears, it will probably be very small in the center of the page, so you may not see it at first. Zoom in to the layout (*not the map, make sure you use the right zoom button!*) if necessary. Edit the textbox to say "Map Designer: \[Fill in your name\]". Zoom to the full layout.
-
 7.  Reposition the map elements to fill the whitespace. Try not to have any elements overlaying New Jersey. Your final layout may look something like this, but do *NOT* try to make it look exactly the same. Just make sure it has all of the requested elements:
 
     ![](images/Lab1Fig7.png) 
@@ -400,10 +398,10 @@ When you are satisfied with the map, you will export it using two different imag
 7.  Confirm that you are still in the lab1 folder.
 8.  Hit Save.
 9.  Open Google Chrome (or any image viewer or web browser that you have installed on your computer).
-10. Press `Ctrl` + `O` for "File Open". Open Lab1v2.png (or whatever you named your PNG export).
-11. Use the `Ctrl` + `+` keys and `Ctrl` + `-` keys to zoom in and out on the image. What do you notice about the image quality as you zoom in?
+10. Press `Ctrl`+`O` for "File Open". Open Lab1v2.png (or whatever you named your PNG export).
+11. Use the `Ctrl`+`+` keys and `Ctrl`+`-` keys to zoom in and out on the image. What do you notice about the image quality as you zoom in?
 12. Open Lab1v2.svg (or whatever you named your SVG export).
-13. Use the `Ctrl` + `+` keys and `Ctrl` + `-` keys to zoom in and out on the image. What do you notice about the image quality as you zoom in? **What difference to you observe in the image quality between the PNG and SVG file formats? What difference do you observe in the file sizes?** \_\_\_\_\_\_
+13. Use the `Ctrl`+`+` keys and `Ctrl`+`-` keys to zoom in and out on the image. What do you notice about the image quality as you zoom in? **What difference to you observe in the image quality between the PNG and SVG file formats? What difference do you observe in the file sizes?** \_\_\_\_\_\_
 14. Completely close ArcMap.
 
 ASSIGNMENT
