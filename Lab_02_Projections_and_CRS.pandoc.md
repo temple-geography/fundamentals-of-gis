@@ -7,7 +7,7 @@ author: Lee Hachadoorian
 
 At the end of this exercise you will be able to:
 
-1. Download from online online repositories of geographic data
+1. Download from online repositories of geographic data
 2. Identify a spatial layer's coordinate system
 3. Change the display projection of a data frame
 4. Reproject spatial data
@@ -28,10 +28,12 @@ Because geospatial data can be quite large, downloads are typically provided in 
 2. Unzip the archive. The lab computers have [7-Zip](http://www.7-zip.org/) installed on them. In File Explorer, right-click the file and choose **7-Zip → Extract Here** or **7-Zip → Extract to "*folder_name*"**.
 3. If desired, organize the extracted files. You could store all the files in a single folder, or create subfolders by theme, region, or source. There is no right way to do this. But the wrong way is to not have a plan, and then be unable to find your data when you need it.
 
+## Downloading the Data for this Lab Exercise
+
 Keeping these steps in mind, download the following data from [PASDA](http://www.pasda.psu.edu/):
 
-* The Delaware River Watershed Municipalities 2016 data contributed by Natural Lands Trust
-* The Philadelphia Street Centerlines 2016 data contributed by the City of Philadelphia
+* The Delaware River Watershed Municipalities 2016 data contributed by Natural Lands Trust: A municipality is a general purpose local government. A municipality may be a city, town, borough, village, or something else, with different states having slight different terminology.
+* The Philadelphia Street Centerlines 2016 data contributed by the City of Philadelphia.
 
 In each case, no instructions are given here so that you can get familiar with searching a geoportal for data.
 
@@ -47,42 +49,69 @@ Working with geographic data is often conceptualized as a "layer cake", with geo
 
 ![Source: Bolstad, Paul. 2016. *GIS Fundamentals*.](images/GisLayerCakeBolstad.jpg)\ 
 
-In ArcMap, spatial layers are added to a data frame. As we will see, multiple data frames can be added to a single map canvas. When you start ArcMap with a blank canvas, the Table of Contents will show a single data frame named "Layers". This name can confuse new users, so keep in mind that this is a **data frame** which *contains* **layers**. The data frame name can be changed to something more descriptive by the user, and you will probably want to do so if you add multiple data frames.
+In ArcMap, spatial layers are added to a data frame. As we will see, multiple data frames can be added to a single map canvas. 
+
+1. Open ArcMap.
+
+When you start ArcMap with a blank canvas, the Table of Contents will show a single data frame named "Layers". This name can confuse new users, so keep in mind that this is a **data frame** which *contains* **layers**. The data frame name can be changed to something more descriptive by the user, and you will probably want to do so if you add multiple data frames.
 
 ![](images/ArcMapTocWithNoLayers.png)\ 
 
-Initially, a data frame has no **CRS**, or coordinate [reference] system, associated with it. You can confirm this by checking the data frame properties. Double-click on the data frame name ("Layers") in the TOC. Select the Coordinate System tab (if it is not already selected). You should see that the Current coordinate system is listed as "No coordinate system."
+Initially, a data frame has no **CRS**, or coordinate [reference] system, associated with it. You can confirm this by checking the data frame properties. 
 
-Now add the DRWI_Municipalities2016 data. Check the data frame properties. Note that the data frame now has coordinate system information. Specifically, it is using NAD83, a geographic coordinate system based on the North American Datum 1983. This is another way of saying that the data is being shown using latitude and longitude, the spherical coordinate system used for geographic locations, as if it were a planar (flat) CRS. Close the properties box. Hover the cursor near the center of the map. The coordinate values displayed in the lower right of the ArcMap window should be near -75 and 40 decimal degrees. Whenever you see these lat-long values, you are in the region near Philly.
+2. Double-click on the data frame name ("Layers") in the TOC. 
+3. Select the Coordinate System tab (if it is not already selected). You should see that the Current coordinate system is listed as "No coordinate system."
 
-Now add the Philadelphia roads data. Right-click on the roads layer and select Zoom To Layer from the popup menu. You should be zoomed in to the Philly area. Does the shape of Philly look strange? If you can't tell, or if you are not familiar with Philly, zoom into part of the street grid, and notice that the streets don't meet at right angles. This is a consequence of viewing data using geographic coordinates without projection.
+The first time you add data, ArcMap will update the data frame to match the CRS of that data.
 
-Open the layer properties for the roads layer by double-clicking on the name in the TOC. Click on the Source tab (if it is not already selected). Note that in addition to displaying the data type ("Shapefile Feature Class"), file location, geometry type, the dialog also shows the CRS the layer is stored in, which in this case is "Projected Coordinate System:	NAD_1983_StatePlane_Pennsylvania_South_FIPS_3702_Feet". This shows us that the layer is stored in State Plane Pennsylvania South, a CRS designed for high-accuracy, large-scale mapping appropriate for local and state planning agencies. Most US states require land records and public infrastructure (such as roads and bridges) to be stored and published using the appropriate State Plane CRS. If you are mapping the Philly area, SP Pennsylvania South will usually be your best choice. However, if you are mapping a larger region, distances and shapes will begin to distort rapidly as you move away from Southern Pennsylvania. The State Plane coordinate system is explained further in Bolstad, 5e, pp. xx.
+4. Add the DRWI_Municipalities2016 data. 
+5. Check the data frame properties. Note that the data frame now has coordinate system information. Specifically, it is using GCS_North_American_1983 (abbreviated in the upper pane as "NAD83"), a geographic coordinate system based on the North American Datum 1983. This is another way of saying that the data is being shown using latitude and longitude, the spherical coordinate system used for geographic locations, as if it were a planar (flat) CRS.
+6. Close the properties box. 
+7. Hover the cursor near the center of the map. The coordinate values displayed in the lower right of the ArcMap window should be near -75 and 40 decimal degrees. Whenever you see these lat-long values, you are in the region near Philly.
+8. Now add the Philadelphia streets centerlines. 
+9. Right-click on the streets layer and select Zoom To Layer from the popup menu. 
 
-If SP Pennsylvania South is an appropriate CRS for Philly area data, why does the road grid look skewed? The reason is that the data frame is still set to NAD83 (lat-long), and ArcMap is using "on the fly" reprojection to show the road network in NAD83. If you want to view the data in SP Pennsylvania South, you can change the data frame CRS. Open the data frame properties and go to the Coordinate System tab. Notice the top pane has four folders: Favorites, Geographic Coordinate Systems, Projected Coordinate Systems, and Layers. Expand the Layers folder. This will display the CRSes used by all loaded layers (in this case two). Select "NAD_1983_StatePlane_Pennsylvania_South_FIPS_3702_Feet" from the list and hit OK. 
+You should be zoomed in to the Philly area. Does the shape of Philly look strange? If you can't tell, or if you are not familiar with Philly, zoom into part of the street grid, and notice that the streets don't meet at right angles. This is a consequence of viewing data using geographic coordinates without projection.
+
+10. Open the layer properties for the streets layer by double-clicking on the name in the TOC. 
+11. Click on the Source tab (if it is not already selected). Note that in addition to displaying the data type ("Shapefile Feature Class"), file location, geometry type, the dialog also shows the CRS the layer is stored in, which in this case is "Projected Coordinate System:	NAD_1983_StatePlane_Pennsylvania_South_FIPS_3702_Feet". 
+
+This shows us that the layer is stored in State Plane Pennsylvania South, a CRS designed for high-accuracy, large-scale mapping appropriate for local and state planning agencies. Most US states require land records and public infrastructure (such as roads and bridges) to be stored and published using the appropriate State Plane CRS. If you are mapping the Philly area, SP Pennsylvania South will usually be your best choice. However, if you are mapping a larger region, distances and shapes will begin to distort rapidly as you move away from Southern Pennsylvania. The State Plane coordinate system is explained further in Bolstad, 5e, pp. 124-128.
+
+If SP Pennsylvania South is an appropriate CRS for Philly area data, why does the road grid look skewed? The reason is that the data frame is still set to GCS NAD83 (lat-long), and ArcMap is using "on the fly" reprojection to show the road network in GCS NAD83. If you want to view the data in SP Pennsylvania South, you can change the data frame CRS. 
+
+12. Open the data frame properties and go to the Coordinate System tab. Notice the top pane has four folders: Favorites, Geographic Coordinate Systems, Projected Coordinate Systems, and Layers. 
+13. Expand the Layers folder. This will display the CRSes used by all loaded layers (in this case two). 
+14. Select "NAD_1983_StatePlane_Pennsylvania_South_FIPS_3702_Feet" from the list and hit OK. 
 
 ![](images/Lab2Fig1.png)\ 
 
-The roads network and Philly borders should now look "right". This is because SP Pennsylvania South is a **conformal** projection, which means that it preserves local angles (often casually we say it "preserves shapes"). Conformal projections are ideal for route-finding, which is why Google Maps uses "Web Mercator", a conformal projection.
+The streets network and Philly borders should now look "right". This is because SP Pennsylvania South is a **conformal** projection, which means that it preserves local angles (often casually we say it "preserves shapes"). Conformal projections are ideal for route-finding, which is why Google Maps uses "Web Mercator", a conformal projection.
 
 ## Understanding Areal Distortion
 
 All projections introduce distortions to **distance, direction, area,** and/or **shape (local angles)**. To understand how projections distort area (just one of these four properties), you are going to measure the approximate area of Philadelphia in different projections. If you have followed the steps above, the Layers data frame should be in the SP Pennsylvania South CRS. If it is not, please follow the steps above to change the CRS of the data frame.
 
-1. Zoom in to Philadelphia and uncheck the roads layer in the TOC.
+1. Zoom in to Philadelphia and uncheck the streets layer in the TOC.
 2. Click the Measure button ![](images/ArcMapMeasureButton.png) in the Standard toolbar. Your cursor should turn into a carpenter's square, and the Measure panel should appear over your map.
 3. In the Measure panel, click the plus sign (+), the third toolbar button.
 4. Click the fifth toolbar button, the dropdown arrow, and set the measurement units to Acres.
     
     ![](images/Lab2Fig2.png)\ 
 5. Click on Philadelphia with the cursor. The Measure panel should now display the perimeter and area of Philadelphia. **Write down the area of Philadelphia in acres, rounded to the nearest whole number.**
-6. Now change the data frame coordinate system and repeat the measurement. Each time, make a note of the CRS and the area of Philadelphia in acres, rounded to the nearest whole number. In the end, you should make measurements in the following four CRSes, all of which are in appropriate subfolders of the Projected Coordinate Systems folder. Try to find them yourself, but in each case if you can't find them in the folders, type some keywords into the search box at the top of the Coordinate Systems tab.
-    * SP Pennsylvania South---You already did this in the previous step. You can treat this as the most accurate value for the true area of Philadelphia.
-    * NAD 1983 UTM Zone 18N
-    * US National Atlas Equal Area (Hint: This is a Continental projection)
-    * WGS 1984 World Mercator
 
-**To turn in:** Submit your measurements of the area of Philadelphia in Acres for each of the four CRSes. Write a few sentences describing the purpose and use of each CRS. Assuming that SP Pennsylvania South measurement represents the true value, explain why each other measurement is close or far from this value. You may refer to the textbook or to Google searches, but make sure that your submission is entirely your own words.
+We are now going to repeat the measurement in three more coordinate systems. In the end, we will have measured Philadelphia's area using the following four CRSes:
+    
+* SP Pennsylvania South---You already did this in the previous step. You can treat this as the most accurate value for the true area of Philadelphia.
+* NAD 1983 UTM Zone 18N
+* US National Atlas Equal Area
+* WGS 1984 World Mercator
+
+6. For each of the CRSes listed above:
+    a. Change the data frame to use that CRS. Each CRS is in an appropriate subfolder of the Projected Coordinate Systems folder. Try to find them yourself (Hint: US National Atlas Equal Area is a Continental projection), but in each case if you can't find them in the folders, type some keywords into the search box at the top of the Coordinate Systems tab.
+    b. Repeat the measurement and make a note of the CRS and the area of Philadelphia in acres, rounded to the nearest whole number.
+
+**To turn in:** Submit your measurements of the area of Philadelphia in acres for each of the four CRSes. Write a few sentences describing the purpose and use of each CRS. Assuming that SP Pennsylvania South measurement represents the true value, explain why each other measurement is close or far from this value. You may refer to the textbook or to Google searches, but make sure that your submission is entirely your own words.
 
 ## Reprojecting Geospatial Data
 
@@ -92,8 +121,9 @@ There are two ways to do this.
 
 ### Using Export Data to Reproject a Loaded Layer
 
+1. Change the data frame to use the State Plane Pennsylvania South CRS. (Remember, when we did this previously, we relied upon the fact that the Philadelphia street centerlines layer is using that CRS.)
 1. Right-click on DRWI_Municipalities2016 in the TOC and choose Data → Export Data…. 
-2. Set the radio button to **Use the same coordinate system as:** *the data frame*. Remember, the data frame is now using the State Plane Pennsylvania South CRS, which it copied from the street centerline layer.
+2. Set the radio button to **Use the same coordinate system as:** *the data frame*.
 3. Name the output feature class DRWI_Municipalities2016_SpPennSouthFt.shp.
 4. Hit OK.
 5. Say yes to add the new layer to the map. Remove the old DRWI_Municipalities2016 layer.
@@ -111,6 +141,8 @@ Often we want to reproject geospatial data without loading it first. This is eas
     * **Output Coordinate System**: Use NAD 1983 UTM Zone 18N.
 5. Hit OK. The reprojected layer should get added to the map automatically.
 
+Although the new layer is using a different CRS, because the CRS is defined correctly, ArcMap will use the coordinate information to "register" (align) the images correctly.
+
 ## Handling Missing Coordinate Reference Systems
 
 Occasionally you will be supplied with data that lacks a CRS. This is common with tabular data, which might have an X and Y column, but not specify what they mean. Frequently it is easy to identify latitude and longitude data by eye, and XY data with latitude and longitude is very likely to have been gathered by GPS, and therefore to be in the WGS 1984 datum. If you don't know the CRS you have to go back to the source to see if you can find it. If not, you have to try one that might be reasonable for the region or scale, and see if it lines up with the rest of your data. This takes a lot of trial and error and is something you will learn over a years of practice.
@@ -122,7 +154,6 @@ If this happens, you need to use the Define Projection tool to set the CRS of th
 In order to see what this process looks like, we're going to trick ArcGIS into thinking the CRS is missing:
 
 1. In File Explorer, navigate to the folder with the DRWI_Municipalities2016 shapefile. Click on DRWI_Municipalities2016.prj. Edit the file name by single-clicking, or hitting the `F2` key. Enter a tilde (~) at the front of the filename. Now that the basename is different, ArcGIS will no longer see it as related to the other files in the shapefile group.
-2. Change your data frame CRS back to SP Pennsylvania South. 
 3. Remove the streets layer. 
 4. Add DRWI_Municipalities2016.shp to the map.
 5. A dialog box appears indicating that you are trying to load data with an Unknown Spatial Reference. Hit OK. 
@@ -144,9 +175,11 @@ How can we fix this?
     * **Coordinate System**: Do you remember what CRS this data is stored in? If you don't, look earlier in the lab instructions at the very first time that you added this data. I tell you the right CRS there.
 4. Hit OK. The data will get added to the map, and you will see that the layer aligns with your other municipalities layer(s).
 
-Look in File Explorer again. You will see that there is a new file named DRWI_Municipalities2016.prj. Open it and open the old file that you renamed with a tilde as ~DRWI_Municipalities2016.prj. *You will see that the contents of these files are exactly the same.* All that the Define Projection tool does is create a PRJ file with the necessary info. In fact, expert GIS users often skip the toolbox and just copy the correct PRJ file, if they have it, to the right folder, and rename it to match the shapefile basename.
+As mentioned earlier, these data are **stored** in different CRSes. But because the CRSes are defined correctly, ArcMap is able to show them in the right location, and the layers align correctly.
 
-**Remember, the Define Projection tool should only be used when the CRS is unknown or incorrect. One of the most common mistakes that new users make is to take a shapefile with a known CRS and use the Define Projection tool to *set a coordinate system* when, actually, their intention is to use the Project tool to *convert the coordinates*. It *is* important that you know how the Define Projection tool works. But now that you have done so, forget that it exists. Do not use it again unless specifically directed to do so by your instructor.**
+Look in File Explorer again. You will see that there is a new file named DRWI_Municipalities2016.prj. Open it using Notepad++ (or another text editor). Also open the old file that you renamed to ~DRWI_Municipalities2016.prj. *You will see that the contents of these files are exactly the same.* All that the Define Projection tool does is create a PRJ file with the necessary info. In fact, expert GIS users often skip the toolbox and just copy the correct PRJ file, if they have it, to the right folder, and rename it to match the shapefile basename.
+
+**Remember, the Define Projection tool should only be used when the CRS is unknown or incorrect. One of the most common mistakes that new users make is to take a shapefile with a known CRS and use the Define Projection tool to *set a coordinate system* when, actually, their intention is to use the Project tool to *convert the coordinates*. It *is* important that you know how the Define Projection tool works. But be cautious about using it. If you are not sure whether it is appropriate to use in a specific case, please ask your instructor.**
 
 # Comparing Global Projections in a Multi-Frame Map
 
@@ -163,12 +196,12 @@ First, let's add and style the data:
 
 1. Open ArcMap (or, if it is already open, save your work and create a new map document).
 2. Add the following layers to ArcMap, and reorder them as indicated:
-	1. (Topmost layer) `ne_110m_lakes`
+	1. `ne_110m_lakes` (Topmost layer) 
 	2. `ne_110m_glaciated_areas`
 	3. `ne_110m_land`
 	4. `ne_110m_graticules_15`
 	5. `ne_110m_geographic_lines`
-	6. `ne_110m_wgs84_bounding_box`
+	6. `ne_110m_wgs84_bounding_box` (Bottom-most layer)
 3. Set the following symbology:
 	1. Use a white fill and thin black border for the glaciated areas.
 	2. Use a light-colored fill (tan, beige, gray, etc.) and thin black border for the land layer.
@@ -193,18 +226,26 @@ Sometimes we want a **neatline**, or box around our map. For this particular lay
 2. Go to File→Page and Print Setup...
 3. Change the page orientation to Landscape. **Note:** There are two places to do this, but as long as the box "Use Printer Paper settings" is checked, which by default it should be, only the top one will be available. That's the one that you want to set.
 4. Hit OK.
-5. Resize the data frame (use the handles at the edges and corners) and reposition it so that it fills about a quarter of the page, leaving some room for a title, credits, etc.
+5. Resize the data frame (use the handles at the edges and corners) and reposition it so that it fills about a quarter of the page, leaving room for three more maps of the same size. Also leave some room at the top and bottom of the page for a title, credits, etc.
 6. Open the Data Frame Properties, and select the Frame tab.
-7. Select the Border dropdown and set it to "<None>". Hit OK.
+7. Select the Border dropdown and set it to no border ("\<None\>" in the list). Hit OK.
 8. Copy the data frame and paste it three times. There are several ways to do this, but the easiest is to hit `Ctrl`+`C` with the data frame selected, then hit `Ctrl`+`V` three times.
 9. Position the four data frames so that they form a 2x2 grid.
+    
+    ![](images/PageLayout2x2.png)\ 
+
 10. Change the display CRS of each data frame into four different global projected CRSes:
     * Robinson (world)
-    * Good Homolosine (Land)
+    * Goode Homolosine (Land)
     * Mercator (world)
     * Any projection of your choice in the Projected Coordinate Systems→World folder. In order to try out different options, position the Data Frame Properties dialog so that you can see the map, select a new CRS, and hit Apply (rather than OK, which applies the projection, but also dismisses the dialog).
 
 
+In the TOC, rename each of the data frames to match the projection used (e.g. "Robinson"). To help identify which is which (since they have identical layers), note that whichever data frame is "active" will be bold in the TOC, and the frame on the page will have a blue border. You can activate a data frame by selecting it in the page layout, or by right-clicking on the name in the TOC and selecting Activate from the popup menu. Edit the data frame by selecting the name in the TOC, then hit `F2` on your keyboard.
+
+When you are done, your map may look something like this. You do not have to put the specific projections in the same position, and one of the projections will be your own choice.
+
+![](images/Lab2Fig4.png)\ 
 
 ## Map Elements
 
