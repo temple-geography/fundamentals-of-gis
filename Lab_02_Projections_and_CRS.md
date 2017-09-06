@@ -271,7 +271,7 @@ Certain projections will occupy more of the data frame. For example, cylindrical
 
 When you place additional map elements, like title, credits, scale bars, you may need to reposition or resize the four projected maps. You may need to change the default font size or positioning of the title and other text elements. You may need to reposition scale bars or North arrows, if you chose to include any. White space should be distributed around the map, and filled with map elements where possible.
 
-**To turn in:** Make sure your map includes the indicated elements, including your name. Export your map to PDF. Describe the four map projections you used, particularly with regard to which of the four map properties they preserve. What purpose does each projection serve? What limitations does each have? Refer to the ArcMap [List of supported map projections](http://desktop.arcgis.com/en/arcmap/latest/map/projections/list-of-supported-map-projections.htm) for information, but make sure that your submission is entirely your own words.
+**To turn in:** Make sure your map includes the indicated elements, including your name. Export your map to PDF. Describe the four map projections you used, particularly with regard to which of the four map properties they preserve. What purpose does each projection serve? What limitations does each have? Refer to the ArcMap online [List of supported map projections](http://desktop.arcgis.com/en/arcmap/latest/map/projections/list-of-supported-map-projections.htm) or ArcMap Help for information, but make sure that your submission is entirely your own words.
 
 DELIVERABLES
 ============
