@@ -21,6 +21,7 @@ Because geospatial data can be quite large, downloads are typically provided in 
 
 1.  Download the ZIP archive.
     -   Move the ZIP archive to a folder that you will remember and have access to. The lab computers will automatically save the ZIP to the Downloads folder. You will not have access to that folder if you change computers, and even if you are working on your own computer, dumping all of your data into the Downloads folder is a poor choice. I recommend creating a Data folder (or GIS\_Data folder) on your flash drive, external hard drive, or personal laptop, which you use to organize and store *all* of your downloaded data.
+
 2.  Unzip the archive. The lab computers have [7-Zip](http://www.7-zip.org/) installed on them. In File Explorer, right-click the file and choose **7-Zip → Extract Here** or **7-Zip → Extract to "*folder\_name*"**.
 3.  If desired, organize the extracted files. You could store all the files in a single folder, or create subfolders by theme, region, or source. There is no right way to do this. But the wrong way is to not have a plan, and then be unable to find your data when you need it.
 
@@ -34,7 +35,16 @@ Keeping these steps in mind, download the following data from [PASDA](http://www
 
 In each case, no instructions are given here so that you can get familiar with searching a geoportal for data.
 
-For the Natural Earth data, start at the [Natural Earth Downloads page](http://www.naturalearthdata.com/downloads/). Browse the different categories of data. Think about the different uses for large, medium, and small scale data. Look through the different files available in the cultural, physical, and raster themes. After exploring the different data available, go to the download page for small scale physical layers. At the top of the page, select the link to "Download all 110m physical themes".
+For the Natural Earth data, start at the [Natural Earth Features page](http://www.naturalearthdata.com/features/). Browse the different categories of data. Think about the different uses for large, medium, and small scale data. Look through the different files available in the cultural, physical, and raster themes. After exploring the different data available, download the following small scale (110m) physical layers:
+
+-   Land
+-   Lakes
+-   Glaciated areas
+-   Geographic Lines
+-   15-degree graticule (follow the Graticules link)
+-   Bounding box (follow the Graticules link)
+
+> **As of Sept. 14, 2017, the organization of the Natural Earth website changed. The above instructions have been updated to direct you to the proper downloads. Several of the prominent links, include the enticingly named Downloads tab and the big Get Data button on the home page are not working.**
 
 Remember to unzip all of the downloaded data from both PASDA and Natural Earth, and organize the files into folders with names that you will understand so that you will be able to find the data later in this exercise and in the future.
 
@@ -140,6 +150,7 @@ Often we want to reproject geospatial data without loading it first. This is eas
     -   **Input Dataset or Feature Class**: Note that the dropdown displays currently loaded vector layers. However, we are going to project the DRWI\_Municipalities2016 layer, which you removed from the map in the previous section. Click the folder icon to the right, and navigate to DRWI\_Municipalities2016.shp and select it.
     -   **Output Dataset or Feature Class**: Save the output as a shapefile named DRWI\_Municipalities2016\_UTM18N.shp. Pay attention to where you save it, as discussed earlier in the exercise.
     -   **Output Coordinate System**: Use NAD 1983 UTM Zone 18N.
+
 5.  Hit OK. The reprojected layer should get added to the map automatically.
 
 Although the new layer is using a different CRS, because the CRS is defined correctly, ArcMap will use the coordinate information to "register" (align) the images correctly.
@@ -175,6 +186,7 @@ How can we fix this?
 3.  Set the following parameters:
     -   **Input Dataset or Feature Class**: Select DRWI\_Municipalities2016.shp.
     -   **Coordinate System**: Do you remember what CRS this data is stored in? If you don't, look earlier in the lab instructions at the very first time that you added this data. I tell you the right CRS there.
+
 4.  Hit OK. The data will get added to the map, and you will see that the layer aligns with your other municipalities layer(s).
 
 As mentioned earlier, these data are **stored** in different CRSes. But because the CRSes are defined correctly, ArcMap is able to show them in the right location, and the layers align correctly.
@@ -206,12 +218,14 @@ First, let's add and style the data:
     4.  `ne_110m_graticules_15`
     5.  `ne_110m_geographic_lines`
     6.  `ne_110m_wgs84_bounding_box` (Bottom-most layer)
+
 3.  Set the following symbology:
     1.  Use a white fill and thin black border for the glaciated areas.
     2.  Use a light-colored fill (tan, beige, gray, etc.) and thin black border for the land layer.
     3.  Use a thin (0.2 point) black line for the graticule.
     4.  Use a medium (1 point) line for the geographical lines. Use black or a dark color.
     5.  Use a blue fill and thin black border for the lakes and the bounding box.
+
 4.  Set labels for the line layers:
     1.  Label the graticule with the `display` field.
     2.  Label the geographic lines with the `abbrev` field.

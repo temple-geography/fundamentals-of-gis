@@ -62,7 +62,7 @@ It is often useful to sort the table based on a field's values, say, from highes
 
 As an example, you will sort the table based on the total population, where states with the highest population will be at the top and those with the lowest at the bottom.
 
-To do this, right click on the total population field (DP001001) and choose 'Sort Descending'.
+To do this, right click on the total population field (`DP0010001`) and choose 'Sort Descending'.
 
 Note the table is now in the order of states from the highest population (California - 19,378,201 people) to the lowest (Wyoming - 563,626 people).
 
@@ -195,7 +195,7 @@ You should see a map that looks something like this:
 
 Using the Classification dialog box, experiment with the equal interval and natural breaks data classifications.
 
-Experiment with creating your own data classification by manually changing the class break values by grabbing and moving the blue lines shown on the histogram in the Classifcation dialog box.
+Experiment with creating your own data classification by manually changing the class break values by grabbing and moving the blue lines shown on the histogram in the Classification dialog box.
 
 For each data classification you choose, note the differences in the class breaks as expressed on the histogram in the Classification dialog box and consequently the changes in the map.
 

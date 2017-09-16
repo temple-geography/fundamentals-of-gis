@@ -37,7 +37,16 @@ Keeping these steps in mind, download the following data from [PASDA](http://www
 
 In each case, no instructions are given here so that you can get familiar with searching a geoportal for data.
 
-For the Natural Earth data, start at the [Natural Earth Downloads page](http://www.naturalearthdata.com/downloads/). Browse the different categories of data. Think about the different uses for large, medium, and small scale data. Look through the different files available in the cultural, physical, and raster themes. After exploring the different data available, go to the download page for small scale physical layers. At the top of the page, select the link to "Download all 110m physical themes".
+For the Natural Earth data, start at the [Natural Earth Features page](http://www.naturalearthdata.com/features/). Browse the different categories of data. Think about the different uses for large, medium, and small scale data. Look through the different files available in the cultural, physical, and raster themes. After exploring the different data available, download the following small scale (110m) physical layers:
+
+* Land
+* Lakes
+* Glaciated areas
+* Geographic Lines
+* 15-degree graticule (follow the Graticules link)
+* Bounding box (follow the Graticules link)
+
+> **As of Sept. 14, 2017, the organization of the Natural Earth website changed. The above instructions have been updated to direct you to the proper downloads. Several of the prominent links, include the enticingly named Downloads tab and the big Get Data button on the home page are not working.**
 
 Remember to unzip all of the downloaded data from both PASDA and Natural Earth, and organize the files into folders with names that you will understand so that you will be able to find the data later in this exercise and in the future.
 
