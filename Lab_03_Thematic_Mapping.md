@@ -64,7 +64,7 @@ As an example, you will sort the table based on the total population, where stat
 
 To do this, right click on the total population field (`DP0010001`) and choose 'Sort Descending'.
 
-Note the table is now in the order of states from the highest population (California - 19,378,201 people) to the lowest (Wyoming - 563,626 people).
+Note the table is now in the order of states from the highest population (California - 37,253,956 people) to the lowest (Wyoming - 563,626 people).
 
 Make an Area-Class Map of the States
 ====================================
