@@ -221,28 +221,25 @@ Try creating a map of population density using the skills you learned last week 
 You don't have to submit anything here, but it's good to refresh your mapping skills. You will need them in the lab/assignment.
  
 
-# Assignment, Objectives, and Deliverables
+# Assignment
 
-## Part I
-You have been hired as a GIS crime analyst for the city of Chicago. Your boss is upset about how Presidential candidates judge your whole city based on the murder rate (But for real there was just a drive by in front of my friend's apartment in Chicago). You want to find out where the geographic concentration of murders is so your boss can distribute police resources appropriately. She wants you to create a map that shows the density of murders in each police district per square mile.
+## Objectives
 
-Your final answer should be a choropleth map that shows density of murders per square mile in each district.
+1. You have been hired as a GIS crime analyst for the city of Chicago. Your boss is upset about how Presidential candidates judge your whole city based on the murder rate (But for real there was just a drive by in front of my friend's apartment in Chicago). You want to find out where the geographic concentration of murders is so your boss can distribute police resources appropriately. She wants you to create a map that shows the density of murders in each police district per square mile.
+2. Your boss is also interested in the relationship between crime and Airbnb listings. The total numbe of reviews are a proxy for activity in the Airbnb market. Please create the following tables and maps so we can appropriately consider this question. 
 
-## Part II
+## Deliverables
 
-Your boss is also interested in the relationship between crime and Airbnb listings. The total numbe of reviews are a proxy for activity in the Airbnb market. Please create the following tables and maps so we can appropriately consider this question. 
+A lab report containing your analysis. Related to the objectives above, your lab report should have:
 
-She would like: 
-
-a)	A table that summarizes the average Airbnb price for each neighborhood in Chicago. (Column Price)
-
-And
-
-b)	A map that shows the density of total Airbnb reviews per police district. (The name of the column is 'Number of') The density should be per square mile.
+1. A choropleth map that shows density of murders per square mile in each district.
+2. 
+    a. A table that summarizes the average Airbnb price for each neighborhood in Chicago. (Column Price)
+    b. A map that shows the density of total Airbnb reviews per police district. (The name of the column is 'Number of') The density should be per square mile.
 
 ## Getting Started
 
-Each point file contains districts. You will have to join each table to the shape file Police_Districts_Chicago.
+Each point file contains districts. You will have to join each table to the shapefile Police_Districts_Chicago.
 
 Start by summarizing your data.
 
@@ -254,37 +251,20 @@ In summarize you have a choice of what type of mathematical operation you perfor
 
 In your report, be sure to include the following information (see the syllabus for lab report guidelines and formatting):
 
-**Introduction:**
+* **Introduction:** State the research question.
+* **Data and Methods:** The data comes from 'Inside Airbnb' a watchdog for Airbnb. Please visit the website. It's pretty interesting if you have ever used Airbnb. They have collected data for cities all around the world. 
 
-State the research question.
+    The crime data comes from the city of Chicago. Please email [bradley.gardener@temple.edu](mailto:bradley.gardener@temple.edu) if you want to look at the entire crime data set. Many cities have Open Data websites with similar data. 
 
-**Data and Methods:**
+    The structure of this lab is very similar to the tutorial. You will be summarizing data and joining it. You will be calculating density (per square mile) in both cases, using the tools Add Field, Calculate Geometry, and Field Calculator. You will map population density using the techniques of choropleth mapping from previous labs. Please use a classification scheme that makes sense given what you have already learned.
 
-The data comes from 'Inside Airbnb' a watch dog for Airbnb. Please visit the website. It's pretty interesting if you have ever used Airbnb. They have collected data for cities all around the world. 
+* **Results:** Report on the expected deliverables noted above.
+* **Discussion:**  In your final analysis, look at both of the maps you created and answer the following questions: 
 
-The crime data comes from the city of Chicago. Please email [bradley.gardener@temple.edu](mailto:bradley.gardener@temple.edu) if you want to look at the entire crime data set. Many cities Open Data websites have similar data. 
-
-The structure of this lab is very similar to the tutorial. You will be summarizing data and joining it. You will be calculating density in both cases - per square mile - using the tools add field, calculate geometry, and field calculator. You will map population density using the techniques of choropleth mapping from previous labs. Please use a classification scheme that makes sense given what you have already learned.
-
-**Results:** 
-
-You should include the following:
-
-1.	A map of murders per police district area (square miles) in Chicago. 
-2.	A map of the total number of Airbnb reviews per police district area (square miles) in Chicago.
-3.	A table that shows the average Airbnb price of each neighborhood in Chicago.
-
-**Discussion:** 
-
-In your final analysis, look at both of the maps you created and answer the following questions: 
-
-1. Is there a geographic relationship between the density of Airbnb reviews and the density of homicides?
-2. What neighborhoods have the highest Airbnb prices? Why do you think this is? Do some Internet investigations. Look at Yelp. What types of restaurants are in these neighborhoods? Why is sample size important here? 
-3. What other crimes would you like to map? Where do you think their spatial distributions would look like?
-4. What other crime data do you think it would be important to map?
-5. What crimes would be difficult to map?
-
-**Tables and Figures:**
-
-Insert all tables and figures (including maps) at the end of the report, each on a separate page, with a label (e.g. Figure 1).  Be sure to cite each table and figure included in the body of the report text.
+    1. Is there a geographic relationship between the density of Airbnb reviews and the density of homicides?
+    2. What neighborhoods have the highest Airbnb prices? Why do you think this is? Do some Internet investigations. Look at Yelp. What types of restaurants are in these neighborhoods? Why is sample size important here? 
+    3. What other crimes would you like to map? Where do you think their spatial distributions would look like?
+    4. What other crime data do you think it would be important to map?
+    5. What crimes would be difficult to map?
+* **Tables and Figures:** Insert all tables and figures (including maps) at the end of the report, each on a separate page, with a label (e.g. Figure 1).  Be sure to cite each table and figure included in the body of the report text.
 
