@@ -76,7 +76,7 @@ To execute the join operation, in the TOC, right-click on SF\_Tracts (the destin
 
 ![](images/Lab4Fig6.jpg) 
 
-1.  In dropdown 1, choose the field `GEOID2` (the key identifying each tract in the SF\_TRACT table)
+1.  In dropdown 1, choose the field `GEOID2` (the key identifying each tract in the SF\_Tracts table)
 2.  In dropdown 2, choose the Total\_Population table (the join table)
 3.  In dropdown 3, choose `GEOID_1` (the foreign key identifying each tract in the Total\_Population table) Press OK. You might be asked if you want to index the join. Choose yes. On larger data sets the index helps speed processing.
 
@@ -84,7 +84,7 @@ To execute the join operation, in the TOC, right-click on SF\_Tracts (the destin
 
 Open up the attribute table in SF\_Tracts and scroll to the right. You should see that the fields from the Total\_Population table are now joined to the SF\_Tracts attribute table.
 
-If the join did not work you can remove the join by right-clicking SF\_TRACT in the TOC, going to Joins and Relates and choosing Remove Join(s) and try the join again.
+If the join did not work you can remove the join by right-clicking SF\_Tracts in the TOC, going to Joins and Relates and choosing Remove Join(s) and try the join again.
 
 ![](images/Lab4Fig9.jpg) 
 
@@ -105,7 +105,7 @@ To calculate the total population of each neighborhood:
 2.  Right-click on the `NHOOD` field and choose Summarize to open the Summarize dialog box. Recall that this field is a unique identifier of each neighborhood. This is the field we are summarizing on.
 3.  The 'Select a field to summarize:' box should have `NHOOD` entered
 4.  For 'Choose one or more summary statistics to be included in the output table:' expand the `Total_Pop` field by clicking on the plus sign. Click Sum. This indicates that we want the sum of the total population for all the tracts that are in the same neighborhood.
-5.  For 'Specify output table' choose a path and the file name 'Neighborhood\_Pop'.
+5.  For 'Specify output table' choose a path and the file name 'Neighborhood\_Pop'. Make sure to set the Save as type to "dBase". ArcGIS will automatically add a `.dbf` extension.
 
 Add the new table to ArcMap and open it.
 
@@ -115,9 +115,9 @@ Add the new table to ArcMap and open it.
 
 Notice there are 41 records---one record for each neighborhood.
 
-The `Sum_Total_` field contains the total population of each neighborhood.
+The `Sum_Total_Pop` field contains the total population of each neighborhood.
 
-Notice there is a `Count_NHOOD` (or `Cnt_NHOOD`) field that indicates the number of records in the Total\_Population table that were summed for each record in the Neighborhood\_Pop table, i.e. the number of tracts in each neighborhood. For example, there are 11 Census tracts in the Bayview Hunters Point neighborhood in the Total\_Population table. The `Sum_Total_` field contains the sum of the populations of those 11 Census tracts. This count field is created automatically by the summarize operation, and will be useful in the lab assignment.
+Notice there is a `Count_NHOOD` field that indicates the number of records in the Total\_Population table that were summed for each record in the Neighborhood\_Pop table, i.e. the number of tracts in each neighborhood. For example, there are 11 Census tracts in the Bayview Hunters Point neighborhood in the Total\_Population table. The `Sum_Total_Pop` field contains the sum of the populations of those 11 Census tracts. This count field is created automatically by the summarize operation, and will be useful in the lab assignment.
 
 We will use this new table to map the total population of each neighborhood. For this, we need a neighborhood spatial data layer.
 
@@ -125,7 +125,7 @@ Add the 'SF\_Dissolved' data layer to ArcMap. Each polygon in this layer is a ne
 
 We can join the Neighborhood\_Pop table to the SF\_Dissolved layer's attribute table using `NHOOD` as the join field in both tables, because they both contain common values that identify each neighborhood.
 
-1.  Right-click on SF\_Dissolved. Select Joins and Relates→Join(s)
+1.  Right-click on SF\_Dissolved. Select Joins and Relates→Join
     1.  For number 1 choose `NHOOD`.
     2.  For number 2 choose `Neighborhood_Pop`.
     3.  For number 3 choose `NHOOD`.
@@ -135,9 +135,9 @@ We can join the Neighborhood\_Pop table to the SF\_Dissolved layer's attribute t
 
 ![](images/Lab4Fig13.jpg) 
 
-Check to see if your join was successful by opening the SF\_Dissolved attribute table and seeing if the `Sum_Total_` field is there and the population data are displayed.
+Check to see if your join was successful by opening the SF\_Dissolved attribute table and seeing if the `Sum_Total_Pop` field is there and the population data are displayed.
 
-To preserve the join permanently, export the SF\_Dissolved layer to its own layer and call the new layer SF\_Dissolved\_POP. Add it to ArcMap.
+To preserve the join permanently, export the SF\_Dissolved layer to its own layer and call the new layer SF\_Dissolved\_POP. Add it to ArcMap. Note that when you do the export the field names will be truncated to 11 characters, so `Sum_Total_Pop` will be unhelpfully renamed to `Sum_Total_`.
 
 Calculating Population Density
 ==============================
@@ -154,7 +154,7 @@ Your attribute table should show your new field as the last entry on the right s
 
 To calculate the area of each neighborhood:
 
-1.  Right-click on your new Area\_km field and select 'Calculate Geometry' (ArcMap asks you if you would like to make changes outside of an edit session---please do so).
+1.  Right-click on your new `Area_km` field and select 'Calculate Geometry' (ArcMap asks you if you would like to make changes outside of an edit session---please do so).
 2.  Choose square kilometers as your unit of measurement.
 3.  Click OK.
 
@@ -162,13 +162,13 @@ To calculate the area of each neighborhood:
 
 Now that we have the area of each neighborhood encoded, we can calculate the population density of each neighborhood:
 
-1.  Add a new field and make it double and call it popden
-2.  Right-click on the new field popden and choose 'Field Calculator'
+1.  Add a new field and make it double and call it `popden`
+2.  Right-click on the new field `popden` and choose 'Field Calculator'
 3.  Create an equation in the text box where the neighborhood population is divided by the neighborhood area:
-    1.  Double click field name that holds the population data: `Sum_Total_`
+    1.  Double-click field name that holds the population data: `Sum_Total_`
     2.  To the right there will be some operator buttons. Choose the division symbol (a forward slash).
-    3.  Double click the field name that holds the area data: `Area_km`.
-    4.  The equation `Sum_Total / Area_km` should appear in the text box.
+    3.  Double-click the field name that holds the area data: `Area_km`.
+    4.  The equation `[Sum_Total_] / [Area_km]` should appear in the text box.
 4.  Click OK.
 
 ![](images/Lab4Fig17.jpg) 
@@ -208,11 +208,13 @@ Data
 
 Several data sets are provided to you.
 
-Police\_Districts\_Chicago is a polygon shapefile of the police districts in Chicago. The `DISTRICT` field is a unique number used by the police department that identifies each police district.
+-   Police\_Districts\_Chicago is a polygon shapefile of the police districts in Chicago. The `DISTRICT` field is a unique number used by the police department that identifies each police district.
+-   Selected\_Crimes\_in\_Chicago is a point shapefile of the crime incidents in Chicago. The `PRIMARY_DE` field indicates the type of crime (i.e. homicides versus other types of crime). The `DISTRICT` field is a unique number used by the police department that identifies each police district.
+-   AirBnB\_Data is a point shapefile of the Airbnb listings in Chicago. The price field contains the nightly price for the listing. The `number_of_` field contains the number of reviews for that listing.
 
-Selected\_Crimes\_in\_Chicago is a point shapefile of the crime incidents in Chicago. The `PRIMARY_DE` field indicates the type of crime (i.e. homicides versus other types of crime). The `DISTRICT` field is a unique number used by the police department that identifies each police district.
+It is not uncommon for data of unknown location to be geocoded oddly. For example, many of the points in the crimes layer appear at [Null Island](https://en.wikipedia.org/wiki/Null_Island). Most likely this means that when these crimes were reported, the exact location was unknown, and the database applied a default value of 0° Latitude, 0° Longitude. Three of the Airbnb properties are at the latitude of Chicago, but for some reason their longitude is 0° (the Prime Meridian).
 
-AirBnB\_Data is a point shapefile of the Airbnb listings in Chicago. The price field contains the nightly price for the listing. The `number_of_` field contains the number of reviews for that listing.
+For this assignment you can ignore these misplaced features. Use Zoom to Layer on the police districts layer to zoom the map canvas to our area of interest. Optionally, you could extract only the features you are interested in by selecting them in the map canvas, then exporting the layer to a new shapefile.
 
 Getting Started
 ---------------
@@ -221,9 +223,9 @@ You will need to use several GIS operations you have learned from this lab and p
 
 1.  Use operations in projections and coordinate systems to transform your data to UTM (research which UTM zone Chicago is in).
 2.  Use operations in selection and data export to create a spatial data layer of only homicides (not other including other crime types).
-3.  Use the Summarize operation to calculate the number of crimes and Airbnb reviews, and average price, for each police district.
-4.  Use the Field Calculator to calculate the density of homicides and density of Airbnb reviews for each police district.
-5.  Use your thematic mapping skills to create the choropleth maps.
+3.  4.  Use the Summarize operation to calculate the number of crimes and Airbnb reviews, and average price, for each police district.
+5.  Use the Field Calculator to calculate the density of homicides and density of Airbnb reviews for each police district.
+6.  Use your thematic mapping skills to create the choropleth maps.
 
 In your report, be sure to include the following sections:
 
