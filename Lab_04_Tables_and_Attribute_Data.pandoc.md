@@ -3,212 +3,172 @@ title: Tables and Attribute Data
 author: Bradley Gardener
 ---
 
-**Purpose:** The purpose of this lab is to become familiar with the relational database model.  It allows us to join tables based on attributes, a valuable way to integrate new data into a GIS. This is a skill that you will use frequently in your GIS practice. Students will also learn how to calculate the population density of enumeration units. To calculate area students will learn how to use the tool - calculate geometry. The field calculator will also be covered. In this example we will explore population density in San Francisco neighborhoods. 
+**Purpose:** The purpose of this lab is to become familiar with the relational data model, and its implementation in a GIS software package.  Topics covered include table join, data export, sorting, summarizing, creating new fields, and calculating values for fields based on table and geometric calculations. This lab uses city level spatial data on census tracts, neighborhoods, crime, and businesses.
 
-## Acquiring Data and Understanding Relational Databases
+## GIS and The Relational Data Model 
 
-The data for neighborhoods in San Francisco originally comes from https://datasf.org/opendata/.  The data has been manipulated for the purpose of this lab. 
-
-As we transition from GIS novices to GIS experts we will become intimate with data tables. This is what you see when you open an attribute table. We will manipulate them in a way that helps us analyze the specific spatial problems we want to solve. Tables are based on the relational database model. Please ask your professor about relational data tables or feel free to conduct your own research. Arc GIS makes sure we stay in what is called normal form. This way we cannot break the connection between a record and its attributes.
+An attribute table in ArcGIS is composed of records (rows) and fields (columns):
 
 ![](images/Lab4Fig1.jpg)\ 
 
-Add 'SF_NEIGHBORHOODS' And 'TOTAL_POPULATION' from the S Drive to ARC Map and examine them. One is an attribute table (Total_Population) and the other is a shapefile (SF_NEIGHBORHOODS). Notice how the table has a grid next to it and SF_Neighborhoods appears like previous shapefiles.
+Your instructor will provide the data for this lab, which includes the 'SF_Tracts' spatial data layer and the 'TOTAL_POPULATION' table.
+
+The SF_Tracts spatial data layer is a shapefile representing the US Census Bureau tracts in San Francisco.  A tract is statistical reporting unit (i.e., it does not correspond to political or administrative units like cities or wards) used by the US Census Bureau to publish population data. The [neighborhood assignments in San Francisco](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Analysis-Neighborhoods-2010-census-tracts-assigned/bwbp-wk3r) originally comes from [DataSF](https://datasf.org/opendata/), San Francisco's open data portal. The data has been manipulated for the purpose of this lab. 
+
+The Total_Population table is a dBase format table that contains the total population of each tract.
+
+Add both the SF_Tracts layer and the Total_Population table to ArcMap and examine them. In the Table of Contents (TOC), notice how Total_Population has a grid icon indicating it is tabular data (with no spatial information) and the SF_Tracts layer has an icon indicating it is a polygon spatial data layer.
 
 ![](images/Lab4Fig2.jpg)\ 
 
-If you right click your mouse on both files you will see that you have different options. Understanding the difference between these types of files is very important.
+Right-click on each file in the TOC.  You will see that you have different menu options for tables versus spatial data layers. 
 
-# Understanding how data are organized in the relational database model
+## Understanding How Tables Are Organized 
 
-1. Right click on Total_Population
-2. Select Open 
-    a. Draw your attention to the column Total_Pop. Each one of the entries in the column is an attribute of a different Census Tract in San Francisco. Notice that each Census Tract is attached to a neighborhood. 
-3. Scroll down to the bottom of the table, until you've reach the last or 195th entry. You can see how many rows or enumerations units are on the table. I am getting this number because I am looking towards the bottom center of the table window.  You should see that 0 out of 195 cases are selected. 
+1. In the TOC, right-click on Total_Population
+2. Select Open
+    a. Draw your attention to the `Total_Pop` field. This field stores the total population of each tract.
+    b. Notice also the `NHOOD` field.  This field stores the name of the neighborhood within which that tract falls, i.e. each neighborhood contains one or more census tracts. 
+c. At the bottom of the table it should indicate that 0 out of 195 records, or tracts, are currently selected. 
 
 ![](images/Lab4Fig3.jpg)\ 
 
-Notice that the last entry in the table has the `NHOOD` attribute Mission and the TRACTCE10 22803
+Right-click on the total population field. You should see options such as Field Calculator and Summarize. We will use those later. You will also see Calculate Geometry, but it is grayed out. We will use that tool later to calculate the area of each enumeration unit.
 
-Right click on Total Population (the column/field). You should see options such as Field Calculator and Summarize. We will use those later. You will also see Calculate Geometry grayed out. We will use that tool later to calculate the area of each enumeration unit. We cannot calculate area because we don't have the geographical information to do so in a table. To calculate area we will need to two things. 
+For now right-click `Total_Pop` and select 'Sort Descending'. The order of records changes so that they are listed from high to low population.  Choose 'Sort Ascending' to list the records in order from low to high population.
 
-First we must have a `.shp` file. Second, we will need a coordinate system. 
+Close the table.
 
-For now right click Total_Pop and select 'Sort Descending'. Now use 'Select by Attribute' on the `TRACTCE10` column and select `22803`. 
+## Joining a Table to a Spatial Data Layer
 
-![](images/Lab4Fig4.jpg)\ 
+Conceptually, a join operation can be understood as adding attributes from one table to another based on a common field, such that the output of a join displays a single table with fields from both tables. For example, if you have a table with the unemployment rate by state, and another table with the poverty rate by state, you would join them to get one table displaying both unemployment rate and poverty rate by state.
 
-Notice how the location of the row has changed, but most importantly – what is attached to it – its attributes - are intact. They haven't changed position. This is important and what fundamentally allows us to complete our next step – joining our attribute table.
+In ArcGIS, the tables that we want to join are referred to as the **target table** and the **join table**. The target table is the table that you want new attributes to be added to, and the join table is the table that is "lending" new attribute fields. In the GIS world, the target table is almost always a spatial data layer, and the join table is often a nonspatial table.
 
-**Problem: In order to calculate population density I need both total population and the ability to calculate area. Presently they are in different files. The table and the .shp file. We need both in the .shp file to calculate population density.**
+To perform a join, a field in each of the tables must be identified that contains matching values. These **key** fields allow the software to properly link the records from one table with the analogous records from the other table. In the target table, the key field must be a **primary key** or **candidate key** (field that *could* be used as a primary key). This is a unique field which *identifies* the rows (features) in the table. For example, a table of US states might have the state name, two-letter state postal codes, and population. No US state has exactly the same population, so all of the fields are unique. But you wouldn't use the population to *identify* the state. (That is, you wouldn't say "I'm going to 37,253,956 this week", you would say "I'm going to California.") You could use either the state name or the postal code, both of which are unique, as the primary key field.
 
-**Solution: Join the table to the shapefile.**
+In the join table, the field must be a **foreign key**, which means a field with values matching a candidate key in the target table.
 
-Essentially you are taking the information from the table Total_Population and adding it to SF_NEIGHBORHOODS. The rules of relational databases require that we match record to record from table to .shp file in order to join. Again, the goal is transfer the information from the table to the .shp file. 
+Here, we will join the Total_Population table to the SF_Tracts spatial data layer attribute table. Since the Total_Population is a nonspatial table, this will allow us to (a) map the total population of each tract, and (b) generate a population density variable by dividing the total population by the area of each tract, which we can calculate from the SF_Tracts layer. 
 
-We will accomplish this task by using the 'joins and relates' dialogue on the SF_NEIGHBORHOODS .shp file. 
+First, let's explore our data.  Open the SF_Tracts attribute table. Find the `GEOID2` field.  This field is a unique identifier used by the U.S. Census Bureau for each tract. No two tracts have the same `GEOID2` value. 
 
-First, we should go over some rules of joining.
+Each field has a specific data type, which indicates the types of values it can hold.  Common data types include text, which holds letters and/or numbers as text, and numeric data types. Numeric data types include integers (whole numbers) as well as so-called "floating point" types such as 'double,' and 'float'.
 
-![](images/Lab4Fig5.jpg)\ 
+Right-click on the name of the `GEOID2` field in the table and click on Properties. Note the data type, which is double (a numeric type).
 
-At this stage we will not bog you down in the cumbersome and often complicated nature of 1 to many and many to 1 joins. In this class we will work with 1 to 1 or basic joins. I will also attempt to keep it simple here as joining and how it works in ARC is best demonstrated through a drawn illustration. I would encourage you to ask your instructor about how the joining process works. An illustration can illuminate.
+Now open the Total_Population table. Find the `GEOID_1` field.  This field is also a unique identifier for each tract.  Even though the name of the field differs from the `GEOID2` field in the SF_Tracts table, it contains the same information---a specific tract will have the same value in each table.  These two fields will facilitate the join operation.
 
-If you right click on SF_Neighborhoods you will see an option called Joins and Relates.
+Close both tables.
 
-Click on **Joins** 
+Keep in mind the following information about joins: 
 
-The following menus should come up: 
+1. Always begin a join operation with the target table (by right-clicking on the target table in the TOC).
+2. The key fields in both the target and join table must contain similar information. 
+    a. They should both refer to the same entity.
+    b. They should both identify each entity using a common value.
+	d. They should be the same data type. Usually this means text or integer. *It is rarely a good idea to use floating point data (double or float) for exact matching.*
+	c. They do not have to have same field name in each table (though they can). Also, just because they have the same field name doesn't mean they have matching values. In one table a `state` field might have state *names*, while in another table a `state` field might have state `postal codes`. You *must* become familiar with the data you are working with.
+	e. The `OID` or `FID` fields should not generally be used as a join field (even though internally they are used as the primary key by ArcGIS).
+   
+To execute the join operation, in the TOC, right-click on SF_Tracts (the destination), and select Joins and Relates→Join. You should see the following dialog box:
 
 ![](images/Lab4Fig6.jpg)\ 
-
-Before we fill in our parameters we should know the following information about joins: 
-
-1. When you are joining a table to a .shp file always enter the join dialogue by right clicking on the shape file in this case SF_NEIGHBORHOODS
-2. Numbers 1 and 3 in the joins dialogue must be similar 
-    a. They should refer to the same geographic unit (Census Tract, Neighborhood etc)
-    b. They should uniquely identify each enumeration unit 
-        i. This unique identification is often a combinations of numbers and letters
-        ii. A unique identification introduces a system of data organization in which a value can only refer to one case. If there is any possibility that there are 2 of the same entries in the column it is not the one you are looking for.
-        iii. There can be several unique identifier columns in a table 
-        iv. OID or FID is NEVER a unique identification column. This is the order which ARC enters each entry. This is often random and does not refer to the unique geographic case or enumeration unit you are interested in.
-    c. These unique identification columns must exist both in the .shp file and the table. You are essentially playing an elaborate matching game.
-3. The columns that you choose to join must have the same type 
-    a. Right click on GEOID_1 (in Total_Population) and select properties 
-
-![](images/Lab4Fig7.jpg)\ 
-
-    b. Under Alias you will see the category type – it says double
-    c. You will have to ensure that the column in Total_Population you are going to join to SF_Neighborhoods has the same type. 
-    d. Types signal to ARC what type of values you will be feeding or giving it. You are telling it what to expect. If you give it something that it doesn't expect it will get angry.
-        i. Double is the type for GEOID_1. This is good if you are creating a value that has many decimal places. Previously double wasn't used often because it took up a lot of room. Now it really doesn't matter unless you are dealing with a very large data set.
-        ii.	Short Integer Type. Use this for short numbers like age, which has 2 or 3 places.
-        iii. Click on Total_Pop. This column is a long integer. It has 4 places. 
-        iv.	Click on NHOOD. This is a string. This is a different type because it holds letters. You cannot join a string type to a number type. This is a common problem when folks are trying to join similar columns and fail. 
-        v. Float is longer than long integer but shorter than double.
-        vi.	There is also a date option that we will not be using in this lab. 
-        vii. A lot of this is computer programming. If you would like to do more research on this look up SQL data types.
-
-# Time to Join
-
-1. Right click on 'SF_Neighborhoods'
-2. Then 'Joins' and 'Joins and Relates' 
-    a. Once we get to the familiar Join menu, for number 1 choose the field GEOID2
-    b. Make sure you choose the Total Populations table for number 2 
-    c. For number 3 Choose GEOID_1
-3. Click 'Keep Only Matching Records' – it won't matter here but I find it makes the data cleaner to select this option. This option prevents you from getting null values if some cases don't join.
-4. Press OK. You might be asked if you want to index the join. Choose yes. On larger data sets the index helps you located individual cases.
+	
+1. In dropdown 1, choose the field `GEOID2` (the key identifying each tract in the SF_TRACT table)
+2. In dropdown 2, choose the Total_Population table (the join table)
+3. In dropdown 3, choose `GEOID_1` (the foreign key identifying each tract in the Total_Population table)
+Press OK. You might be asked if you want to index the join. Choose yes. On larger data sets the index helps speed processing.
 
 ![](images/Lab4Fig8.jpg)\ 
 
-Open up the attribute table in SF_Neighborhoods. You should see that the information from the table is now joined to your shapefile. If it isn't you probably entered the information in the join dialogue wrong. If something is wrong right click on total population and then joins and relates – click 'remove join' and choose 'Total Population' and the table.
+Open up the attribute table in SF_Tracts and scroll to the right. You should see that the fields from the Total_Population table are now joined to the SF_Tracts attribute table. 
 
-I must emphasize that you once you have a bad join you cannot make that correct it without starting from scratch. If you don't get what you want please remove all joins.
+If the join did not work you can remove the join by right-clicking SF_TRACT in the TOC, going to Joins and Relates and choosing Remove Join(s) and try the join again. 
 
 ![](images/Lab4Fig9.jpg)\ 
 
-1. Make the join permanent (some wacky things can happen in ARC if you don't save it as a new shapefile.
-2. Right click on SF_neighborhoods and click on export data. Save as a new shapefile and call it 'Neighborhood_Pop'.
+Note that while the join is displayed as though the two tables have become one, the join is not permanent, i.e. the storage of the SF_Tracts attribute table has not changed.
 
-# Why this Join Worked 
-
-If you were joining without my help you would:
-
-1. Scan the table and shape file to look for a matching unique identification column. That means they have to be on both tables or else the join can't happen. (I'm looking at Total Population) `NHOOD` can't work because there are multiple entries. Neighborhoods contain several Census Tracts. Joining here will confuse ARC. OID will be false because like I said earlier this is the random order in which ARC enters your cases. The important thing is that records stay with their attributes and ARC does this without fail. Total Pop Is not in the other table. This is why we are joining in the first place. `GEOID_1` is the correct column. 
-2. Check the type of GEOID_1 by right clicking on it and highlighting properties. It should say that its type is a double. This is important because you are going to have to find a column that looks very similar, with the same amount of characters and the same type as on the column for the .shp file. 
-3. This is confusing, but unfortunately this happens a lot, especially with Census data. There appears to be many columns that fit the bill. This is important. THE NAME OF THE COLUMNS DON'T HAVE TO MATCH – what is important is that the uniquely identify each case, they have the same number of characters and they have the same type. 
-4. GEOID looks like it could work but the type is string we don't want that one
-5. You'll see that GEOID2 has a similar number of characters, uniquely identifies each record, and has the same type. This is the column we will join to.
+To permanently store the SF_Tracts layer with the joined attributes, export the layer to a new shapefile.  Right-click on SF_Tracts and choose Data→Export Data. Save as a new shapefile and call it 'Tract_Pop'.
 
 # Summarizing and Joining
 
-Now that you have joined for the first time I am going to let you practice again. Bring in 'SF_Dissolved' into ARC MAP. This file is a dissolved version of SF_Neighborhoods. Now instead of Census Tracts we only have neighborhoods. You will learn how to dissolve later in the semester.
+It is possible to summarize one field by another. This means calculating summary statistics (such as the sum or average) of a quantitative field by the unique values in a nominal (categorical) field.^[See Bolstad 5e, pp. 39-40 for a refresher on levels of measurement.] The Total_Population table has population by tract. The field with unique values that we want to Summarize by is the neighborhoods. We will sum the total population for the set of tracts in each neighborhood, to yield the total population of each neighborhood.
 
-Please note that all of the .shp files are in the proper coordinate system (In this case California State Plane)
+The output table will also show the number of records summarized for each category, which in this case is the number of tracts in each neighborhood.
 
-**Our Problem: We need to Join Total_Population to SF_Dissolved but the unique identification column we used earlier doesn't exist on the table. Also, there are many fewer neighborhoods than Census Tracts.** 
+To calculate the total population of each neighborhood:
 
-**Solution: Summarize Total_Population.**
+1. Open the 'Total_Population' table. 
+2. Right-click on the `NHOOD` field and choose Summarize to open the Summarize dialog box.  Recall that this field is a unique identifier of each neighborhood.  This is the field we are summarizing on.
+3. The 'Select a field to summarize:' box should have `NHOOD` entered
+3. For 'Choose one or more summary statistics to be included in the output table:' expand the `Total_Pop` field by clicking on the plus sign. Click Sum. This indicates that we want the sum of the total population for all the tracts that are in the same neighborhood.
+4. For 'Specify output table' choose a path and the file name 'Neighborhood_Pop'.
 
-In order to follow our rules of joining and add population data for each neighborhood to SF_Dissolved we have to summarize total_population. Please ask your instructor to illustrate this concept for you on the dry erase board. Essentially ARC is summarizing common values in a specific field for us. In this case instead of having many entries for the neighborhood Pacific Heights (for example) we will have only one. 
-
-Summarize will count how many times each neighborhood appeared in the column. We can also add together the population counts for each Census Tract and include them in our neighborhood summary table.
-
-This is how it works: 
-
-1. Open 'Total_Population' with a right click and 'Open Attribute Table'
-2. Right Click on `NHOOD`. This is the column we want to summarize because we want to join it to SF_Dissolved which has the column neighborhood. This will be the unique identification column in this case.
-3. Click 'Summarize' 
-    a. Our field to summarize is already NHOOD. Great
-4. For number 2 uncollapse `Total_Pop` (Click on the plus sign) 
-    a. You will have a number of options. When ARC condenses or summarizes all the rows or entries that have the same neighborhood name – for example – Pacific Heights, it is asking us what we want to do with the attributes connected to these cases. It cannot express all of the Total_Pop counts for all of the Census Tracts in Pacific Heights – there is only room for one number now.
-
-If there are 7 Census Tracts to a neighborhood, those  tracts will disappear and merge into one neighborhood row. We are only interested in saving or keeping total population information. We want the total population per neighborhood. So we are going to add together the individual populations of each Census Tract. These numbers will be tallied based on what neighborhood they are located in.
-1. Check the sum box under Total_Pop. Save it to a place that makes sense and call it 'Neighborhood_Pop'.
-2. Add it to the map and click on the attribute table 
+Add the new table to ArcMap and open it. 
 
 ![](images/Lab4Fig10.jpg)\ 
 
 ![](images/Lab4Fig11.jpg)\ 
 
-Notice that the summary table has one entry for each neighborhood. Notice there are only 41 entries. 
+Notice there are 41 records---one record for each neighborhood. 
 
-Notice there is a Count_NHOOD column that tells how many times each neighborhood was on the original table. This column is automatically included in summary and will be useful to use when you map homicides per police district in the lab/assignment. 
+The `Sum_Total_` field contains the total population of each neighborhood.
 
-For example – there were 11 Census Tracts in Bayview Hunters Point on the previous table (Total_Population). The last column (Sum_Total_Pop) contains the sum of populations of individual Census Tracts. The Census Tracts on Total_Population that had the NHOOD value Bayview Hunters Point.
+Notice there is a `Count_NHOOD` (or `Cnt_NHOOD`) field that indicates the number of records in the Total_Population table that were summed for each record in the Neighborhood_Pop table, i.e. the number of tracts in each neighborhood. For example, there are 11 Census tracts in the Bayview Hunters Point neighborhood in the Total_Population table. The `Sum_Total_` field contains the sum of the populations of those 11 Census tracts. This count field is created automatically by the summarize operation, and will be useful in the lab assignment.
 
-Now we can join it to SF_Dissolved using `NHOOD` as the join field because the characters are similar, the column is a unique identifier and the type is the same.
+We will use this new table to map the total population of each neighborhood. For this, we need a neighborhood spatial data layer.
 
-1. Right click on SF_Dissolved – joins and relates – joins
-    a. For number 1 choose `NHOOD` 
-    b. For number 2 choose `Neighborhood Pop`
-    c. For number 3 choose `NHOOD`
-2. Choose ok 
-3. Select 'Keep only matching'
+Add the 'SF_Dissolved' data layer to ArcMap. Each polygon in this layer is a neighborhood---an aggregation of one or more adjacent tracts that compose a neighborhood.
+
+We can join the Neighborhood_Pop table to the SF_Dissolved layer's attribute table using `NHOOD` as the join field in both tables, because they both contain common values that identify each neighborhood.
+
+1. Right-click on SF_Dissolved. Select Joins and Relates→Join(s)
+    a. For number 1 choose `NHOOD`.
+    b. For number 2 choose `Neighborhood_Pop`.
+    c. For number 3 choose `NHOOD`.
+2. Click OK.
+
 
 ![](images/Lab4Fig12.jpg)\ 
 
 ![](images/Lab4Fig13.jpg)\ 
 
-4. Right click on your joined file in `SF_DISSOLVED`
-5. Export your data and save the shape file as `SF_DISSOLVED_POP` 
+Check to see if your join was successful by opening the SF_Dissolved attribute table and seeing if the `Sum_Total_` field is there and the population data are displayed.
 
-# Population Density 
+To preserve the join permanently, export the SF_Dissolved layer to its own layer and call the new layer SF_Dissolved_POP.  Add it to ArcMap. 
 
-To calculate population density (the amount of people per square unit – a relative measure of how relatively concentrated a population is given an enumeration unit) we need to find the area of each neighborhood. In this case we will choose meters. 
+# Calculating Population Density 
 
-# Add Field
+To calculate population density, we need to find the area of each neighborhood. We will calculate the area in square kilometers, so that we can ultimately calculate the population density as people per square kilometer. 
 
-To calculate area we need to create a new field:
+First, we need to create a new field to hold the area value:
 
-1. Open the attribute table for SF_DISSOLVED_POP
-2. Click on options in the upper left hand corner of the table and select 'Add Field'.
-3. Name the field `Area` and make it a double type
+1. Open the attribute table for SF_Dissolved_POP.
+2. In the table, click on options in the upper left hand corner of the table and select 'Add Field'.
+3. Name the field `Area_km` and set the data type to double.
 
-![](images/Lab4Fig14.jpg)\ 
+Your attribute table should show your new field as the last entry on the right side. 
 
-Your attribute table should show your new column - the last entry on the right side. 
+To calculate the area of each neighborhood:
 
-# Calculate Geometry
-
-1. Right click on your new column area and select 'calculate geometry' 
-    a. ARC asks you if you would like to make changes outside of an edit session - please do so
-        i. Note that you will use the coordinate system you already have in place. Note that a coordinate system can determine area calculations and if you are not using a reasonable one (based on many factors – talk to your Professor about it) it can greatly distort your results. If you have no coordinate systems you cannot calculate area. Choose square kilometers as your unit of measurement. 
-2. Press ok and your area column should be populated. 
-
-![](images/Lab4Fig15.jpg)\ 
+1. Right-click on your new Area_km field and select 'Calculate Geometry' (ArcMap asks you if you would like to make changes outside of an edit session---please do so).
+2. Choose square kilometers as your unit of measurement.
+3. Click OK.
 
 ![](images/Lab4Fig16.jpg)\ 
 
-# Field Calculator
+Now that we have the area of each neighborhood encoded, we can calculate the population density of each neighborhood:
 
-1. Add a new field and make it double and call it density 
-2. Right click on the new column density and choose 'field calculator' 
-4. Click on the name in the field that corresponds to your population column 
-5. To the right there will be some operator buttons - choose the division symbol (a forward slash)
-6. Choose the field under fields with the area information. 
-7. Divide the population by the area 
-8. Press ok 
+1. Add a new field and make it double and call it popden 
+2. Right-click on the new field popden and choose 'Field Calculator' 
+4. Create an equation in the text box where the neighborhood population is divided by the neighborhood area:
+	a. Double click field name that holds the population data: `Sum_Total_`
+	b. To the right there will be some operator buttons. Choose the division symbol (a forward slash).
+	c. Double click the field name that holds the area data: `Area_km`. 
+	d. The equation `Sum_Total / Area_km` should appear in the text box.
+3. Click OK.
 
 ![](images/Lab4Fig17.jpg)\ 
 
@@ -216,55 +176,60 @@ Your attribute table should show your new column - the last entry on the right s
 
 You now have the population density for each neighborhood in San Francisco. 
 
-Try creating a map of population density using the skills you learned last week in thematic mapping. 
+Create a choropleth map of population density using the skills you learned previously. 
 
-You don't have to submit anything here, but it's good to refresh your mapping skills. You will need them in the lab/assignment.
- 
 
 # Assignment
 
 ## Objectives
 
-1. You have been hired as a GIS crime analyst for the city of Chicago. Your boss is upset about how Presidential candidates judge your whole city based on the murder rate (But for real there was just a drive by in front of my friend's apartment in Chicago). You want to find out where the geographic concentration of murders is so your boss can distribute police resources appropriately. She wants you to create a map that shows the density of murders in each police district per square mile.
-2. Your boss is also interested in the relationship between crime and Airbnb listings. The total numbe of reviews are a proxy for activity in the Airbnb market. Please create the following tables and maps so we can appropriately consider this question. 
+Consider that you have been hired as a GIS crime analyst for the city of Chicago. Your boss is upset about how presidential candidates judge your whole city based on the murder rate. She is also interested in how homicides might impact tourism in the city.
+
+You have two objectives.
+
+1. To describe the spatial distribution of the density of homicides by police district in Chicago.
+2. To compare the spatial patterns of homicides, Airbnb listings, and Airbnb prices in Chicago. 
 
 ## Deliverables
 
-A lab report containing your analysis. Related to the objectives above, your lab report should have:
+Complete a lab report in the format detailed in the course syllabus.  The report should include
 
-1. A choropleth map that shows density of murders per square mile in each district.
-2. 
-    a. A table that summarizes the average Airbnb price for each neighborhood in Chicago. (Column Price)
-    b. A map that shows the density of total Airbnb reviews per police district. (The name of the column is 'Number of') The density should be per square mile.
+1. A choropleth map that shows the spatial distribution of the density of homicides (per square mile) in Chicago by police district.
+2. A choropleth map that shows the the spatial distribution of the density of Airbnb reviews (per square mile) in Chicago by police district. 
+3. A table that summarizes the average Airbnb price for each police district in Chicago. 
+
+Both maps should be displayed in an appropriate UTM coordinate system.
+
+## Data
+
+Several data sets are provided to you.
+
+Police_Districts_Chicago is a polygon shapefile of the police districts in Chicago. The `DISTRICT` field is a unique number used by the police department that identifies each police district.
+
+Selected_Crimes_in_Chicago is a point shapefile of the crime incidents in Chicago.  The `PRIMARY_DE` field indicates the type of crime (i.e. homicides versus other types of crime).  The `DISTRICT` field is a unique number used by the police department that identifies each police district. 
+
+AirBnB_Data is a point shapefile of the Airbnb listings in Chicago.  The price field contains the nightly price for the listing.  The `number_of_` field contains the number of reviews for that listing.
 
 ## Getting Started
 
-Each point file contains districts. You will have to join each table to the shapefile Police_Districts_Chicago.
+You will need to use several GIS operations you have learned from this lab and previous labs:
 
-Start by summarizing your data.
+1. Use operations in projections and coordinate systems to transform your data to UTM (research which UTM zone Chicago is in).
+2. Use operations in selection and data export to create a spatial data layer of only homicides (not other including other crime types).
+3. Use the Summarize operation to calculate the number of crimes and Airbnb reviews, and average price, for each police district.
+4. Use the Field Calculator to calculate the density of homicides and density of Airbnb reviews for each police district.
+5. Use your thematic mapping skills to create the choropleth maps.
 
-Remember that the crimes data table contains crimes other than homicides. You will want to isolate homicides before you continue. 
-
-Remember that summarize counts for you. Use this knowledge to your advantage.
-
-In summarize you have a choice of what type of mathematical operation you perform on your data. We used sum in the tutorial – what other operator might you use?
-
-In your report, be sure to include the following information (see the syllabus for lab report guidelines and formatting):
+In your report, be sure to include the following sections:
 
 * **Introduction:** State the research question.
-* **Data and Methods:** The data comes from 'Inside Airbnb' a watchdog for Airbnb. Please visit the website. It's pretty interesting if you have ever used Airbnb. They have collected data for cities all around the world. 
-
-    The crime data comes from the city of Chicago. Please email [bradley.gardener@temple.edu](mailto:bradley.gardener@temple.edu) if you want to look at the entire crime data set. Many cities have Open Data websites with similar data. 
-
-    The structure of this lab is very similar to the tutorial. You will be summarizing data and joining it. You will be calculating density (per square mile) in both cases, using the tools Add Field, Calculate Geometry, and Field Calculator. You will map population density using the techniques of choropleth mapping from previous labs. Please use a classification scheme that makes sense given what you have already learned.
-
+* **Data and Methods:** State the data layers and the analytical steps taken.
 * **Results:** Report on the expected deliverables noted above.
-* **Discussion:**  In your final analysis, look at both of the maps you created and answer the following questions: 
-
-    1. Is there a geographic relationship between the density of Airbnb reviews and the density of homicides?
-    2. What neighborhoods have the highest Airbnb prices? Why do you think this is? Do some Internet investigations. Look at Yelp. What types of restaurants are in these neighborhoods? Why is sample size important here? 
-    3. What other crimes would you like to map? Where do you think their spatial distributions would look like?
-    4. What other crime data do you think it would be important to map?
-    5. What crimes would be difficult to map?
+* **Discussion:**  Based on the maps and tables, consider:
+    1. Where are the homicides in Chicago concentrated?
+	2. Where are the Airbnb reviews in Chicago concentrated?
+	3. Which police districts have the highest average Airbnb prices?  Which have the lowest?
+	4. Is there a relationship, or pattern, between homicides and Airbnb reviews and/or prices?
+	5. If so, what is the form of this relationship and why might it occur?
 * **Tables and Figures:** Insert all tables and figures (including maps) at the end of the report, each on a separate page, with a label (e.g. Figure 1).  Be sure to cite each table and figure included in the body of the report text.
 
