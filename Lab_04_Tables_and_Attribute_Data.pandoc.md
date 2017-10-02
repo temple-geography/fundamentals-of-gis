@@ -210,15 +210,14 @@ Several data sets are provided to you.
 
 It is not uncommon for data of unknown location to be geocoded oddly. For example, many of the points in the crimes layer appear at [Null Island](https://en.wikipedia.org/wiki/Null_Island). Most likely this means that when these crimes were reported, the exact location was unknown, and the database applied a default value of 0° Latitude, 0° Longitude. Three of the Airbnb properties are at the latitude of Chicago, but for some reason their longitude is 0° (the Prime Meridian).
 
-For this assignment you can ignore these misplaced features. Use Zoom to Layer on the police districts layer to zoom the map canvas to our area of interest. Optionally, you could extract only the features you are interested in by selecting them in the map canvas, then exporting the layer to a new shapefile.
+For this assignment you can ignore these misplaced features. Use Zoom to Layer on the police districts layer to zoom the map canvas to our area of interest. Optionally, you could extract only the features you are interested in by selecting them in the map canvas, then exporting the layers to new shapefiles.
 
 ## Getting Started
 
 You will need to use several GIS operations you have learned from this lab and previous labs:
 
 1. Use operations in projections and coordinate systems to transform your data to UTM (research which UTM zone Chicago is in).
-2. Use operations in selection and data export to create a spatial data layer of only homicides (not other including other crime types).
-3. 
+2. Use operations in selection and data export to create a spatial data layer of only homicides (not including other crime types).
 3. Use the Summarize operation to calculate the number of crimes and Airbnb reviews, and average price, for each police district.
 4. Use the Field Calculator to calculate the density of homicides and density of Airbnb reviews for each police district.
 5. Use your thematic mapping skills to create the choropleth maps.
