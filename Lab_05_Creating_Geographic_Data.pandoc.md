@@ -5,32 +5,30 @@ author: Hamil Pearsall
 
 **Purpose:** The purpose of this exercise is to introduce the basics of georeferencing and digitizing in ArcGIS. 
 
+# Data
+
+The exercise data folder contains:
+
+* Worcester\_towns: An image (.jpg) of a 1871 map of towns in Worcester County, Massachusetts downloaded from DavidRumsey.com. See <https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~26368~1100042:Worcester-County-?sort=Pub_List_No_InitialSort%2CPub_Date%2CPub_List_No%2CSeries_No&qvq=q:towns%2Bin%2Bmassachusetts;sort:Pub_List_No_InitialSort%2CPub_Date%2CPub_List_No%2CSeries_No;lc:RUMSEY~8~1&mi=29&trs=294> for more information about this image.
+* Towns\_polyA shapefile of the current town boundaries in Worcester County downloaded from MassGIS, the state's spatial data repository. See <http://www.mass.gov/anf/research-and-tech/it-serv-and-support/application-serv/office-of-geographic-information-massgis/datalayers/towns.html> for more information about this shapefile.
+* Majponds\_poly: A shapefile of major ponds in Massachusetts is also downloaded from MassGIS
+
 # Georeferencing
 
-Georeferencing is the process of aligning data with real-world coordinates. In the tutorial we will geoference a historic map of counties in Massachusetts to the current county map, and we will lakes in the Town of Auburn and compare them to a current shapefile of lakes. This process will take a few steps.
+Georeferencing is the process of aligning data with real-world coordinates. In this tutorial we will geoference a historic map of counties in Massachusetts to the current county map, and we will lakes in the Town of Auburn and compare them to a current shapefile of lakes. This process will take a few steps.
 
 A video of this georeferencing tutorial is available at <https://drive.google.com/file/d/0B_rk0_Y4N6QzdEg3RmFSY2tjUUU/view> and a brief description of the steps follow. You might find it useful to review the steps below and watch the video before beginning the tutorial.
 
-Copy the exercise data to your workspace.
-
-This folder contains the following data:
-
-1. Worcester\_towns: An image (.jpg) of a 1871 map of towns in Worcester County, Massachusetts downloaded from DavidRumsey.com. See<https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~26368~1100042:Worcester-County-?sort=Pub_List_No_InitialSort%2CPub_Date%2CPub_List_No%2CSeries_No&qvq=q:towns%2Bin%2Bmassachusetts;sort:Pub_List_No_InitialSort%2CPub_Date%2CPub_List_No%2CSeries_No;lc:RUMSEY~8~1&mi=29&trs=294> for more information about this image.
-
-2. Towns\_polyA shapefile of the current town boundaries in Worcester County downloaded from MassGIS, the state’s data spatial data repository. See<http://www.mass.gov/anf/research-and-tech/it-serv-and-support/application-serv/office-of-geographic-information-massgis/datalayers/towns.html> for more information about this shapefile.
-
-3. Majponds\_poly: A shapefile of major ponds in Massachusetts is also downloaded from MassGIS
-
 1. Open the 1871 jpeg of counties in Massachusetts and review the image.
 2. Double-click on the file titled MA.mxd and you will see the 2017 town boundaries in Massachusetts.
-3. Click the “add data” button and add the 1871 map to ArcMap.
-    a. You may also receive a message indicated that the layer does not have a spatial reference. Click ok. This is the problem that you are about to fix!
+3. Click the "add data" button and add the 1871 map to ArcMap.
+    a. You may also receive a message indicated that the layer does not have a spatial reference. Click OK. This is the problem that you are about to fix!
     b. The .jpg will not appear in the map, but you will be able to see the name listed in the Table of Contents, so you will know that it is there.
 4. Right click on the .jpg in the Table of Contents. 
 5. Select Properties.
 6. Select the Display tab. 
 7. Change the Resample during display setting to Cubic Convolution. Also change the Transparency to 50%.
-    a. This setting will improve the quality of the display. Click Ok.
+    a. This setting will improve the quality of the display. Click OK.
 
 Now you are ready to begin Georeferencing.
 
@@ -42,13 +40,12 @@ Now you are ready to begin Georeferencing.
 You are now ready to begin placing ground control points (GCPs). The GCPs link coordinates from the map (already referenced) with the .jpg.
 
 1. In the 'Georeferencing' toolbar select 'Add Control Points'
-2. Place the first GCP by **First** clicking on the .jpg and then clicking on the correspoing shapefile.
-    a. Ideally your control points will be well distributed across the map, however, you will note that this process is iterative and there isn’t a preset series of control points. Rather, you will need to place a seriesof points, evaluate the fit, erase the ones with a poor fit, add new points to improve the fit, etc.
+2. Place the first GCP by **First** clicking on the .jpg and then clicking on the corresponding shapefile.
+    a. Ideally your control points will be well distributed across the map, however, you will note that this process is iterative and there isn't a preset series of control points. Rather, you will need to place a series of points, evaluate the fit, erase the ones with a poor fit, add new points to improve the fit, etc.
     b. For this map, you might find it easiest to place the first two points on the corners of one town that you can easily match to help resize and bring the maps within a similar location.
     c. The maps will auto-adjust each time you place a point, so you will be able to visually assess the fit. You should also evaluate the fit using the residuals and RMSE by opening the Link Table by selecting the button next to the 'Control Point' button on the Georeferencing ToolBar.
     d. The residual tells you how much discrepancy lies between the reference map and the .jpg. Values close to 0 indicate that you are doing a good job. If the RMSE reaches 0, you have perfect fit. You can delete control points that have a very large residual, and you may find that the fit will be improved by deleting these points.
     e. The next section of the lab will focus on digitizing features in the town of Auburn, so please prioritize the fit in Auburn.
-
 3. Once you are done, select Rectify from the Georeferencing Tool Bar.
     a. The following window will allow you to save your georeferenced .jpg as a new file. 
 4. Change the resample type to bilinear Interpolation and specify the folder to which you would like the file to be saved. 
@@ -66,8 +63,7 @@ A video of this digitizing tutorial is available at <https://drive.google.com/fi
     a. Name: Lakes_auburn
     b. Feature type: polygon
     c. Spatial reference: Select the Edit button, then Import and in the following window, select the 'TOWNS_POLY' shapefile. This will import the same spatial reference as the 'TOWNS_POLY' shapefile.
-
-4. Click ok and your new shapefile will be added to your workspace. If it does not add automatically, you can add the new shapefile using the ‘add data’ button.
+4. Click OK and the new shapefile will be added to your workspace. If it does not get added automatically, you can use the Add Data button as usual.
 5. Right click in the grey space near the file menu and select the 'Editor' tool bar.
 6. Select Editor and then 'Start Editing'
 7. Select your newly created 'Lakes_auburn' shapefile to begin editing.
@@ -77,8 +73,8 @@ A video of this digitizing tutorial is available at <https://drive.google.com/fi
 10. When you have finished one polygon, double-click to complete the sketch.
     a. The polygon will out outlined in teal, indicating that the shape is complete.
     b. Each time you complete a feature (e.g. polygon) return to the Editor Tool Bar, and select Save Edits from the drop down so that you do not lose any work.
-11. Digitize all of the lakes in the town of Auburn and when you are finished, save your edits once again and chose ‘stop editing’ from the Editor dropdown.
-12. Add the “majpond\_poly.shp to compare the locations of lakes in 2017 and 1871.
+11. Digitize all of the lakes in the town of Auburn and when you are finished, save your edits once again and chose 'stop editing' from the Editor dropdown.
+12. Add the "majpond\_poly.shp to compare the locations of lakes in 2017 and 1871.
 
 # Assignment
 
@@ -86,9 +82,9 @@ In 2016 there were a number of articles about the shrinking Great Salt Lake <htt
 
 How much has the Great Salt Lake in Utah changed since 1889?
 
-1. Georeference Utah_1889, downloaded from <https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~37442~1210316:Utah-?showTipAdvancedSearch=false&showShareIIIFLink=true&showTip=false&helpUrl=https%3A%2F%2Fdoc.lunaimaging.com%2Fdisplay%2FV73D%2FLUNA%2BViewer%23LUNAViewer-LUNAViewer&title=Search+Results%3A+List_No+equal+to+%272094.058%27&fullTextSearchChecked=&dateRangeSearchChecked=&advancedSearchUrl=https%3A%2F%2Fdoc.lunaimaging.com%2Fdisplay%2FV73D%2FSearching%23Searching-Searching&thumbnailViewUrlKey=link.view.search.url>, and digitize the perimeter of the lake. Use the National Geographic World Map as your basemap to georeference this map. This can be added by choosing the dropdown function of the ‘add data’ button in ArcGIS (choose Add Basemap – try the National Geographic World Map).
+1. Georeference Utah_1889, downloaded from <https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~37442~1210316:Utah-?showTipAdvancedSearch=false&showShareIIIFLink=true&showTip=false&helpUrl=https%3A%2F%2Fdoc.lunaimaging.com%2Fdisplay%2FV73D%2FLUNA%2BViewer%23LUNAViewer-LUNAViewer&title=Search+Results%3A+List_No+equal+to+%272094.058%27&fullTextSearchChecked=&dateRangeSearchChecked=&advancedSearchUrl=https%3A%2F%2Fdoc.lunaimaging.com%2Fdisplay%2FV73D%2FSearching%23Searching-Searching&thumbnailViewUrlKey=link.view.search.url>, and digitize the perimeter of the lake. Use the National Geographic World Map as your basemap to georeference this map. This can be added by choosing the dropdown function of the 'add data' button in ArcGIS (choose Add Basemap – try the National Geographic World Map).
 
-2. Convert the shapefile to a KML and view it in Google Earth. Please note that you need to export the map in the symbology that you wish to view it in Google Earth (try hollow, with a 2 pt border). This can be done by using the “Layer to KML” tool in ArcMap. Once the layer is exported, double-click on it to launch Google Earth and view the file. Once you are in Google Earth you have access to imagery since 1970 by clicking on the button that looks like a clock with an arrow pointing counterclockwise.
+2. Convert the shapefile to a KML and view it in Google Earth. Please note that you need to export the map in the symbology that you wish to view it in Google Earth (try hollow, with a 2 pt border). This can be done by using the "Layer to KML" tool in ArcMap. Once the layer is exported, double-click on it to launch Google Earth and view the file. Once you are in Google Earth you have access to imagery since 1970 by clicking on the button that looks like a clock with an arrow pointing counterclockwise.
 
 Write a lab report that includes: 
 
