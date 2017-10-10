@@ -5,7 +5,7 @@ author: Bradley Gardener
 
 **Purpose:** The purpose of this lab is to become familiar with the relational data model, and its implementation in a GIS software package.  Topics covered include table join, data export, sorting, summarizing, creating new fields, and calculating values for fields based on table and geometric calculations. This lab uses city level spatial data on census tracts, neighborhoods, crime, and businesses.
 
-## GIS and The Relational Data Model 
+# GIS and The Relational Data Model 
 
 An attribute table in ArcGIS is composed of records (rows) and fields (columns):
 
@@ -218,7 +218,7 @@ You will need to use several GIS operations you have learned from this lab and p
 
 1. Use operations in projections and coordinate systems to transform your data to UTM (research which UTM zone Chicago is in).
 2. Use operations in selection and data export to create a spatial data layer of only homicides (not including other crime types).
-3. Use the Summarize operation to calculate the number of crimes and Airbnb reviews, and average price, for each police district.
+3. Use the Summarize operation to calculate the number of homicides and Airbnb reviews, and average price, for each police district.
 4. Use the Field Calculator to calculate the density of homicides and density of Airbnb reviews for each police district.
 5. Use your thematic mapping skills to create the choropleth maps.
 
