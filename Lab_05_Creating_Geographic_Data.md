@@ -5,7 +5,7 @@ Data
 
 The data for this tutorial includes an historical map image hosted on the course GitHub repo, and two modern GIS layers which you will download from [MassGIS](https://www.mass.gov/service-details/massgis-data-layers), Massachusetts' spatial data repository. The towns and ponds layers we are interested in are in ZIP archives (linked below) which contain other layers. Download and unzip the archives, but keep in mind that we won't be using all of the data downloaded, and make sure to add the correct layer when directed to.
 
--   [Worcester\_towns.jpg](images/Worcester_towns.jpg): Right-click the image name (to the left) and save it to your workspace. This is a JPEG image of an 1871 map of towns in Worcester County, Massachusetts, downloaded from DavidRumsey.com. [Click for more information about this image.](https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~26368~1100042:Worcester-County-?sort=Pub_List_No_InitialSort%2CPub_Date%2CPub_List_No%2CSeries_No&qvq=q:towns%2Bin%2Bmassachusetts;sort:Pub_List_No_InitialSort%2CPub_Date%2CPub_List_No%2CSeries_No;lc:RUMSEY~8~1&mi=29&trs=294)
+-   [Worcester\_towns.jpg](https://github.com/temple-geography/fundamentals-of-gis/raw/master/images/Worcester_towns.jpg): Follow the link save it to your workspace. This is a JPEG image of an 1871 map of towns in Worcester County, Massachusetts, downloaded from DavidRumsey.com. [Click for more information about this image.](https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~26368~1100042:Worcester-County-?sort=Pub_List_No_InitialSort%2CPub_Date%2CPub_List_No%2CSeries_No&qvq=q:towns%2Bin%2Bmassachusetts;sort:Pub_List_No_InitialSort%2CPub_Date%2CPub_List_No%2CSeries_No;lc:RUMSEY~8~1&mi=29&trs=294)
 -   `TOWNS_POLY.shp`: A shapefile of the town boundaries in Massachusetts. It is included in the [Community Boundaries (Towns)](http://www.mass.gov/anf/research-and-tech/it-serv-and-support/application-serv/office-of-geographic-information-massgis/datalayers/towns.html) bundle.
 -   `MAJPONDS_POLY.shp`: A shapefile of major ponds in Massachusetts. It is included in the [Major Ponds and Major Streams](http://www.mass.gov/anf/research-and-tech/it-serv-and-support/application-serv/office-of-geographic-information-massgis/datalayers/majhd.html) bundle.
 
@@ -57,24 +57,24 @@ For historical research, the researcher/analyst will often need to **digitize** 
 
 A video of this digitizing tutorial is available at <https://drive.google.com/file/d/0B_rk0_Y4N6QzWFFDclRUcnE3TkU/view> and a brief description of the steps follow. You might find it useful to review the steps below and watch the video before beginning the tutorial.
 
-1.  Add your georeferenced .tiff to the map document.
-2.  Open the ArcCatalog pane in ArcGIS. Right click in your folder and select New→Shapefile.
-3.  Create the settings for your shapefile as follows:
+1.  Add the georeferenced TIFF (the result of the previous section) to the map document.
+2.  Open the ArcCatalog pane in ArcGIS and navigate the folder tree to get to your working folder.
+3.  Right-click in your folder and select New→Shapefile.
+4.  Create the settings for your shapefile as follows:
     1.  Name: `Lakes_auburn`
     2.  Feature type: polygon
-    3.  Spatial reference: Select the Edit button, then Import and in the following window, select the `TOWNS_POLY` shapefile. This will import the same spatial reference as the `TOWNS_POLY` shapefile.
-4.  Click OK and the new shapefile will be added to your workspace. If it does not get added automatically, you can use the Add Data button as usual.
-5.  Right click in the grey space near the file menu and select the 'Editor' tool bar.
-6.  Select Editor and then 'Start Editing'
-7.  Select your newly created 'Lakes\_auburn' shapefile to begin editing.
+    3.  Spatial reference: Select the Edit button, then Import, and in the following window, select the `TOWNS_POLY` shapefile. The new (empty) shapefil) will now have the same spatial reference information as the `TOWNS_POLY` shapefile. Any features that you create will use coordinates from that coordinate reference system.
+5.  Click OK and the new shapefile will be created in the selected folder and added to the TOC. (If it does not get added to the map automatically, you can use the Add Data button as usual.)
+6.  Display the Editor toolbar.
+7.  In the Editor toolbar, select Editor→Start Editing.
+8.  Select your newly created 'Lakes\_auburn' shapefile to begin editing.
     1.  You will see a new pane appear on the right. Your new shapefile should appear.
-8.  Select the shapefile, and look at the bottom of the pane. You should see a number of 'Construction' tools appear. 'Select Polygon'.
-9.  Begin tracing the outline of one of the lakes in the town of Auburn with a series of clicks that are not too far apart:
-10. When you have finished one polygon, double-click to complete the sketch.
-    1.  The polygon will out outlined in teal, indicating that the shape is complete.
-    2.  Each time you complete a feature (e.g. polygon) return to the Editor Tool Bar, and select Save Edits from the drop down so that you do not lose any work.
-11. Digitize all of the lakes in the town of Auburn and when you are finished, save your edits once again and chose 'stop editing' from the Editor dropdown.
-12. Add the `MAJPONDS_POLY.shp` layer to compare the locations of lakes in 2017 and 1871.
+9.  Select the shapefile, and look at the bottom of the pane. A number of Construction tools will appear. Select the Polygon tool.
+10. Begin tracing the outline of one of the lakes in the town of Auburn. Each click will add a **vertex** to the polygon. Draw the polygon with a series of closely spaced clicks. Where the boundary is curved, you will have to add more vertices to follow the curve. Where the boundary is straight, the vertices can be more spread out.
+11. When you have finished one polygon, double-click to complete the sketch. The polygon will be outlined in teal, indicating that the shape is complete.
+12. Return to the Editor toolbar and select Editor→Save Edits so that you do not lose any work.
+13. Digitize all of the lakes in the town of Auburn. When you are finished, save your edits once again and chose Editor→Stop Editing.
+14. Add the `MAJPONDS_POLY.shp` layer to compare the locations of lakes in 2017 and 1871.
 
 Assignment
 ==========
@@ -83,7 +83,7 @@ In 2016 there were a number of articles about the shrinking Great Salt Lake <htt
 
 How much has the Great Salt Lake in Utah changed since 1889? You will start with an historical image of Utah. You will georeference the image, digitize the perimeter of the the Great Salt Lake, and compare the digitized lake to a modern data source. As with the Worcester towns historical map, [this data is downloaded from DavidRumsey.com](https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~37442~1210316:Utah-?showTipAdvancedSearch=false&showShareIIIFLink=true&showTip=false&helpUrl=https%3A%2F%2Fdoc.lunaimaging.com%2Fdisplay%2FV73D%2FLUNA%2BViewer%23LUNAViewer-LUNAViewer&title=Search+Results%3A+List_No+equal+to+%272094.058%27&fullTextSearchChecked=&dateRangeSearchChecked=&advancedSearchUrl=https%3A%2F%2Fdoc.lunaimaging.com%2Fdisplay%2FV73D%2FSearching%23Searching-Searching&thumbnailViewUrlKey=link.view.search.url).
 
-1.  Download [Utah\_1889.jpg, an historical image of Utah](images/Utah_1889.jpg) from the GitHub course repo.
+1.  Download [Utah\_1889.jpg](https://github.com/temple-geography/fundamentals-of-gis/raw/master/images/Utah_1889.jpg), an historical image of Utah from the GitHub course repo.
 2.  Georeference Utah\_1889. Use the National Geographic World Map as your basemap to georeference this map. This can be added by choosing Add Basemap from the dropdown function of the Add Data button, or the File→Add Data menu. In the Add Basemap dialog box, try the National Geographic World Map.
 3.  Digitize the permiter of Great Salt Lake.
 4.  Convert the shapefile to a KML for viewing in Google Earth. Please note that you need to export the map using the symbology that you want Google Earth to display (try hollow, with a 2 pt border). This can be done by using the "Layer to KML" tool in ArcMap.
