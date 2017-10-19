@@ -15,7 +15,7 @@ The data for this tutorial includes an historical map image hosted on the course
 
 # Georeferencing
 
-Georeferencing is the process of aligning data with real-world coordinates. In this tutorial we will geoference a historic map of towns in Massachusetts to a modern GIS layer of town boundaries, and we will lakes in the Town of Auburn and compare them to a current shapefile of lakes. This process will take a few steps.
+Georeferencing is the process of aligning data with real-world coordinates. In this tutorial we will geoference a historic map of towns in Massachusetts to a modern GIS layer of town boundaries, and we will digitize the lakes in the Town of Auburn and compare them to a current shapefile of lakes. This process will take a few steps.
 
 A video of this georeferencing tutorial is available at <https://drive.google.com/file/d/0B_rk0_Y4N6QzdEg3RmFSY2tjUUU/view> and a brief description of the steps follow. You might find it useful to review the steps below and watch the video before beginning the tutorial.
 
@@ -88,9 +88,12 @@ How much has the Great Salt Lake in Utah changed since 1889? You will start with
 
 1. Download [Utah_1889.jpg](https://github.com/temple-geography/fundamentals-of-gis/raw/master/images/Utah_1889.jpg), an historical image of Utah from the GitHub course repo.
 2. Georeference Utah_1889. Use the National Geographic World Map as your basemap to georeference this map. This can be added by choosing Add Basemap from the dropdown function of the Add Data button, or the File→Add Data menu. In the Add Basemap dialog box, try the National Geographic World Map.
-3. Digitize the permiter of Great Salt Lake.
-4. Convert the shapefile to a KML for viewing in Google Earth. Please note that you need to export the map using the symbology that you want Google Earth to display (try hollow, with a 2 pt border). This can be done by using the "Layer to KML" tool in ArcMap. 
-5. Once the KML layer is exported, double-click on it to launch Google Earth and view the file. Once you are in Google Earth you have access to imagery since 1970 by clicking on the button that looks like a clock with an arrow pointing counterclockwise.
+3. Digitize the perimeter of Great Salt Lake.
+4. Save the shapefile as a Layer file and then convert to KML file for viewing in Google Earth. This will allow you to visually compare the historic extent of the Great Salt Lake to its current extent. A layer in ArcGIS references a spatial data set and includes a set of rules for how it should be displayed. (Think how a layer in ArcGIS is both a pointer to a data source and rules about how to display it.) To create the KML file:
+    a. Change the symbology of the shapefile to a hollow fill with a 2 point border.
+    b. Right-click the layer in the TOC and select Save as Layer File. Save it to your working folder.
+    c. Use the Layer to KML tool to create a new KMZ file (a zipped .KML file). This tool is found in ArcToolbox under Conversion Tools→To KML→Layer to KML. The input file will be the Layer File that you just saved.
+5. Once the KML layer is exported, double-click it in Windows File Explorer. This will launch Google Earth and view the file. Once you are in Google Earth you can access imagery since 1970 by clicking on the button that looks like a clock with an arrow pointing counterclockwise.
 
 Write a lab report that includes: 
 
