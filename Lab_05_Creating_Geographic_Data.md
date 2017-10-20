@@ -20,10 +20,12 @@ A video of this georeferencing tutorial is available at <https://drive.google.co
 2.  Open ArcMap.
 3.  Add `TOWNS_POLY.shp` to the map canvas.
 4.  Set the polygon fill to hollow, so that you can see the town borders, but also see the historical map (which we are about to add).
-5.  Add the 1871 towns map to ArcMap. Even though this is not a GIS data layer, the file will show up in the Add Data dialog box as a suitable data source.
-6.  You will get the by now familiar Unknown Spatial Reference warning. This is OK! This is the problem that you are about to fix! The image will not appear in the map initially, but you will be able to see the name `Worcester_towns.jpg` in the TOC, so you will know that it is there.
-7.  Open the Layer Properties for the Worcester towns layer and select the Display tab.
-8.  Change the Resample during display setting to Cubic Convolution. This will improve the quality of the display.
+5.  Add the 1871 towns map to ArcMap.
+    1.  Use Add Data as if this were a shapefile or other GIS layer. Even though this is just an image file, not a GIS data layer, the file will show up in the Add Data dialog box as a suitable data source.
+    2.  You will get the by now familiar Unknown Spatial Reference warning. This is OK! This is the problem that you are about to fix! Hit OK to dismiss the dialog.
+    3.  ***The image will not appear in the map initially.*** Since it is not a spatial layer, ArcGIS does not know how to display it. Nonetheless, `Worcester_towns.jpg` will be listed in the TOC, so you will know that it is there, and be able to change Layer properties in the next step. Even though you can't see an image, keep following the instructions. You won't be able to see the image until you turn on the Georeferencing toolbar and begin that process.
+6.  Open the Layer Properties for the Worcester towns layer and select the Display tab.
+7.  Change the Resample during display setting to Cubic Convolution. This will improve the quality of the display.
 
 The data are now available in your map document and you are ready to begin Georeferencing.
 
@@ -46,9 +48,10 @@ You are now ready to begin placing ground control points (GCPs). The GCPs link c
     1.  Select Rectify from the Georeferencing menu.
     2.  Change the resample type to Bilinear Interpolation.
     3.  Select the folder (Output Location) where you would like to save the image. **NOTE:** The Select Workspace dialog is somewhat confusing. Do *not* try to enter a filename. Just select the folder and hit Add.
-    4.  Set the Format to TIFF (if necessary--it should be the default).
-    5.  Name the image (if you are not happy with the default name).
-    6.  Hit Save.
+    4.  Change the image Name (if you are not happy with the default name).
+    5.  The Format should be TIFF. (If it is some other type, change it to TIFF.)
+    6.  TIFF images can be very large. Change the Compression Type to JPEG. Compression Quality can stay at the default value (which should be 75).
+    7.  Hit Save.
 
 Digitizing
 ==========
