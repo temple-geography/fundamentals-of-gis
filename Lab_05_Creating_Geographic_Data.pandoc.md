@@ -91,6 +91,11 @@ How much has the Great Salt Lake in Utah changed since 1889? You will start with
 
 1. Download [Utah_1889.jpg](https://github.com/temple-geography/fundamentals-of-gis/raw/master/images/Utah_1889.jpg), an historical image of Utah from the GitHub course repo.
 2. Georeference Utah_1889. Use the National Geographic World Map as your basemap to georeference this map. This can be added by choosing Add Basemap from the dropdown function of the Add Data button, or the File→Add Data menu. In the Add Basemap dialog box, try the National Geographic World Map.
+    * **If you are behind a corporate firewall:** On Temple campus, or another campus or organizational network that requires proxy authentication, you may be blocked from adding a basemap, which ArcMap downloads from the internet. If this is the case, you can authenticate as follows:
+        1. Close ArcMap.
+        2. Open a web browser, such as Google Chrome or Firefox. If you have already authenticated in an open browser window, close the browser and reopen it.
+        3. Go to <https://livingatlas.arcgis.com/>.
+        4. When the proxy server asks you to authenticate, enter your network credentials. **NOTE:** This is not the same as signing into the website, which is not necessary. This is authenticating against your corporate proxy server. If you do not get an authentication dialog, this may not be the reason why Add Basemap is not working!
 3. Digitize the perimeter of Great Salt Lake.
 4. Save the shapefile as a Layer file and then convert to KML file for viewing in Google Earth. This will allow you to visually compare the historic extent of the Great Salt Lake to its current extent. A layer in ArcGIS references a spatial data set and includes a set of rules for how it should be displayed. (Think how a layer in ArcGIS is both a pointer to a data source and rules about how to display it.) To create the KML file:
     a. Change the symbology of the shapefile to a hollow fill with a 2 point border.
