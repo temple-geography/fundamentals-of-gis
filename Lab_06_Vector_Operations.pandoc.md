@@ -183,10 +183,10 @@ Biking has become an increasingly popular mode of transportation in Philadelphia
 
 The objective of this assignment is to identify areas for potential bike racks in the neighborhoods surround Temple University's Main Campus. These bike racks should be: 
 
-1. Within 100 feet of the Philadelphia bike network 
-2. Within 30 feet of a building 
-3. Not within 200 feet of an existing bike rack.
-4. An area between 100 and 900 square meters.
+1. Within 75 feet of the Philadelphia bike network 
+2. Within 20 feet of a building 
+3. Not within 500 feet of an existing bike rack.
+4. An area between 300 and 1000 square feet.
 
 Use the following layers for this analysis:
 
