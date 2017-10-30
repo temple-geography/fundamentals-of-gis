@@ -1,4 +1,7 @@
-#Lab 7: Introduction to Raster Analysis.
+---
+title: Introduction to Raster Analysis
+author: Victor Gutierrez-Velez
+---
 
 **Purpose** At the end of this lab, students will learn:
 

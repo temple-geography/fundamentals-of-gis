@@ -1,6 +1,3 @@
-Lab 7: Introduction to Raster Analysis.
-=======================================
-
 **Purpose** At the end of this lab, students will learn:
 
 1.  How to download spatial raster information from public repositories.
