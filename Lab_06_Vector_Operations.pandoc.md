@@ -136,12 +136,12 @@ For instance, say you were interested in which buildings fall within the City of
 2. Create a new shapefile that represents only the neighborhoods around Temple's Main Campus Montgomery County. You can do this by using a Select by Attributes operation, selcting the following neighborhoods: NORTH CENTRAL, CECIL B. MOORE, YORKTOWN, and NORTH PHILA. Export the selected features to a new shapefile called TU_area. Make sure the file exports to your workspace (again, this location might not be the default) and is specified to export as a shapefile. 
 3. Now dissolve the resulting shapefile to make it a single object, the outline of the combined neighbhorhoods. Call it TU_Area_diss
 4. Go to the Geoprocessing file menu and select Clip. Note that the clip tool can also be accessed from ArcToolbox (ArcToolbox→Analysis Tools→Extract→Clip). 
-
-![](images/Lab6Fig9.png)\ 
-
-4. Drag Buildings into the input features box. Drag TU_area into the clip features box. Name the output shapefile Bldgs_TU. 
-5. View the new shapefile. It should include only those building footprints that are within the bounds of the TU_area shapefile. 
-6. Remove all the layers from ArcMap. 
+    
+    ![](images/Lab6Fig9.png)\ 
+    
+5. Drag Buildings into the input features box. Drag TU_area into the clip features box. Name the output shapefile Bldgs_TU. 
+6. View the new shapefile. It should include only those building footprints that are within the bounds of the TU_area shapefile. 
+7. Remove all the layers from ArcMap. 
 
 # Polygon Overlay: Intersection and Union 
 

@@ -132,11 +132,11 @@ Here, you will learn how to use ArcMap to perform a clip operation. A Clip opera
 2.  Now dissolve the resulting shapefile to make it a single object, the outline of the combined neighbhorhoods. Call it TU\_Area\_diss
 3.  Go to the Geoprocessing file menu and select Clip. Note that the clip tool can also be accessed from ArcToolbox (ArcToolbox→Analysis Tools→Extract→Clip).
 
-![](images/Lab6Fig9.png) 
+    ![](images/Lab6Fig9.png) 
 
-1.  Drag Buildings into the input features box. Drag TU\_area into the clip features box. Name the output shapefile Bldgs\_TU.
-2.  View the new shapefile. It should include only those building footprints that are within the bounds of the TU\_area shapefile.
-3.  Remove all the layers from ArcMap.
+4.  Drag Buildings into the input features box. Drag TU\_area into the clip features box. Name the output shapefile Bldgs\_TU.
+5.  View the new shapefile. It should include only those building footprints that are within the bounds of the TU\_area shapefile.
+6.  Remove all the layers from ArcMap.
 
 Polygon Overlay: Intersection and Union
 =======================================
