@@ -205,13 +205,13 @@ Turn in a report addressing this objective. This report should include a map of 
 
 When you perform spatial operations, the measurements are calculated in terms of the measurement units of the assigned coordinate reference system. Therefore, before you begin working, make sure all layers are in State Plane Pennsylvania South coordinates. 
 
-1. Use the Buffer tool (Analysis Tools→Proximity→Buffer) to buffer the Bike Racks, Bike Networks, and Buildings shapefiles, using the distance criteria given above.. 
-2. When buffering, make sure to choose Dissolve Type = ALL. Additionally, when you are buffering the buildings, please choose the Side Type to be OUTSIDE_ONLY so that your buffer does not include the building footprint. 
-3. Once you have your buffers, clip the buffered features to the neighborhoods adjacent to Temple using the TU_area shapefile created above.
-4. Clip the buildings buffer to the bike networks buffer. We are doing this because we do not have the processing power required to run a union with the Philadelphia buildings file and the other buffers.
-4. Using a combination of the intersect and union tools select areas that are within 100 feet of a bike network and 30 feet of a building but NOT within 200 feet of an existing bike rack. 
-5. Once you have selected the suitable bike rack areas, you may need to use the Multipart to Single Part tool to create a new record for each polygon. You will then need to calculate the area for each of the polygons. 
-
+1. In order to make the processing more efficient, clip the Buildings, Bike Racks, and Bike Networks shapefiles to the Temple University neighborhood using the TU_area shapefile created above.
+2. Use the Buffer tool (Analysis Tools→Proximity→Buffer) to buffer the Bike Racks, Bike Networks, and Buildings shapefiles, using the distance criteria given above.
+3. When buffering, make sure to choose Dissolve Type = `ALL`. Additionally, when you are buffering the buildings, please choose the Side Type to be `OUTSIDE_ONLY` so that your buffer does not include the building footprint.
+4. Once you have your buffer layers, once again clip the buffered features to the neighborhoods adjacent to Temple using the TU_area shapefile (to eliminate the buffered areas that extend outside the Temple University neighborhood).
+5. Clip the buildings buffer to the bike networks buffer. We are doing this because we do not have the processing power required to run a union with the Philadelphia buildings file and the other buffers.
+6. Using a combination of the intersect and union tools identify areas that are within 100 feet of a bike network and 30 feet of a building but NOT within 200 feet of an existing bike rack.
+7. Once you have selected the suitable bike rack areas, you may need to use the Multipart to Single Part tool to create a new record for each polygon. You will then need to calculate the area for each of the polygons, and select the polygons that meet your area criteria.
 NOTE: All of the tools that you need to complete the lab are described in the lab tutorial. If you are unsure of where to find a tool or how to use it, please refer back to the description in the tutorial or ask the instructor. 
 
 Write a lab report that includes: 
