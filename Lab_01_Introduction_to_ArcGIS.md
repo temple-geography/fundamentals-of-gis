@@ -420,5 +420,5 @@ Submit your PNG image of New Jersey that you produced in the final section, as w
 9.  **How many records (census tracts) have the County FIPS of 001?**
 10. **What's the total population of New Jersey?**
 11. **What's the Total Population for these selected records?**
-12. **What difference to you observe in the image quality between the PNG and SVG file formats? What difference do you observe in the file sizes?**
+12. **What difference do you observe in the image quality between the PNG and SVG file formats? What difference do you observe in the file sizes?**
 
