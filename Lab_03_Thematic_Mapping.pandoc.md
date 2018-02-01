@@ -5,6 +5,10 @@ author: Jeremy Mennis
 
 **Purpose:** To introduce the principles and techniques of thematic mapping, including dot density, proportional symbol, and choropleth mapping, as well as data classification and basic map design. As a demonstration, you will acquire and map spatial data on the total population by state of the contiguous U.S. using data from the 2010 U.S. Census.
 
+## Terminology
+
+This lab exercise introduces the term **workspace**. This is a technical way of referring to a project folder, the folder where you store your data files, including both inputs and outputs. Thus, when you see a reference to "your workspace", you can think of it as "your Lab 3 data folder". Using the term "workspace" is more concise, and when you become a more advanced GIS user, setting the workspace becomes an important part of automating complex processes.
+
 # Acquire State Population Data from the U.S. Census Bureau
 
 In a web browser, navigate to [https://www.census.gov/geo/maps-data/data/tiger-data.html](https://www.census.gov/geo/maps-data/data/tiger-data.html).
