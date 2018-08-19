@@ -3,19 +3,19 @@ title:
 author: 
 ---
 
-**Purpose:** Narrative description of purpose
+**Learning Objective**
 
-[and/or]
+text
 
-At the end of this exercise you will be able to:
+# TUTORIAL
 
-1. 
-2. 
-3. etc.
+## ...Section...
 
-# ...Section...
+instructions
 
-Instructions
+## ...Section...
+
+instructions
 
 # Assignment
 
@@ -23,15 +23,23 @@ Instructions
 
 ## Deliverables
 
+**Turn in a report in the format described in the syllabus.**
+
+Be sure to include the the following information:
+
+1. ...
+2. ...
+
+The **Introduction** section should state the research objective.
+
+The **Data and Methods** section should state the data sets used, from where those data were acquired, and the GIS operations employed.
+
+The **Results** section should state the results...[what are the expected results]
+
+The **Discussion** section should...
+
+The **Tables and Figures** section should contain the map(s) with...
+
 ## Getting Started
 
-Instructions.
-
-In your report, be sure to include the following information (see the syllabus for lab report guidelines and formatting):
-
-* **Introduction:** State the research question (i.e. ...).
-* **Data and Methods:** State the data used, from where it was acquired, the GIS operations employed to do the analysis, and the mapping techniques employed (i.e. state and justify why you chose specific mapping options, such as the type of map, color scheme, the particular data classification for your choropleth map, and so on).
-* **Results:** Report on the expected deliverables noted above.
-* **Discussion:** Interpret your results by briefly describing...
-* **Tables and Figures:**  Insert all tables and figures (including maps) at the end of the report, each on a separate page, with a label (e.g. Figure 1).  Be sure to cite each table and figure included in the body of the report text.
-
+[Tips for completing the lab exercise.]
