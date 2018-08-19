@@ -20,4 +20,11 @@ An additional lab exercise is planned to be created for use in future terms:
 
 Many of the lab exercises include instructions for downloading data from public sources. For exercises where data is provided, the data is not currently hosted on GitHub. We are considering an appropriate solution for distributing the data. In the meantime, please contact [Lee Hachadoorian](mailto:Lee.Hachadoorian@temple.edu) to request data files.
 
+## Credits
+
+* Lab 1
+    * Created by Kevin Henry
+    * Significant modification
+        * Lee Hachadoorian (Fall 2017)
+        * Jeremy Mennis (Fall 2018)
 
