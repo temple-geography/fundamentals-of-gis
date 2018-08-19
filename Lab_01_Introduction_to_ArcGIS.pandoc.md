@@ -1,6 +1,5 @@
 ---
 title: Introduction to ArcGIS
-author: Jeremy Mennis
 ---
 
 **Learning Objective**
@@ -31,7 +30,7 @@ First, complete the tutorial by following the steps below.  Then, using the skil
 ## Opening ArcCatalog and Exploring Data
 
 1. Open ArcCatalog.  You can navigate to ArcCatalog through the Start button at the lower left of the screen, then go to CAD and GIS, then ArcGIS.
-2. Press the 'Connect to Folder' button. ![](images/ArcMapConnectToFolderButton.png)
+2. Press the 'Connect to Folder' button. ![](images/ArcMapConnectToFolderButton.png){height="0.167in"}
 3. Navigate to the location of your Lab1 workspace folder and then click OK. **Note:** After you have connected to a data folder you will be able to connect directly to this folder in the future without having to repeat this step.
 4. The workspace folder should now appear in ArCatalog in the catalog tree on the left.
 5. In the catalog tree, navigate to your workspace folder and drill down in each folder so that you can see each spatial data layer you've downloaded, something like this:\
@@ -45,9 +44,9 @@ First, complete the tutorial by following the steps below.  Then, using the skil
 
 ## Opening ArcMap and Adding Map Layers
 
-1. Open ArcMap.  You can do this by clicking on the ArcMap button in ArcCatalog ![](images/ArcCatalogLaunchArcMapButton.png) or by opening ArcMap on its own from the CAD and GIS/ArcGIS folder.
+1. Open ArcMap.  You can do this by clicking on the ArcMap button in ArcCatalog ![](images/ArcCatalogLaunchArcMapButton.png){height="0.167in"} or by opening ArcMap on its own from the CAD and GIS/ArcGIS folder.
 2. The New Document dialog will appear. Click OK to begin with a blank map. **Note:** When you are starting with a new map, it doesn't really matter whether you close this dialog by clicking OK, Cancel, or the **X** at the upper right.
-3. Click the Add Data Button. ![](images/ArcMapAddDataButton.png)
+3. Click the Add Data Button. ![](images/ArcMapAddDataButton.png){height="0.167in"}
 4. In the Add Data browser window click the 'Connect to Folder' button, navigate to your workspace folder, and press OK. 
 5. Navigate into your workspace folder and add the neighborhoods, schools, and bike network data layers to ArcMap.
 6. After adding the files, it should look something like this (the colors may be different):\
@@ -228,15 +227,15 @@ The identify tool allows you to quickly get attribute information about a geogra
 
 1. Turn off all the layers except the neighborhoods.
 2. Select the 'Identify' tool ![](images/ArcMapIdentifyTool.png){height="0.167in"} and click on one of the neighborhoods. The Identify window will appear.  This shows you the attribute values from the attribute table for that neighborhood, such as its name.
-3. If ![](images/ArcMapIdentifyTool.png){height="0.1in"} you are not getting info about the neighborhoods then you will need to change the "Identify from" layer in the dropdown at the top of the window.
-4. Try ![](images/ArcMapIdentifyTool.png) using this tool on the other map layers.
+3. If you are not getting info about the neighborhoods then you will need to change the "Identify from" layer in the dropdown at the top of the window.
+4. Try using this tool on the other map layers.
 5. Note that when features are close together (e.g. a bike network nearby a school), the Identify tool may select several nearby features. Zoom in until you can select a single feature.
 
 ### Measure Distances and Areas
 
 How big is Philadelphia?
 
-1. Click the Measure tool ![](images/ArcMapMeasureButton.png) on the Tools toolbar to open the Measure dialog box.
+1. Click the Measure tool ![](images/ArcMapMeasureButton.png){height="0.167in"} on the Tools toolbar to open the Measure dialog box.
 2. When the measure menu opens, click on the units dropdown menu (its down arrow), select distance, and then miles.
 3. Click on the northeastern tip of Philadelphia and then drag the ruler drag ruler tool to the southwestern tip and double click to take the measurement.
 4. Close the Measure tool.
@@ -286,7 +285,7 @@ Manual Selection:
 2. Scroll down the table until you find the Dunbar, Paul Laurence school.
 3. Click on the row on the far left of the table to manually select that row (see circle in the picture below).  Note the Dunbar school will be highlighted to show its selection – in both the attribute table and in the map (it is adjacent to Temple University Main Campus).   Note that at bottom of the table it should indicate 1 out of 550 schools are selected.\
     ![](images/Lab1Fig7.png){height="3.0in"}\ 
-4. Clear the selection by clicking the Clear Selection button ![](images/ArcMapClearSelectionButton.png) on the attribute table or in ArcMap.
+4. Clear the selection by clicking the Clear Selection button ![](images/ArcMapClearSelectionButton.png){height="0.167in"} on the attribute table or in ArcMap.
 
 Attribute Query:
 
@@ -325,7 +324,7 @@ You can also select features interactively on the map.
 
 The Tools toolbar in ArcMap contains a tool for graphically selecting features. The 'Select Features' tool works using a single graphic that you interactively digitize (draw) as part of the selection process.
 
-1. Click the Select Features button ![](images/ArcMapSelectFeaturesButton.png), then click 'Select by Rectangle'\
+1. Click the Select Features button ![](images/ArcMapSelectFeaturesButton.png){height="0.167in"}, then click 'Select by Rectangle'\
     ![](images/ArcMapSelectByRectangle.png){height="1.0in"}\ 
 2. Using the cursor draw a rectangle around a set of schools, say, the schools in West Philadelphia.\
     ![](images/Lab1Fig11.png){height="3.0in"}\ 
@@ -427,7 +426,7 @@ We have been working in a view called "Data View", which is most useful for data
     * Note that you can toggle back and forth between the layout and data view windows.
 4. Notice that the Layout toolbar now appears. This toolbar has pan and zoom tools, similar to the ones you have used before, but these will zoom into the page (not the map). Notice that each of these icons has a page behind it (e.g. magnifier on a page) to distinguish it from the pan and zoom tools on the Tools toolbar. Experiment with these tools to move around the page. When you are done, hit Zoom Whole Page (the fourth button on the Layout toolbar).\
     ![](images/ArcMapLayoutToolbar.png)\ 
-5. The pan and zoom buttons ![](images/ArcMapZoomAndPanButtons.png) on the Tools toolbar can be used to resize the map image on the page. Use the Zoom In button ![](images/ArcMapZoomInButton.png) to make sure that Philadelphia fills most of the data frame. Note that if you zoom in too far, parts of Philadelphia will be "outside" the data frame, and will not appear on the page.
+5. The pan and zoom buttons ![](images/ArcMapZoomAndPanButtons.png){height="0.167in"} on the Tools toolbar can be used to resize the map image on the page. Use the Zoom In button ![](images/ArcMapZoomInButton.png){height="0.167in"} to make sure that Philadelphia fills most of the data frame. Note that if you zoom in too far, parts of Philadelphia will be "outside" the data frame, and will not appear on the page.
 6. Use the Insert menu to add the following elements:
     a. Title—Should default to top center, can be repositioned.
     b. Legend—A dialog will appear offering many options for customizing the legend. Just keep hitting Next until the legend appears on your map.
