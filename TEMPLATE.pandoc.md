@@ -17,7 +17,7 @@ instructions
 
 instructions
 
-# Assignment
+# ASSIGNMENT
 
 ## Objectives
 
@@ -25,7 +25,7 @@ instructions
 
 **Turn in a report in the format described in the syllabus.**
 
-Be sure to include the the following information:
+Be sure to include the following information:
 
 1. ...
 2. ...
