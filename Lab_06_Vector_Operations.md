@@ -1,230 +1,606 @@
-**Purpose:** To introduce vector operations, including buffer, map dissolve, and overlay operations.
+**Learning Objective**
 
-Data
-====
+To introduce vector operations, including buffer, dissolve, and overlay
+operations.
 
-Note: The tutorial portion of this lab uses a variety of data layers to demonstrate how various vector operations work. After each section, remove all layers or close ArcMap. Also, the assignment portion of the lab uses a different set of layers.
+Vector operations refers to a variety of tools that operate on vector
+data. While far from exhaustive, this lab tutorial walks through a set
+of extremely commonly used operations. Each section of the tutorial is
+essentially a standalone mini-tutorial that introduces how a specific
+operation works, using data from Philadelphia, Pennsylvania. You will
+notice that each of these operations has a variety of settings and
+capabilities beyond what you are instructed to do. You are encouraged to
+explore the various functionalities of these tools. In the assignment,
+you will be asked to work with several of these tools in sequence,
+performing a classic **site** **suitability analysis**, through which
+these tools identify optimal locations based on a set of spatial
+criteria.
 
-We will work with data made publically available by the Pennsylvania Geospatial Clearinghouse ([PASDA](http://www.pasda.psu.edu)). For more details on how to download and prepare data, refer to Lab 2.
+First, complete the tutorial by following the steps below. Then, using
+the skills you’ve learned in the tutorial, complete the assignment given
+following the tutorial.
 
-1.  From PASDA, use the search function to find and download the following files layers:
+## TUTORIAL
 
--   Bike Racks Year 2012
--   Philadelphia Buildings Year 2017
--   Philadelphia Planning Neighborhoods Year 2016
--   Philadelphia Planning Schools Year 2016
--   Philadelphia Streets Bike Network Year 2016
--   Philadelphia Streets Zipcodes Poly Year 2016
--   Pennsylvania Census Tract Shapefile Year 2010.
+## Acquiring the Data
 
-Some of these files will be used for the tutorial portion of the lab. Others will be used for the assignment. They will be referred to throughout this lab exercise by a short but clear name, such as "Bike Network" rather than "Philadelphia Bike Network".
+We will work with data for Philadelphia (and one data set for
+Pennsylvania) made publicly available by PASDA, the Pennsylvania
+Geospatial Clearinghouse ([PASDA](http://www.pasda.psu.edu)). From
+PASDA, use the search function to find and download the following files
+layers:
 
-Next, set up your Environment in ArcMap. This will specify a location for all of your outputs when running different operations and make it esier to save generated files.
+- SEPTA High Speed Stations (2012)
+    - These are the **subway stations**.
+- SEPTA Regional Rail Stations (2016)
+    - These are the **regional rail stations**.
+- SEPTA Routes Spring (2016)
+    - These are the **bus routes**.
+- Philadelphia Health – Healthy Corner Stores (2016)
+    - These are **corner stores** participating in the Food Trust’s
+    Healthy Corner Store Initiative –
+    <http://thefoodtrust.org/what-we-do/corner-store>.
+- Philadelphia Health – Farmers Markets (2016)
+    - These are **farmers markets**.
+- Philadelphia Empowerment Zones (2012)
+    - These are **empowerment zones** – areas targeted by the City of
+    Philadelphia for investment –
+    <http://www.phila.gov/commerce/neighborhoods/Pages/EmpowermentZones.aspx>.
+- 2015 Cartographic Boundary File, State-County-Census Tract for
+Pennsylvania, 1:500,000 (2015)
+    - These are Pennsylvania **census tracts** – US Census Bureau
+    enumeration units.
 
-1.  Open ArcMap, select the Geoprocessing file menu, and choose Environments.
-2.  Set the Current and Scratch Workspaces to your the folder on your flash drive or local hard drive where you are saving your files. (See example below; your path will differ.) You do not need to modify any of the other fields. Click OK. Each time you run an operation, the output will be saved to your workspace. Be sure to set up your Environment in ArcMap and/or ArcCatalog each time you begin working.
+Some of these files will be used for the tutorial portion of the lab.
+Others will be used for the assignment.
 
-    ![](images/Lab6Fig1.png) 
+Move all files to your workspace folder and unzip any zip files.
 
-3.  Open ArcCatalog and examine the properties of the shapefiles you just downloaded, paying attention to the XY Coordinate System tab. Because most of these data come from the City of Philadelphia by way of PASDA, they will most like likely be in State Plane coordinates (NAD\_1983\_StatePlane\_Pennsylvania\_South\_FIPS\_3702\_Feet).
-4.  In ArcMap and add the Bike Network shapefile. Remember, the data frame in ArcGIS will adopt the coordinate system of the first layer added. Open the attribute table and find the field SHAPE\_Leng, which provides a measurement of the length of each individual line segment measured in US feet (the native linear unit of the State Plane coordinate system).
+## Explore and Integrate the Data into a Common CRS
 
-Tutorial
-========
+Open ArcCatalog and explore each of the downloaded data sets, including
+the maps and tables.
 
-Note: **Vector operations** refers to a variety of tools that operate on vector data. While far from exhaustive, this lab tutorial walks through a set of extremely commonly used operations. Each section of the tutorial is essentially a standalone mini-tutorial that introduces how a specific operation works. You will notice that each of these operations has a variety of settings and capabilities beyond what you are instructed to do. You are encouraged to explore the various functionalities of these tools. In the assignment, you will be asked to work with several of these tools in sequence, performing a classic **suitability analysis**, through which these tools identify optimal locations based on a set of criteria.
+Pay particular attention to the CRS of each data set. Note that most are
+in Pennsylvania State Plan South, which is the CRS used by the City of
+Philadelphia for its GIS data. The exceptions are the regional rail
+stations, the bus routes, and the census tracts. Using the Project tool
+in ArcCatalog, convert these data sets to Pennsylvania State Plane. Use
+these converted data sets in the remainder of the tutorial and
+assignment.
 
-Retrieve Line Length and Polygon Area Measurements
-==================================================
+## Adjust the Environment Settings
 
-Here, you will learn how to use ArcMap to calculate line length and polygon area and encode these values in an attribute table.
+Now, we will set up the Environment in ArcMap. This will specify a
+workspace folder for all of the data files generated when running
+different operations and make it easier to save output files.
 
-Here, we will add a new field and populate the field with new length values in meters.
+1.  Open ArcMap, select the Geoprocessing file menu, and choose
+    Environments.
 
-1.  Add a new field to the Bike Network shapefile and call it `Length_m`. Make it a float type, and press OK.
-2.  Right click on the header for the new field (where it says `Length_m`) of the field at the top of the column and go to Calculate Geometry.
+2.  Under Workspace, set the Current and Scratch Workspaces to your
+    workspace folder (See example below; your path will differ.) You do
+    not need to modify any of the other fields. Click OK. Each time you
+    run an operation, the output will be saved to your workspace. Be
+    sure to set up your Environment in ArcMap and/or ArcCatalog each
+    time you begin working.
 
-    ![](images/Lab6Fig2.png) 
+<!-- end list -->
 
-3.  Click Yes to confirm you want to edit this field. In the Calculate Geometry dialog box make sure Property is set to `Length` and the Units is set to `Meters [m]`. Click OK. You should see the new length values appear in the field.
-4.  Add the Zipcodes Poly shapefile to ArcMap and open its attribute table. Find the `SHAPE_Area` field. This field contains the area of each zip code in square feet.
-5.  Create a new field called `Area_m`. Follow the analogous procedures as for the Bike Network, but instead of length choose to calculate the area in square meters.
-6.  Remove all data layers from ArcMap.
+  - ![](images/Lab6Fig1.png)
 
-Buffer
-======
+## Retrieve Line Length and Polygon Area Measurements
 
-Here, you will learn how to use ArcMap to perform a buffer operation on points and lines.
+Here, you will learn how to use ArcMap to calculate line length and
+polygon area and encode these values in an attribute table.
 
-1.  Add the Schools shapefile to ArcMap.
-2.  The Buffer tool can be accessed two ways. For quick access, from the Geoprocessing menu, select Buffer. The Buffer tool can also be accessed from the ArcToolbox. Open ArcToolbox in ArcMap, and go to Analysis Tools→Proximity→Buffer.
-3.  Drag Schools.shp into the input features box. Call the output shapefile `schools_buf300m` and make sure it saves to your workspace (which might or might not be the default location). For the Distance box, under Linear Unit, enter 300 meters. For Dissolve Type choose ALL. Leave the rest of the options as the defaults. Press OK.
-4.  View the new `schools_buf300m` shapefile in ArcMap. Zoom in to where there are clusters of schools to see how the buffers merge together (i.e. are dissolved as single polygons in these locations).
-5.  Repeat the buffer operation with this shapefile (Schools), experimenting with different settings in the Buffer tool. For example, change the distance in the Linear Unit option to a larger value and try the NONE dissolve option. Note that the operation can take a lot of time given certain settings. These types of operations can require significant processing power.
+We will start by adding a new field and populating the field with new
+length values in feet.
 
-    ![](images/Lab6Fig5.png) 
+1.  Add the bus routes layer to ArcMap (be sure to add the new data set
+    you created that is in Pennsylvania State Plane CRS).
 
-6.  Once you have created a buffer with the NONE dissolve option compare the results to the original (dissolve ALL) buffer. The key to understanding the difference is in comparing both the visible features but, just as importantly, the difference in the attribute tables. Note: in the image that in the undissolved buffer there is a one-to-one correspondence between each original object and the buffers the operation creates. The attribute table looks precisely like the attribute table from the Schools file. In the dissolved buffer, however, the result combines all of the buffers into a single object. You can think of this as a binary: the areas within 300 m of an educational institution (inside the shapefile) as opposed to those that are not. We will used dissolved buffers later on this lab because they are useful analytically (as you'll see).
-7.  Open the attribute table for `schools_buf300m`, noting again that although there are multiple polygons displayed on screen, there is only a single record in the attribute table (this is called a "multipart object").
-8.  In some cases, it is useful to have an individual record for each feature. To make this conversion, where each polygon is represented as a single record in the attribute table, go to ArcToolbox?Data Management Tools→Features→Multipart to Singlepart and input schools\_buf300m and name the output schools\_buf300m\_single. Open the output table from the resulting shapefile and confirm that it has multiple records—one for each feature.
-9.  When you are finished, close ArcMap and do not save.
+2.  Open the attribute table. Explore the data by selecting some
+    different routes so you understand that each record in the table
+    represents one bus route.
 
-Map Dissolve
-============
+3.  Add a new field to the table. Name the new field `Length``ft`. Make
+    it a double data type, and press OK.
 
-Here, you will learn how to use ArcMap to generalize a data layer by dissolving all of the features and dissolving into adjacent polygons with identical values.
+4.  Right click on the header for the new field (where it says
+    `Length``ft`) and go to Calculate Geometry.
 
-1.  Open ArcMap and add the `PA Tracts` shapefile. Go to the Geoprocessing file menu and select Dissolve. Note that the Dissolve tool can also be accessed from ArcToolbox (ArcToolbox→Data Management Tools→Generalization→Dissolve).
-2.  Drag the PA Tracts shapefile into the input box. Name the resulting file `PA_outline`. Leave all the other commands alone and press OK. Take a close look at the attribute file and the result. The operation has dissolved all the boundaries between the tracts, resulting in an outline of the entire set of features (i.e., the entire state of Pennsylvania). You'll notice that the resulting feature has one entry in the attribute table.
+5.  Click Yes to confirm you want to edit this field. In the Calculate
+    Geometry dialog box make sure Property is set to `Length` and the
+    Units is set to `Feet US`` [``ft``]`. Click OK. You should see the
+    new length values appear in the field. This is the length of each
+    bus route in feet.
 
-    ![](images/Lab6Fig6.png) 
+It is also possible to calculate the area of polygons.
 
-3.  Now compare what you have just done to what happens when you dissolve by an attribute. Open the attribute table of PA Tracts and find the field `COUNTYFP10`. This field is a 3-digit identifier for each individual county (e.g. `091` for Montgomery County) in the state. You'll notice that the GEOID code full name for all the tracts in Philadelphia begins `42101` (`42` for Pennsylvania; `101` for Philadelphia County). Of course, many individual tracts share the same value for this field. It is thus possible to perform a map dissolve operation on the PA tracts shapefile, using the `COUNTYFP10` field as the dissolve field.
-4.  Open the Dissolve dialog box again. Drag the PA tracts shapefile into the input box. Name the output shapefile PA\_Counties. Under the Dissolve Field option click COUNTYFP10. Press OK.
-5.  View the resulting shapefile in ArcMap. You'll see that the tracts have been dissolved by the county identifier, resulting in a shapefile of county outlines.
-6.  Close ArcMap.
+1.  Turn off the bus routes layer, and add the empowerment zones
+    shapefile to ArcMap.
 
-Point in Polygon Overlay
-========================
+2.  Open the empowerment zones attribute table.
 
-Here, you will learn how to use ArcMap to perform a point in polygon overlay, also called a **spatial join**. When you need to know which polygon a point is within, you can do so by joining the attributes of a polygons layer to a set of points. Here, we will determine which zip code each of the point locations from the Schools shapefile lies within.
+3.  Add a new field called `Area``ft`. Calculate the area of each
+    empowerment zone for this new field by following the analogous
+    procedures as above, but instead of length choose to calculate the
+    area in square feet.
 
-1.  Open ArcMap and add the Schools shapefile point shapefile and the polygon Zipcodes shapefile. Review each of their attribute tables and note the fields that are included in each.
-2.  Right click the Schools shapefile and choose Joins and Relates→Join.
-3.  In the new window, the top drop down menu should read `Join data from another based on spatial location`.
+4.  Remove all data layers from ArcMap.
 
-    > Note: As is so often the case, there's an additional way to implement spatial join functions in ArcGIS generally, the "Spatial Join" tool. In Toolbox, click on Analysis Tools→Overlay→Spatial Join. You will see that compared to the route we are taking (Joins and Relates→Join), the more comprehensive Spatial Join tool offers quite a few additional options. It is worth exploring more fully if you are interested in getting a deeper understanding of point- and line-in-polygon operations.
+## Buffer
 
-    ![](images/Lab6Fig7.png) 
+Here, you will learn how to use ArcMap to perform a buffer operation. We
+will buffer points here but it is also possible to buffer lines and
+polygons in the same way.
 
-4.  Choose Zipcodes as the layer to join to the Schools layer. You are given a choice of how to associate each polygon with a given point. Here, choose "it falls inside".
-5.  Name your new shapefile (`Schools_wZip` will suffice).
+1.  Add the farmers markets shapefile to ArcMap.
+
+2.  Go to the Geoprocessing menu and select Buffer. (The Buffer tool can
+    also be accessed from ArcToolbox by going to Analysis
+    Tools→Proximity→Buffer.)
+
+3.  In the Buffer dialog box, for the Input Features choose the farmers
+    markets. Name the output shapefile `farmark_1320ft` and make sure it
+    saves to your workspace. For the Distance box, under Linear Unit,
+    enter 1320 feet. Leave the rest of the options as the defaults.
+    Press OK.
+
+4.  View the new shapefile in ArcMap. Zoom in to where there are
+    clusters of farmers markets to see how the buffer polygons overlap.
+    Open the attribute table and see that each buffer disk is
+    represented as a single record in the attribute table.
+
+![](images/Lab6Fig2.png)
+
+5.  Repeat the buffer analysis, but this time, for Dissolve Type
+    (options) choose All. Call the output farmark\_1320ft\_dissolve.
+
+6.  View the new shapefile in ArcMap. Zoom in to a cluster of farmers
+    markets to see how the buffers merge together (i.e. are dissolved as
+    single polygons in these locations). Open the attribute table and
+    see that *all* polygons are represented by a single record in the
+    attribute table. This is called a ‘multipart object’ (in this
+    specific case a ‘multipolygon’) because a single feature (i.e. the
+    one record in the attribute table) has multiple parts (i.e. multiple
+    individual polygons).
+
+![](images/Lab6Fig3.png)
+
+It is often useful to have an individual record in the attribute table
+for each polygon. Here, we will convert this multipart layer to a
+singlepart layer using a Multipart to Singlepart operation.
+
+1.  > In ArcMap, go to ArcToolbox→Data Management
+    > Tools→Features→Multipart to Singlepart. In the Multipart to
+    > Singlpart dialog box, for Input Features select
+    > farmark\_1320ft\_dissolve. Name the output
+    > farmark\_1320ft\_dissolve\_single. Press OK.
+
+2.  > View the resulting shapefile. Notice it appears graphically the
+    > same as the original farmark\_1320ft\_dissolve shapefile. Open the
+    > attribute. Notice that it now has 43 records—one for each separate
+    > polygon.
+
+3.  > Explore this new shapefile by selecting certain records in the
+    > attribute table to see which polygon is associated with a single
+    > record.
+
+![](images/Lab6Fig4.png)
+
+4.  > Remove all data layers from ArcMap.
+
+## Map Dissolve
+
+Here, you will learn how to use ArcMap to generalize a data layer by
+dissolving the boundaries of adjacent polygons.
+
+1.  Add the census tracts shapefile (be sure to add the one in
+    Pennsylvania State Plane CRS).
+
+2.  First we will dissolve all the tract boundaries to yield the
+    boundary of the state. Go to the Geoprocessing file menu and select
+    Dissolve. (The Dissolve tool can also be accessed from ArcToolbox
+    (ArcToolbox→Data Management Tools→Generalization→Dissolve).
+
+3.  For Input Features select the census tracts shapefile. Name the
+    output file `PA_bnd`. Press OK.
+
+4.  View the resulting shapefile. Note that the new shapefile is simply
+    a boundary of Pennsylvania – the operation has dissolved all the
+    boundaries between the tracts, resulting in an outline of the entire
+    set of features (i.e. the entire state of Pennsylvania). You’ll
+    notice that the resulting feature has one record in the attribute
+    table.
+
+> ![](images/Lab6Fig5.png)
+
+Now we will compare what you have just done to what happens when you
+dissolve by an attribute.
+
+5.  Open the attribute table of the original census tracts shapefile and
+    find the field `COUNTYFP10`. This field is a 3-digit identifier for
+    each individual county (e.g. `091` for Montgomery County) in the
+    state. You’ll notice that the GEOID code full name for all the
+    tracts in Philadelphia begins `42101` (`42` for Pennsylvania; `101`
+    for Philadelphia County). Of course, many individual tracts share
+    the same value for this field. It is thus possible to perform a map
+    dissolve operation on the PA tracts shapefile, using the
+    `COUNTYFP10` field as the dissolve field.
+
+6.  Perform another dissolve operation on the original census tracts
+    shapefile, but this time under Dissolve\_Field(s) (optional) check
+    the COUNTYFP box. This will dissolve the boundaries among adjacent
+    tracts that share the same county identification. Name the output
+    shapefile counties. Press OK.
+
+7.  View the resulting shapefile in ArcMap. You’ll see that the tracts
+    have been dissolved by the county identifier, resulting in a
+    shapefile of county outlines.
+
+![](images/Lab6Fig6.png)
+
+8.  Remove all data layers from ArcMap.
+
+## Point in Polygon Overlay
+
+Here, you will learn how to use ArcMap to create a **spatial join**
+based on a point in polygon overlay. Point in polygon is a type of
+spatial relationship used to find points that are geographically
+contained by a polygon. Other types of spatial relationships are
+possible. A spatial join is used when you want to attach data in one
+vector layer to another layer based on a spatial relationship. Very
+commonly the attributes from a polygon data layer are attached to the
+points in a point layer. It is possible to do spatial joins with other
+vector data types, for example to attach county names (from a polygon
+layer) to road segments (in a line layer), or attach a voting precinct
+(from a polygon layer) to residential buildings (in a polygon layer).
+
+Here, as an example, we will join data from the polygon counties layer
+onto the regional rail station points.
+
+1.  Add the regional rail stations and the counties shapefiles (which
+    you just created) to ArcMap. Review each of their attribute tables
+    and note the fields that are included in each.
+
+2.  Right click the regional rail stations shapefile and choose Joins
+    and Relates→Join.
+
+3.  In the new window, in the top drop down menu ‘What do you want to
+    join to this layer’ choose `Join data from another based on spatial
+    location`.
+
+<!-- end list -->
+
+  - > Note: As is so often the case, there’s an additional way to
+    > implement spatial join functions in ArcGIS generally, the “Spatial
+    > Join” tool. In Toolbox, click on Analysis Tools→Overlay→Spatial
+    > Join. You will see that compared to the route we are taking (Joins
+    > and Relates→Join), the more comprehensive Spatial Join tool offers
+    > quite a few additional options. It is worth exploring more fully
+    > if you are interested in getting a deeper understanding of point-
+    > and line-in-polygon operations.
+
+<!-- end list -->
+
+4.  Under Choose the layer to join to this layer, or load spatial data
+    from disk: select the counties layer. You are also given a choice of
+    how to associate each polygon with a given point. Here, choose “it
+    falls inside”.
+
+5.  Name the new shapefile rail\_stations\_w\_counties
+
 6.  Press OK
-7.  View the new shapefile's attribute table. You will observe that the attributes from the Zipcodes file are now appended to the attributes of the original Schools shapefile, based on the ZIP code each school falls within..
 
-You can also join points to polygons. The problem, however, is that many points can fall within a single polygon. Since we cannot store multiple values of a single attribute for a single polygon (a violation of first normal form), the software provides a few options for transforming potentially multiple point values to a single value for each polygon.
+7.  View the new shapefile. Note that spatially it is identical to the
+    original regional rail stations shapefile. Open the new shapefile’s
+    attribute table. You will observe that the attributes from the
+    counties file are now appended to the attributes of the original
+    regional rail stations shapefile, based on the county within which
+    each station resides.
 
-1.  Right click on the Zipcodes shapefile and choose Joins and Relates→Join. In the new window, the top drop down menu should read "Join data from another based on spatial location".
-2.  Choose the Schools shapefile as the layer to join to the Zipcodes layer
-3.  Note that it now reads "You are joining: points to polygons". You are given a choice for how to summarize the point data. Option one counts the number of points within each polygon and then offers some statistical functions based on combining the attributes of multiple points that fall within each polygon. Option two simply takes the point nearest the polygon, or if many points fall within a single polygon, it takes the first point that the algorithm comes to.
-4.  Here, choose the first option (you don't have to choose any statistical summary option).
-5.  Choose a name for your new shapefile.
-6.  View the new shapefile and open its attribute table. You should see a new field called Count that contains the number of Schools points that fall within each polygon.
+You can also join points to polygons. The problem, however, is that many
+points can fall within a single polygon. Since we cannot store multiple
+values of a single attribute for a single polygon (a violation of first
+normal form), the software provides a few options for transforming
+multiple point values to a single value for each polygon.
+
+1.  Right click on the counties shapefile and choose Joins and
+    Relates→Join. In the new window, the top drop down menu should
+    read “Join data from another based on spatial location”.
+
+2.  Choose the regional rail stations shapefile as the layer to join to
+    the counties layer.
+
+3.  Note that it now reads “You are joining: Points to Polygons”. You
+    are given a choice for how to summarize the point data. Option one
+    counts the number of points within each polygon and then offers some
+    statistical functions based on combining the attributes of multiple
+    points that fall within each polygon. Option two simply takes the
+    point nearest the polygon, or if many points fall within a single
+    polygon, it takes the first point that the algorithm comes to.
+
+4.  Here, choose the first option (you don’t have to choose any
+    statistical summary option).
+
+5.  Name the output file counties\_w\_railstations.
+
+6.  View the new shapefile and open its attribute table. You should see
+    a new field called Count that contains the number of regional rail
+    station points that fall within each county polygon. Most counties
+    have none, of course, since these are counties for all of
+    Pennsylvania, but there should be many regional rail stations in
+    Philadelphia county and the surrounding counties.
+
 7.  Remove all the layers from ArcMap.
 
-Line in Polygon Overlay
-=======================
+## Polygon Overlay: Clip
 
-Here, you will learn how to use ArcMap to perform a line in polygon overlay. You can also do a line in polygon overlay in a manner analogous to the point in polygon overlay demonstrated above. Here, however, multiple lines can fall within a single polygon, and multiple polygons can fall across a single line. Thus, the user must supply the method of summarizing multiple values for both spatial joins from polygon onto line layers and from line onto polygon layers.
+A Clip operation is akin to a “cookie cutter” operation whereby one
+layer (points, lines, or polygons) is clipped to the boundaries of
+another polygon data layer. As an example, we will clip the bus routes
+lines to the empowerment zones polygons.
 
-1.  Use the Bike\_Network and Zipcodes shapefiles in ArcMap to experiment with different line in polygon overlay parameterizations. Try the spatial join in each direction as you did with Schools and Zipcodes above.
-2.  Observe the shapes themselves as well as the attribute tables and note how new attributes have been appended as a result of the operations.
-3.  Remove all the layers from ArcMap.
+1.  Add the empowerment zones and bus routes shapefiles to ArcMap.
 
-Polygon Overlay: Clip
-=====================
+<!-- end list -->
 
-Here, you will learn how to use ArcMap to perform a clip operation.
+  - ![](images/Lab6Fig7.png) 
 
-A Clip operation is akin to a "cookie cutter" operation whereby one layer is clipped to the boundaries of another. For instance, say you were interested in which buildings fall within the City of Philadelphia's recognized neighborhoods, it is possible to extract the buildings that fall within these neighborhoods as a separate shapefile.
+<!-- end list -->
 
-1.  Begin by adding the Neighbhorhoods and Buildings shapefiles to ArcMap.
+2.  Go to the Geoprocessing file menu and select Clip. Note that the
+    clip tool can also be accessed from ArcToolbox (ArcToolbox→Analysis
+    Tools→Extract→Clip).
 
-    ![](images/Lab6Fig8.png) 
+3.  In the Clip dialog box, for Input Features select the bus routes
+    layer. For clip Features select the empowerment zones layer. Name
+    the output shapefile bus\_routes\_clip. Press OK.
 
-2.  Create a new shapefile that represents only the neighborhoods around Temple's Main Campus Montgomery County. You can do this by using a Select by Attributes operation, selcting the following neighborhoods: NORTH CENTRAL, CECIL B. MOORE, YORKTOWN, and NORTH PHILA. Export the selected features to a new shapefile called TU\_area. Make sure the file exports to your workspace (again, this location might not be the default) and is specified to export as a shapefile.
-3.  Now dissolve the resulting shapefile to make it a single object, the outline of the combined neighbhorhoods. Call it TU\_Area\_diss
-4.  Go to the Geoprocessing file menu and select Clip. Note that the clip tool can also be accessed from ArcToolbox (ArcToolbox→Analysis Tools→Extract→Clip).
+4.  View the new shapefile, which should include only the bus routes
+    within the empowerment zones polygons. It may be helpful to turn off
+    the original bus routes layer.
 
-    ![](images/Lab6Fig9.png) 
+> ![](images/Lab6Fig8.png)
 
-5.  Drag Buildings into the input features box. Drag TU\_area\_diss into the clip features box. Name the output shapefile Bldgs\_TU. This may take a minute or two as the buildings layer is geometrically complex.
-6.  View the new shapefile, zooming in to see more detail. It should include only those building footprints that are within the bounds of the TU\_area shapefile.
-7.  Remove all the layers from ArcMap.
+5.  Open the attribute tables for the original bus routes layer and the
+    new clipped bus routes layer. Note that they have the identical set
+    of fields.
 
-Polygon Overlay: Intersection and Union
-=======================================
+## Polygon Overlay: Erase
 
-Here, you will learn how to use ArcMap to perform a two polygon overlay operation--Intersection and Union. The intersection overlay operation creates a new data layer from the areas that overlap when you overlay multiple polygons shape files (that is, the areas that are spatially coincident). Say you were interested in finding areas that were both close to schools and bike networks. An intersection operation would show you what these are.
+An Erase operation is akin to a “pencil eraser” operation whereby one
+polygon layer use to erase (or eliminate) the features of another point,
+line, or polygon layer which fall within its boundaries. As an example,
+we will erase the bus routes lines that fall within the empowerment
+zones polygons (i.e. the complement of the previous clip operation).
 
-1.  Open ArcMap and add the Bike\_Network shapefile and the schools\_buf300m (that you created earlier).
-2.  Create a 100 meter dissolved buffer (Dissolve Type: ALL) around the Bike\_Network shapefile, naming the new file `Bike_Net_buf100m`.
-3.  Go to the Geoprocessing file menu and select Intersect. Note that this tool can also be accessed from ArcToolbox (ArcToolbox→Analysis Tools→Overlay→Intersect).
-4.  Drag `schools_buf300m` and `Bike_Net_buf100m` into the input features box. Call the output `bike_edu_bufint`
-5.  View the resulting shapefile, zooming in to see more detail. It should include the area spatially coincident to both layers. Now view the attribute table. It should also contain attributes of both input shapefiles. Note that the `Area_M` file is no longer up to date and would need to be recalculated (if used for subsequent analysis).
+1.  > Turn on only the empowerment zones and the original bus routes
+    > layers (or add them to ArcMap if you have removed them).
 
-![](images/Lab6Fig10.png) 
+2.  > Go to the Geoprocessing file menu and select Search for Tools. In
+    > the text box type in erase and choose Erase (Analysis). Note that
+    > the erase tool can also be accessed from ArcToolbox
+    > (ArcToolbox→Analysis Tools→Overlay→Erase).
 
-Now we'll perform a similar overlay, this time using the Union tool.
+3.  > In the Erase dialog box, for Input Features select the bus routes
+    > layer. For Erase Features select the empower zones layer. Name the
+    > output shapefile bus\_routes\_erase. Press OK.
 
-1.  From the Geoprocessing menu, choose Union and enter the `schools_buf300m` and `Bike_Net_buf100m` shapefiles. Name the output `bike_edu_bufun.shp`.
-2.  View the result. The resulting shapefile should contain those areas that are within 300m of a school or are in within 100m of the bike network (i.e. all the area covered by both polygon data layers).
-3.  Please note that if you did not choose to dissolve the buffers when they were generated previously (an option in the buffer dialogue) your union table will be hard to decipher. If you get a long attribute table in your union go back and try your buffers again.
-4.  The key to understanding the output of the union is the attribute table. In the attribute table of the resulting layer from the union operation, find the field(s) that begins `FID_`. Note that there are different values for this field, including -1. The values that are greater than -1 indicate that this polygon is inside the buffer, while a value of -1 indicates the polygon is outside the buffer. Thus the polygons inside the original school buffer have value of &gt; -1 for the FID\_school field. This is how ArcGIS keeps track of what is inside or outside of a buffer. To demonstrate this, perform a selection selecting those polygons that are greater than 1 for this field. You should see polygons within the schools shapefile buffer selected. Switch selection to see the polygons outside the educational shapefile buffer selected.
+4.  > View the new shapefile, which should include only the bus routes
+    > which are NOT within the empowerment zones polygons. It may be
+    > helpful to turn off the original bus routes layer and make the
+    > empowerment zones hollow.
 
-Multipart to Singlepart
------------------------
+![](images/Lab6Fig9.png)
 
-As you inspect the results of the union operation from above, you'll notice that there are many more individual features in the resulting shapefile. But the attribute table has far fewer records in it. This is called a "multipart object," where a single record in the attribute talble can represent multiple spatial objects.
+5.  > Remove all data layers from ArcMap.
 
-Occasionally it is useful analytically to break those multipart objects into objects where each object is represented by a single record in the attribute table, for instance, if you needed to calculate the area of each of the features in teh attribute table, they would need to be encoded as a single part object. The multipart to singlepart tool creates a new feature for each non-contiguous feature. So each individual polygon you see in the union file would become a new object in the resulting file, with a unique record in the resulting attribute table (allowing you to add a field and calculate the area of each). The geometry of the file will not change - only the attribute table. We will perform a multipart to singlepart operation here.
+## Polygon Overlay: Intersect 
 
-1.  Select the part of the union table that is within the school buffer, but outside of the bike network buffer, i.e. 0 for the school buffer column and -1 for the bike network buffer. (You just created this union file with the bike network buffer and the school buffer)
-2.  Export the selected features by going to Data-&gt;Export to create a new shapefile out of the selected features. You can name it School\_not\_Network.
-3.  Inspect the new shapefile and see that it only has one record in the attribute table.
-4.  Press `Ctl`+`F` to bring up the operation search dialog box. Type in 'multipart' and press Enter. Choose the tool multipart to singlepart.
-5.  Drag in School\_not\_Network as the input. Name the new file mpart\_school\_not\_Network. Press ok.
-6.  Inspect the resulting file. The map features of mpart\_school\_not\_Network look exactly like School\_not\_Network. Inspect the attribute table, however, and you'll see that the new shapefile has a different record for each discrete feature.
+The intersect overlay operation creates a new data layer from the areas
+that overlap when you overlay multiple polygons shape files (that is,
+the output data layer only includes areas that are spatially coincident
+to all the input layers). As an example we will intersect the
+empowerment zones with a buffer of the corner stores which we perform
+here.
 
-ASSIGNMENT
-==========
+1.  Add the empowerment zones layer and the corner stores layers to
+    ArcMap.
 
-Objectives
-----------
+2.  Perform a buffer operation on the corner stores using a buffer
+    distance of 1320 feet and using the dissolve all option. Name the
+    new shapefile stores\_1320ft.
 
-Biking has become an increasingly popular mode of transportation in Philadelphia, and bike advocacy organizations have started to lobby for the City to install additional bike racks. A number of bike racks have been installed along the sidewalks with heavy bike traffic. Although the number of bike racks around the Temple area has increased substantially over the past few years, so has the number of people looking to lock their bikes near campus, forcing a lot of people to improvise.
+3.  Turn off the corner stores layer. Change the symbology of the
+    empowerment zones so it is hollow. Then order the layers so that the
+    empowerment zones is on top. You can see the area of intersection –
+    the area where the stores\_1320ft and the empowerment zones are
+    spatially coincident, or overlap each other.
 
-The objective of this assignment is to identify areas for potential bike racks in the neighborhoods surround Temple University's Main Campus. These bike racks should be:
+![](images/Lab6Fig10.png)
 
-1.  Within 75 feet of the Philadelphia bike network
-2.  Within 20 feet of a building
-3.  Not within 500 feet of an existing bike rack.
-4.  An area between 300 and 1000 square feet.
+4.  Go to the Geoprocessing file menu and choose Intersect. Note that
+    the intersect tool can also be accessed from ArcToolbox
+    (ArcToolbox→Analysis Tools→Overlay→Intersect).
 
-Use the following layers for this analysis:
+5.  For Input Features first add the empowerment zones and then enter
+    the stores\_1320ft layer (the order of entry does not matter). Name
+    the output layer zones\_storebuf\_intersect. Press OK.
 
--   Bike Racks
--   Bike Network
--   Buildings
--   Neighborhoods - use the shapefile called `TU_Area_diss` that you created in the tutorial using the Clip function
+6.  View the resulting shapefile. It may be helpful to toggle the other
+    layers on and off to see it – the area within both the empowerment
+    zones and the store buffer layers.
 
-Note: the City of Philadelphia's bike racks are separate from Temple University's. Assume for the purpose of the lab that the city is using this analysis as a first cut to determine suitable areas. A second step, not part of this lab, would then be to determine which of these areas are already served by Temple University bike racks.
+> ![](images/Lab6Fig11.png)
 
-Deliverables
-============
+7.  Open the attribute table for the new shapefile. Note that it has
+    fields from both the empowerment zones and the stores\_1320ft
+    attribute tables. It also has only two records, though there are
+    more than two polygons, indicating it is a multipart layer.
 
-Turn in a report addressing this objective. This report should include a map of the potential area(s) in which to add a bike rack. All shapefiles should be in StatePlane Pennsylvania South. Your lab should also include a flowchart/cartographic model to illustrate your methodology.
+## Polygon Overlay: Union 
 
-Getting Started
-===============
+The union overlay operation creates a new data layer representing the
+combination of all the areas from all the input layers. As an example we
+will union the empowerment zones with the buffer of the corner stores
+you created in the last step.
 
-When you perform spatial operations, the measurements are calculated in terms of the measurement units of the assigned coordinate reference system. Therefore, before you begin working, make sure all layers are in State Plane Pennsylvania South coordinates.
+1.  In ArcMap, turn on the empowerment zones and the stores\_1320ft
+    layers and turn off the other layers.
 
-1.  In order to make the processing more efficient, clip the Buildings, Bike Racks, and Bike Networks shapefiles to the Temple University neighborhood using the TU\_area shapefile created above.
-2.  Use the Buffer tool (Analysis Tools→Proximity→Buffer) to buffer the Bike Racks, Bike Networks, and Buildings shapefiles, using the distance criteria given above.
-3.  When buffering, make sure to choose Dissolve Type = `ALL`. Additionally, when you are buffering the buildings, please choose the Side Type to be `OUTSIDE_ONLY` so that your buffer does not include the building footprint.
-4.  Once you have your buffer layers, once again clip the buffered features to the neighborhoods adjacent to Temple using the TU\_area shapefile (to eliminate the buffered areas that extend outside the Temple University neighborhood).
-5.  Clip the buildings buffer to the bike networks buffer. We are doing this because we do not have the processing power required to run a union with the Philadelphia buildings file and the other buffers.
-6.  Using a combination of the intersect and erase tools identify areas that are within 75 feet of a bike network and 20 feet of a building but ***not*** within 500 feet of an existing bike rack.
-7.  Once you have selected the suitable bike rack areas, you may need to use the Multipart to Single Part tool to create a new record for each polygon. You will then need to calculate the area for each of the polygons, and select the polygons that meet your area criteria.
+2.  Go to the Geoprocessing file menu and choose Union. Note that the
+    union tool can also be accessed from ArcToolbox (ArcToolbox→Analysis
+    Tools→Overlay→Union).
 
-All of the tools that you need to complete the lab are described in the lab tutorial. If you are unsure of where to find a tool or how to use it, please refer back to the description in the tutorial or ask the instructor.
+3.  For Input Features first add the empowerment zones and then enter
+    the stores\_1320ft layer (the order does not matter). Name the
+    output layer zones\_storebuf\_union. Press OK.
 
-Write a lab report that includes:
+4.  View the resulting shapefile. It may be helpful to toggle the other
+    layers on and off to see it – the area that includes all of both the
+    empowerment zones and the stores\_1320ft layers.
 
--   **Introduction:** State the goal of the analysis
--   **Data and Methods:** State the data layers and the analytical steps taken. Refer to the flowchart.
--   **Results:** Report on the location of the proposed bike racks. Refer to the map.
--   **Discussion:** Interpret your results. Consider the limiation of this analysis, and discuss what variable you could add to make the analysis better.
--   **Tables and Figures:** Include one map that correctly displays the requested information and one flowchart that documents the analytical stips taken. Insert both at the end of the report, each on a separate page, with a label (e.g. Figure 1). Be sure to cite each figure in the body of the report text.
+![](images/Lab6Fig12.png)
 
+5.  Open the attribute table. Note that it contains fields from the both
+    the input layers.
+
+6.  Note there are only 5 records in the attribute table. Select each of
+    the records and view which polygons are selected in the map. There
+    are clearly multiple polygons associated with certain records, i.e.
+    it is a multipart shapefile.
+
+7.  Note the FIS\_stores field, and its values - -1 and 0. These values
+    indicate whether a polygon is inside or outside the original
+    stores\_1320ft buffer. A value of -1 indicates the feature is
+    outside the buffer; a value of 0 indicates the feature is inside the
+    buffer. To demonstrate this, select those records in the table that
+    equal -1. Those polygons outside the 1320 foot buffer distance of a
+    corner store, but within the empowerment zones, will be selected.
+
+![](images/Lab6Fig13.png)
+
+It often helpful to convert the result of a union operation from
+multipart to a singlepart shapefile. Here, we will convert the
+zones\_storebuf\_union shapefile.
+
+1.  > Clear your selection, if you have any features still selected.
+
+2.  > In ArcMap, in Geoprocessing-\>Search for Tools, search for and
+    > execute the Multipart to Singlepart tool. Perform the multipart to
+    > singlepart operation on the zones\_storebuf\_union shapefile.
+
+3.  > View the resulting shapefile. It should now have 29 records in the
+    > attribute table – one for each separate polygon.
+
+# ASSIGNMENT
+
+## Objective
+
+Consider the city government is choosing a location to encourage the
+development of a new store selling healthy foods. The target location
+should be: within an area targeted for investment, accessible by public
+transit, and not nearby current farmers markets or corner stores
+participating in the Healthy Corner Store Initiative.
+
+The following specific spatial criteria are given:
+
+1.  Within a Philadelphia empowerment zone
+
+2.  Within 2000 feet of a subway station or regional rail station
+
+3.  NOT within 1200 feet of a farmers market or corner store
+    participating in the Healthy Corner Store Initiative.
+
+4.  A larger contiguous area is preferable to increase the likelihood of
+    securing a potential property.
+
+## Deliverables
+
+**Turn in a report in the format described in the syllabus.**
+
+Be sure to include the following information:
+
+1.  One or more maps illustrating the data sets used and a step in the
+    methodology.
+
+2.  A map showing the area(s) that meet the spatial criteria.
+
+3.  State the area in square feet for each area that meets the criteria
+    and make a recommendation for the best area for a new store selling
+    healthy foods.
+
+The **Introduction** section should state the research objective and the
+relevant spatial criteria for locating the new store.
+
+The **Data and Methods** section should state the data sets used in the
+analysis, from where those data were acquired, and the GIS operations
+employed. The maps illustrating the data sets used and a part of the
+methodology should be cited in the text here (e.g. Figure 1, 2, etc.)
+
+The **Results** section should state the results (i.e. a brief
+description of the areas that meet the criteria, the square footage of
+each, and your recommendation as to the best area for the store). The
+map of the potential area(s) for the store should be cited in the text
+here.
+
+The **Discussion** section should state an interpretation of the results
+(i.e. where in Philadelphia is the recommended area, what is
+advantageous about this particular location), limitations of the
+analysis, and how the analysis could be improved or expanded.
+
+The **Tables** **and Figures** section should contain the maps, each on
+a separate page with a caption. The maps should be cited in the text.
+
+## Getting Started
+
+Make sure all layers and your data frame are in State Plane Pennsylvania
+South CRS.
+
+There are many ways to complete this analysis (but only one correct
+answer). All of the tools that you need to complete the lab are
+described in the lab tutorial. Here is one strategy.
+
+**Start by creating an inclusive layer of the areas where the new store
+MUST be located.**
+
+1.  Buffer the regional rail stations and the subway stations (be sure
+    to use Dissolve All in the buffer operation).
+
+2.  Union the resulting regional rail station buffer and the subways
+    station buffer.
+
+3.  Intersect the resulting regional rail station/subway station buffer
+    union layer with the empower zones. Name this layer ‘inclusive’
+    because it describes the area where the new store MUST be located.
+
+**Then create an exclusive layer of the areas where the new store CAN’T
+be located.**
+
+4.  Buffer the farmers markets and the corner stores.
+
+5.  Union the resulting farmers markets buffer and the corner stores
+    buffer. Name this layer ‘exclusive’ because it describes the area
+    where the new store CAN’T be located.
+
+**Then create a layer of the candidate areas where the new store MUST be
+located, but without the areas where it CAN’T be.**
+
+6.  Erase the exclusive layer from the inclusive layer. Name this layer
+    ‘candidates’ because it represents the candidates for the final
+    area you recommend.
+
+**Clean up the candidates layer.**
+
+7.  Use a multipart to singlepart operation on the candidates layer so
+    that each polygon is represented by one record in the attribute
+    table (clear your selections first).
+
+**Calculate the area of each candidate polygon.**
+
+8.  Add a field to the resulting layer’s attribute table to hold the
+    area value of each polygon. Calculate the area of each polygon in
+    square feet.
