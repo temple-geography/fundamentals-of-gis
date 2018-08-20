@@ -19,7 +19,9 @@ instructions
 
 # ASSIGNMENT
 
-## Objectives
+## Objective
+
+Narrative overview
 
 ## Deliverables
 
@@ -42,4 +44,4 @@ The **Tables and Figures** section should contain the map(s) with...
 
 ## Getting Started
 
-[Tips for completing the lab exercise.]
+Tips for completing the lab exercise.
