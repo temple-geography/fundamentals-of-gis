@@ -15,7 +15,7 @@ following the tutorial.
 The data for this tutorial includes an historical map image provided to
 you:
 
-  - [Worcester\_towns.jpg](https://github.com/temple-geography/fundamentals-of-gis/raw/master/images/Worcester_towns.jpg)
+  - [Worcester\_towns.jpg](https://github.com/temple-geography/fundamentals-of-gis/raw/master/data/Worcester_towns.jpg)
     is a JPEG image of an 1871 map of towns in Worcester County,
     Massachusetts, downloaded from DavidRumsey.com. [Click for more
     information about this
@@ -230,7 +230,7 @@ has changed in size since 1889. You will start with an image file of a
 historical map of Utah, which is provided to
     you:
 
-  - [Utah\_1889.jpg](https://github.com/temple-geography/fundamentals-of-gis/raw/master/images/Utah_1889.jpg)
+  - [Utah\_1889.jpg](https://github.com/temple-geography/fundamentals-of-gis/raw/master/data/Utah_1889.jpg)
     is a JPEG image of an historical 1889 map of Utah [originally
     downloaded from
     DavidRumsey.com](https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~37442~1210316:Utah-?showTipAdvancedSearch=false&showShareIIIFLink=true&showTip=false&helpUrl=https%3A%2F%2Fdoc.lunaimaging.com%2Fdisplay%2FV73D%2FLUNA%2BViewer%23LUNAViewer-LUNAViewer&title=Search+Results%3A+List_No+equal+to+%272094.058%27&fullTextSearchChecked=&dateRangeSearchChecked=&advancedSearchUrl=https%3A%2F%2Fdoc.lunaimaging.com%2Fdisplay%2FV73D%2FSearching%23Searching-Searching&thumbnailViewUrlKey=link.view.search.url).
