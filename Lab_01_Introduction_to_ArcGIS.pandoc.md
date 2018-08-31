@@ -132,18 +132,18 @@ This section aims to show you that shapefiles are composed of many files that yo
 
 ## Repairing Broken Data Links
 
-ArcMap and ArcCatalog should be closed when you begin this section. Your Lab 1 workspace folder should have a map document named Lab1.mxd which is linked to data in the Lab_1 folder. We are going to break that link and learn how to repair it.
+ArcMap and ArcCatalog should be closed when you begin this section. Your Lab1 workspace folder should have a map document named Lab1.mxd which is linked to data in that folder. We are going to break that link and learn how to repair it.
 
-We are going to break the link by renaming the data folder. It could also be broken by moving the data to a new folder. If you don't have relative paths set (see next section), it can also be broken just by plugging your flash drive into a new computer and having it mount on a different drive letter. All of these are very common occurrences, so it is very likely that you will encounter broken data links when working with GIS.
+We are going to break the link by moving the map document. It could also be broken by moving the data to a new folder, or, if the data were not in the same folder as the map document, by renaming the data folder. If you don't have relative paths set (see next section), it can also be broken just by plugging your flash drive into a new computer and having it mount on a different drive letter. All of these are very common occurrences, so it is very likely that you will encounter broken data links when working with GIS.
 
-1. In File Explorer, rename the Lab1 subfolder to '~Lab1' (that is, add a tilde at the front of the folder name). You can do this by pressing F2 on your keyboard or by single-clicking on the already selected folder.
+1. In File Explorer, move Lab1.mxd to the parent folder of Lab1. For example, if Lab1 is in a folder named GIS_Class, move Lab1.mxd to GIS_Class.
 2. Double-click Lab1.mxd to open ArcMap. Notice that the map canvas is empty, and all of the layers have a red exclamation mark next to them. This indicates that a layer is defined in the map document, but the source data is not at the expected location. Any layer properties, such as the color of polygon features, are preserved, even if ArcMap can't find the polygons to display!\
     ![](images/Lab1Fig4.png){height="1.0in"}\ 
 3. Right-click on any of the layers in the TOC. From the popup menu select Data → Repair Data Source….
 4. Navigate to the correct shapefile for the layer you clicked on. Select it and hit the Add button.
 5. Notice that ArcMap has repaired the link for not just that layer, but for all the other layers as well. The Repair Data Source feature will check whether other map document layers come from the same data source. In this case, since all of the shapefiles are in the same folder, all of the data links were repaired.
 6. Close ArcMap **but do not save your changes**.
-7. Restore the folder name; that is, remove the tilde from the front so the folder is now just named Lab1 again.
+7. Move Lab1.mxd back into the Lab1 folder.
 
 There is another way to repair a broken link, which involves going into the Layer Properties and changing the path in the Source tab. This would have to be done once for each layer, and is usually less convenient. More information is available at "[Repairing broken data links](http://desktop.arcgis.com/en/arcmap/latest/map/working-with-layers/repairing-broken-data-links.htm)".
 
