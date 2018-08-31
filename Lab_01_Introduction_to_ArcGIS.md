@@ -22,8 +22,10 @@ following the tutorial.
     become a more advanced GIS user, setting the workspace becomes an
     important part of automating complex processes. If you have a flash
     drive, create a new workspace folder named ‘Lab1’. If you do not
-    have a flash drive create a new folder on the C:/ drive. For future
-    labs, create new workspace folders – Lab2, Lab3, etc.
+    have a flash drive create a new folder in the Documents folder. (On
+    the Temple lab computers, Documents is located at
+    C:\\data\\Documents.) For future labs, create new workspace folders
+    – Lab2, Lab3, etc.
 2.  Here we will acquire the following spatial data layers for the city
     of Philadelphia: schools, bike routes, and neighborhoods. We will
     download data from **PASDA** (The Pennsylvania Geospatial
