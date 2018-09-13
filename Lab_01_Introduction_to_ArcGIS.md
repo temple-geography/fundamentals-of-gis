@@ -594,12 +594,11 @@ Attribute Query:
 10. The selection should show that 212 out of 550 schools have
     enrollments over 500.
 11. You can also create a compound query. Build a new query in the
-    Select By Attributes dialog box query window by clicking on the
-    buttons that reads `"TYPE_SPECI" = 'District' AND "ENROLLMENT"
-    > 600`. This will select only schools run by the Philadelphia School
-    District (as opposed to charter, private, or Archdiocese schools)
-    with enrollments greater than 600 students. There should be 77
-    schools selected.
+    Select By Attributes dialog box query window that reads
+    `"TYPE_SPECI" = 'District' AND "ENROLLMENT" > 600`. This will select
+    only schools run by the Philadelphia School District (as opposed to
+    charter, private, or Archdiocese schools) with enrollments greater
+    than 600 students. There should be 77 schools selected.
 12. Close the Select by Attributes box, clear your selection, and close
     the attribute table.
 
