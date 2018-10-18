@@ -98,9 +98,7 @@ files (2 elevation grids, land cover, and municipalities).
 ## Explore the Data 
 
 Open ArcCatalog and explore each of the downloaded data sets. Note that
-raster data are symbolized in the catalog tree using a grid symbol.
-
-![](images/Lab7Fig5.png)
+raster data are symbolized in the catalog tree using a grid symbol ![](images/ArcCatalogRasterDatasetIcon.png).
 
 View the land cover raster (with tif file extention). Zoom in so you can
 see individual grid cells.
