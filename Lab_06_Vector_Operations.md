@@ -12,9 +12,8 @@ notice that each of these operations has a variety of settings and
 capabilities beyond what you are instructed to do. You are encouraged to
 explore the various functionalities of these tools. In the assignment,
 you will be asked to work with several of these tools in sequence,
-performing a classic **site** **suitability analysis**, through which
-these tools identify optimal locations based on a set of spatial
-criteria.
+performing a classic **site suitability analysis**, through which these
+tools identify optimal locations based on a set of spatial criteria.
 
 First, complete the tutorial by following the steps below. Then, using
 the skills you’ve learned in the tutorial, complete the assignment given
@@ -30,25 +29,25 @@ Geospatial Clearinghouse ([PASDA](http://www.pasda.psu.edu)). From
 PASDA, use the search function to find and download the following files
 layers:
 
-- SEPTA High Speed Stations (2012)
-    - These are the **subway stations**.
-- SEPTA Regional Rail Stations (2016)
-    - These are the **regional rail stations**.
-- SEPTA Routes Spring (2016)
-    - These are the **bus routes**.
-- Philadelphia Health – Healthy Corner Stores (2016)
-    - These are **corner stores** participating in the Food Trust’s
+  - SEPTA High Speed Stations (2012)  
+    These are the **subway stations**.
+  - SEPTA Regional Rail Stations (2016)  
+    These are the **regional rail stations**.
+  - SEPTA Routes Spring (2016)  
+    These are the **bus routes**.
+  - Philadelphia Health – Healthy Corner Stores (2016)  
+    These are **corner stores** participating in the Food Trust’s
     Healthy Corner Store Initiative –
     <http://thefoodtrust.org/what-we-do/corner-store>.
-- Philadelphia Health – Farmers Markets (2016)
-    - These are **farmers markets**.
-- Philadelphia Empowerment Zones (2012)
-    - These are **empowerment zones** – areas targeted by the City of
+  - Philadelphia Health – Farmers Markets (2016)  
+    These are **farmers markets**.
+  - Philadelphia Empowerment Zones (2012)  
+    These are **empowerment zones** – areas targeted by the City of
     Philadelphia for investment –
     <http://www.phila.gov/commerce/neighborhoods/Pages/EmpowermentZones.aspx>.
-- 2015 Cartographic Boundary File, State-County-Census Tract for
-Pennsylvania, 1:500,000 (2015)
-    - These are Pennsylvania **census tracts** – US Census Bureau
+  - 2015 Cartographic Boundary File, State-County-Census Tract for
+    Pennsylvania, 1:500,000 (2015)  
+    These are Pennsylvania **census tracts** – US Census Bureau
     enumeration units.
 
 Some of these files will be used for the tutorial portion of the lab.
@@ -77,7 +76,6 @@ different operations and make it easier to save output files.
 
 1.  Open ArcMap, select the Geoprocessing file menu, and choose
     Environments.
-
 2.  Under Workspace, set the Current and Scratch Workspaces to your
     workspace folder (See example below; your path will differ.) You do
     not need to modify any of the other fields. Click OK. Each time you
@@ -85,9 +83,7 @@ different operations and make it easier to save output files.
     sure to set up your Environment in ArcMap and/or ArcCatalog each
     time you begin working.
 
-<!-- end list -->
-
-  - ![](images/Lab6Fig1.png)
+![](images/Lab6Fig1.png) 
 
 ## Retrieve Line Length and Polygon Area Measurements
 
@@ -99,35 +95,28 @@ length values in feet.
 
 1.  Add the bus routes layer to ArcMap (be sure to add the new data set
     you created that is in Pennsylvania State Plane CRS).
-
 2.  Open the attribute table. Explore the data by selecting some
     different routes so you understand that each record in the table
     represents one bus route.
-
-3.  Add a new field to the table. Name the new field `Length``ft`. Make
-    it a double data type, and press OK.
-
+3.  Add a new field to the table. Name the new field `Lengthft`. Make it
+    a double data type, and press OK.
 4.  Right click on the header for the new field (where it says
-    `Length``ft`) and go to Calculate Geometry.
-
+    `Lengthft`) and go to Calculate Geometry.
 5.  Click Yes to confirm you want to edit this field. In the Calculate
     Geometry dialog box make sure Property is set to `Length` and the
-    Units is set to `Feet US`` [``ft``]`. Click OK. You should see the
-    new length values appear in the field. This is the length of each
-    bus route in feet.
+    Units is set to `Feet US [ft]`. Click OK. You should see the new
+    length values appear in the field. This is the length of each bus
+    route in feet.
 
 It is also possible to calculate the area of polygons.
 
 1.  Turn off the bus routes layer, and add the empowerment zones
     shapefile to ArcMap.
-
 2.  Open the empowerment zones attribute table.
-
-3.  Add a new field called `Area``ft`. Calculate the area of each
+3.  Add a new field called `Areaft`. Calculate the area of each
     empowerment zone for this new field by following the analogous
     procedures as above, but instead of length choose to calculate the
     area in square feet.
-
 4.  Remove all data layers from ArcMap.
 
 ## Buffer
@@ -137,60 +126,55 @@ will buffer points here but it is also possible to buffer lines and
 polygons in the same way.
 
 1.  Add the farmers markets shapefile to ArcMap.
-
 2.  Go to the Geoprocessing menu and select Buffer. (The Buffer tool can
     also be accessed from ArcToolbox by going to Analysis
     Tools→Proximity→Buffer.)
-
 3.  In the Buffer dialog box, for the Input Features choose the farmers
     markets. Name the output shapefile `farmark_1320ft` and make sure it
     saves to your workspace. For the Distance box, under Linear Unit,
     enter 1320 feet. Leave the rest of the options as the defaults.
     Press OK.
-
 4.  View the new shapefile in ArcMap. Zoom in to where there are
     clusters of farmers markets to see how the buffer polygons overlap.
     Open the attribute table and see that each buffer disk is
     represented as a single record in the attribute table.
 
-![](images/Lab6Fig2.png)
+![](images/Lab6Fig2.png) 
 
 5.  Repeat the buffer analysis, but this time, for Dissolve Type
     (options) choose All. Call the output farmark\_1320ft\_dissolve.
-
 6.  View the new shapefile in ArcMap. Zoom in to a cluster of farmers
     markets to see how the buffers merge together (i.e. are dissolved as
     single polygons in these locations). Open the attribute table and
     see that *all* polygons are represented by a single record in the
     attribute table. This is called a ‘multipart object’ (in this
-    specific case a ‘multipolygon’) because a single feature (i.e. the
-    one record in the attribute table) has multiple parts (i.e. multiple
+    specific case a ‘multipolygon’) because a single feature (i.e. the
+    one record in the attribute table) has multiple parts (i.e. multiple
     individual polygons).
 
-![](images/Lab6Fig3.png)
+![](images/Lab6Fig3.png) 
 
 It is often useful to have an individual record in the attribute table
 for each polygon. Here, we will convert this multipart layer to a
 singlepart layer using a Multipart to Singlepart operation.
 
-1.  > In ArcMap, go to ArcToolbox→Data Management
-    > Tools→Features→Multipart to Singlepart. In the Multipart to
-    > Singlpart dialog box, for Input Features select
-    > farmark\_1320ft\_dissolve. Name the output
-    > farmark\_1320ft\_dissolve\_single. Press OK.
+1.  In ArcMap, go to ArcToolbox→Data Management Tools→Features→Multipart
+    to Singlepart. In the Multipart to Singlpart dialog box, for Input
+    Features select farmark\_1320ft\_dissolve. Name the output
+    farmark\_1320ft\_dissolve\_single. Press OK.
 
-2.  > View the resulting shapefile. Notice it appears graphically the
-    > same as the original farmark\_1320ft\_dissolve shapefile. Open the
-    > attribute. Notice that it now has 43 records—one for each separate
-    > polygon.
+2.  View the resulting shapefile. Notice it appears graphically the same
+    as the original farmark\_1320ft\_dissolve shapefile. Open the
+    attribute. Notice that it now has 43 records—one for each separate
+    polygon.
 
-3.  > Explore this new shapefile by selecting certain records in the
-    > attribute table to see which polygon is associated with a single
-    > record.
+3.  Explore this new shapefile by selecting certain records in the
+    attribute table to see which polygon is associated with a single
+    record.
+    
+    ![](images/Lab6Fig4.png) 
 
-![](images/Lab6Fig4.png)
-
-4.  > Remove all data layers from ArcMap.
+4.  Remove all data layers from ArcMap.
 
 ## Map Dissolve
 
@@ -211,11 +195,11 @@ dissolving the boundaries of adjacent polygons.
 4.  View the resulting shapefile. Note that the new shapefile is simply
     a boundary of Pennsylvania – the operation has dissolved all the
     boundaries between the tracts, resulting in an outline of the entire
-    set of features (i.e. the entire state of Pennsylvania). You’ll
+    set of features (i.e. the entire state of Pennsylvania). You’ll
     notice that the resulting feature has one record in the attribute
     table.
-
-> ![](images/Lab6Fig5.png)
+    
+    ![](images/Lab6Fig5.png) 
 
 Now we will compare what you have just done to what happens when you
 dissolve by an attribute.
@@ -239,8 +223,8 @@ dissolve by an attribute.
 7.  View the resulting shapefile in ArcMap. You’ll see that the tracts
     have been dissolved by the county identifier, resulting in a
     shapefile of county outlines.
-
-![](images/Lab6Fig6.png)
+    
+    ![](images/Lab6Fig6.png) 
 
 8.  Remove all data layers from ArcMap.
 
@@ -271,10 +255,8 @@ onto the regional rail station points.
 3.  In the new window, in the top drop down menu ‘What do you want to
     join to this layer’ choose `Join data from another based on spatial
     location`.
-
-<!-- end list -->
-
-  - > Note: As is so often the case, there’s an additional way to
+    
+    > Note: As is so often the case, there’s an additional way to
     > implement spatial join functions in ArcGIS generally, the “Spatial
     > Join” tool. In Toolbox, click on Analysis Tools→Overlay→Spatial
     > Join. You will see that compared to the route we are taking (Joins
@@ -282,8 +264,6 @@ onto the regional rail station points.
     > quite a few additional options. It is worth exploring more fully
     > if you are interested in getting a deeper understanding of point-
     > and line-in-polygon operations.
-
-<!-- end list -->
 
 4.  Under Choose the layer to join to this layer, or load spatial data
     from disk: select the counties layer. You are also given a choice of
@@ -344,12 +324,8 @@ another polygon data layer. As an example, we will clip the bus routes
 lines to the empowerment zones polygons.
 
 1.  Add the empowerment zones and bus routes shapefiles to ArcMap.
-
-<!-- end list -->
-
-  - ![](images/Lab6Fig7.png) 
-
-<!-- end list -->
+    
+    ![](images/Lab6Fig7.png) 
 
 2.  Go to the Geoprocessing file menu and select Clip. Note that the
     clip tool can also be accessed from ArcToolbox (ArcToolbox→Analysis
@@ -362,8 +338,8 @@ lines to the empowerment zones polygons.
 4.  View the new shapefile, which should include only the bus routes
     within the empowerment zones polygons. It may be helpful to turn off
     the original bus routes layer.
-
-> ![](images/Lab6Fig8.png)
+    
+    ![](images/Lab6Fig8.png) 
 
 5.  Open the attribute tables for the original bus routes layer and the
     new clipped bus routes layer. Note that they have the identical set
@@ -375,30 +351,30 @@ An Erase operation is akin to a “pencil eraser” operation whereby one
 polygon layer use to erase (or eliminate) the features of another point,
 line, or polygon layer which fall within its boundaries. As an example,
 we will erase the bus routes lines that fall within the empowerment
-zones polygons (i.e. the complement of the previous clip operation).
+zones polygons (i.e. the complement of the previous clip operation).
 
-1.  > Turn on only the empowerment zones and the original bus routes
-    > layers (or add them to ArcMap if you have removed them).
+1.  Turn on only the empowerment zones and the original bus routes
+    layers (or add them to ArcMap if you have removed them).
 
-2.  > Go to the Geoprocessing file menu and select Search for Tools. In
-    > the text box type in erase and choose Erase (Analysis). Note that
-    > the erase tool can also be accessed from ArcToolbox
-    > (ArcToolbox→Analysis Tools→Overlay→Erase).
+2.  Go to the Geoprocessing file menu and select Search for Tools. In
+    the text box type in erase and choose Erase (Analysis). Note that
+    the erase tool can also be accessed from ArcToolbox
+    (ArcToolbox→Analysis Tools→Overlay→Erase).
 
-3.  > In the Erase dialog box, for Input Features select the bus routes
-    > layer. For Erase Features select the empower zones layer. Name the
-    > output shapefile bus\_routes\_erase. Press OK.
+3.  In the Erase dialog box, for Input Features select the bus routes
+    layer. For Erase Features select the empower zones layer. Name the
+    output shapefile bus\_routes\_erase. Press OK.
 
-4.  > View the new shapefile, which should include only the bus routes
-    > which are NOT within the empowerment zones polygons. It may be
-    > helpful to turn off the original bus routes layer and make the
-    > empowerment zones hollow.
+4.  View the new shapefile, which should include only the bus routes
+    which are NOT within the empowerment zones polygons. It may be
+    helpful to turn off the original bus routes layer and make the
+    empowerment zones hollow.
+    
+    ![](images/Lab6Fig9.png) 
 
-![](images/Lab6Fig9.png)
+5.  Remove all data layers from ArcMap.
 
-5.  > Remove all data layers from ArcMap.
-
-## Polygon Overlay: Intersect 
+## Polygon Overlay: Intersect
 
 The intersect overlay operation creates a new data layer from the areas
 that overlap when you overlay multiple polygons shape files (that is,
@@ -419,8 +395,8 @@ here.
     empowerment zones is on top. You can see the area of intersection –
     the area where the stores\_1320ft and the empowerment zones are
     spatially coincident, or overlap each other.
-
-![](images/Lab6Fig10.png)
+    
+    ![](images/Lab6Fig10.png) 
 
 4.  Go to the Geoprocessing file menu and choose Intersect. Note that
     the intersect tool can also be accessed from ArcToolbox
@@ -432,16 +408,14 @@ here.
 
 6.  View the resulting shapefile. It may be helpful to toggle the other
     layers on and off to see it – the area within both the empowerment
-    zones and the store buffer layers.
-
-> ![](images/Lab6Fig11.png)
+    zones and the store buffer layers. ![](images/Lab6Fig11.png) 
 
 7.  Open the attribute table for the new shapefile. Note that it has
     fields from both the empowerment zones and the stores\_1320ft
     attribute tables. It also has only two records, though there are
     more than two polygons, indicating it is a multipart layer.
 
-## Polygon Overlay: Union 
+## Polygon Overlay: Union
 
 The union overlay operation creates a new data layer representing the
 combination of all the areas from all the input layers. As an example we
@@ -462,16 +436,16 @@ you created in the last step.
 4.  View the resulting shapefile. It may be helpful to toggle the other
     layers on and off to see it – the area that includes all of both the
     empowerment zones and the stores\_1320ft layers.
-
-![](images/Lab6Fig12.png)
+    
+    ![](images/Lab6Fig12.png) 
 
 5.  Open the attribute table. Note that it contains fields from the both
     the input layers.
 
 6.  Note there are only 5 records in the attribute table. Select each of
     the records and view which polygons are selected in the map. There
-    are clearly multiple polygons associated with certain records, i.e.
-    it is a multipart shapefile.
+    are clearly multiple polygons associated with certain records,
+    i.e. it is a multipart shapefile.
 
 7.  Note the FIS\_stores field, and its values - -1 and 0. These values
     indicate whether a polygon is inside or outside the original
@@ -480,21 +454,19 @@ you created in the last step.
     buffer. To demonstrate this, select those records in the table that
     equal -1. Those polygons outside the 1320 foot buffer distance of a
     corner store, but within the empowerment zones, will be selected.
-
-![](images/Lab6Fig13.png)
+    
+    ![](images/Lab6Fig13.png) 
 
 It often helpful to convert the result of a union operation from
 multipart to a singlepart shapefile. Here, we will convert the
 zones\_storebuf\_union shapefile.
 
-1.  > Clear your selection, if you have any features still selected.
-
-2.  > In ArcMap, in Geoprocessing-\>Search for Tools, search for and
-    > execute the Multipart to Singlepart tool. Perform the multipart to
-    > singlepart operation on the zones\_storebuf\_union shapefile.
-
-3.  > View the resulting shapefile. It should now have 29 records in the
-    > attribute table – one for each separate polygon.
+1.  Clear your selection, if you have any features still selected.
+2.  In ArcMap, in Geoprocessing-\>Search for Tools, search for and
+    execute the Multipart to Singlepart tool. Perform the multipart to
+    singlepart operation on the zones\_storebuf\_union shapefile.
+3.  View the resulting shapefile. It should now have 29 records in the
+    attribute table – one for each separate polygon.
 
 # ASSIGNMENT
 
@@ -509,12 +481,9 @@ participating in the Healthy Corner Store Initiative.
 The following specific spatial criteria are given:
 
 1.  Within a Philadelphia empowerment zone
-
 2.  Within 2000 feet of a subway station or regional rail station
-
 3.  NOT within 1200 feet of a farmers market or corner store
     participating in the Healthy Corner Store Initiative.
-
 4.  A larger contiguous area is preferable to increase the likelihood of
     securing a potential property.
 
@@ -526,9 +495,7 @@ Be sure to include the following information:
 
 1.  One or more maps illustrating the data sets used and a step in the
     methodology.
-
 2.  A map showing the area(s) that meet the spatial criteria.
-
 3.  State the area in square feet for each area that meets the criteria
     and make a recommendation for the best area for a new store selling
     healthy foods.
@@ -539,16 +506,16 @@ relevant spatial criteria for locating the new store.
 The **Data and Methods** section should state the data sets used in the
 analysis, from where those data were acquired, and the GIS operations
 employed. The maps illustrating the data sets used and a part of the
-methodology should be cited in the text here (e.g. Figure 1, 2, etc.)
+methodology should be cited in the text here (e.g. Figure 1, 2, etc.)
 
-The **Results** section should state the results (i.e. a brief
+The **Results** section should state the results (i.e. a brief
 description of the areas that meet the criteria, the square footage of
 each, and your recommendation as to the best area for the store). The
 map of the potential area(s) for the store should be cited in the text
 here.
 
 The **Discussion** section should state an interpretation of the results
-(i.e. where in Philadelphia is the recommended area, what is
+(i.e. where in Philadelphia is the recommended area, what is
 advantageous about this particular location), limitations of the
 analysis, and how the analysis could be improved or expanded.
 
@@ -569,10 +536,8 @@ MUST be located.**
 
 1.  Buffer the regional rail stations and the subway stations (be sure
     to use Dissolve All in the buffer operation).
-
 2.  Union the resulting regional rail station buffer and the subways
     station buffer.
-
 3.  Intersect the resulting regional rail station/subway station buffer
     union layer with the empower zones. Name this layer ‘inclusive’
     because it describes the area where the new store MUST be located.
@@ -581,7 +546,6 @@ MUST be located.**
 be located.**
 
 4.  Buffer the farmers markets and the corner stores.
-
 5.  Union the resulting farmers markets buffer and the corner stores
     buffer. Name this layer ‘exclusive’ because it describes the area
     where the new store CAN’T be located.
