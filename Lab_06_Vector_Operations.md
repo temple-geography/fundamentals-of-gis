@@ -137,10 +137,8 @@ polygons in the same way.
 4.  View the new shapefile in ArcMap. Zoom in to where there are
     clusters of farmers markets to see how the buffer polygons overlap.
     Open the attribute table and see that each buffer disk is
-    represented as a single record in the attribute table.
-
-![](images/Lab6Fig2.png) 
-
+    represented as a single record in the attribute table.  
+    ![](images/Lab6Fig2.png) 
 5.  Repeat the buffer analysis, but this time, for Dissolve Type
     (options) choose All. Call the output farmark\_1320ft\_dissolve.
 6.  View the new shapefile in ArcMap. Zoom in to a cluster of farmers
@@ -150,9 +148,8 @@ polygons in the same way.
     attribute table. This is called a ‘multipart object’ (in this
     specific case a ‘multipolygon’) because a single feature (i.e. the
     one record in the attribute table) has multiple parts (i.e. multiple
-    individual polygons).
-
-![](images/Lab6Fig3.png) 
+    individual polygons).  
+    ![](images/Lab6Fig3.png) 
 
 It is often useful to have an individual record in the attribute table
 for each polygon. Here, we will convert this multipart layer to a
@@ -162,18 +159,14 @@ singlepart layer using a Multipart to Singlepart operation.
     to Singlepart. In the Multipart to Singlpart dialog box, for Input
     Features select farmark\_1320ft\_dissolve. Name the output
     farmark\_1320ft\_dissolve\_single. Press OK.
-
 2.  View the resulting shapefile. Notice it appears graphically the same
     as the original farmark\_1320ft\_dissolve shapefile. Open the
     attribute. Notice that it now has 43 records—one for each separate
     polygon.
-
 3.  Explore this new shapefile by selecting certain records in the
     attribute table to see which polygon is associated with a single
-    record.
-    
+    record.  
     ![](images/Lab6Fig4.png) 
-
 4.  Remove all data layers from ArcMap.
 
 ## Map Dissolve
@@ -183,22 +176,18 @@ dissolving the boundaries of adjacent polygons.
 
 1.  Add the census tracts shapefile (be sure to add the one in
     Pennsylvania State Plane CRS).
-
 2.  First we will dissolve all the tract boundaries to yield the
     boundary of the state. Go to the Geoprocessing file menu and select
     Dissolve. (The Dissolve tool can also be accessed from ArcToolbox
     (ArcToolbox→Data Management Tools→Generalization→Dissolve).
-
 3.  For Input Features select the census tracts shapefile. Name the
     output file `PA_bnd`. Press OK.
-
 4.  View the resulting shapefile. Note that the new shapefile is simply
     a boundary of Pennsylvania – the operation has dissolved all the
     boundaries between the tracts, resulting in an outline of the entire
     set of features (i.e. the entire state of Pennsylvania). You’ll
     notice that the resulting feature has one record in the attribute
-    table.
-    
+    table.  
     ![](images/Lab6Fig5.png) 
 
 Now we will compare what you have just done to what happens when you
@@ -213,19 +202,15 @@ dissolve by an attribute.
     the same value for this field. It is thus possible to perform a map
     dissolve operation on the PA tracts shapefile, using the
     `COUNTYFP10` field as the dissolve field.
-
 6.  Perform another dissolve operation on the original census tracts
     shapefile, but this time under Dissolve\_Field(s) (optional) check
     the COUNTYFP box. This will dissolve the boundaries among adjacent
     tracts that share the same county identification. Name the output
     shapefile counties. Press OK.
-
 7.  View the resulting shapefile in ArcMap. You’ll see that the tracts
     have been dissolved by the county identifier, resulting in a
-    shapefile of county outlines.
-    
+    shapefile of county outlines.  
     ![](images/Lab6Fig6.png) 
-
 8.  Remove all data layers from ArcMap.
 
 ## Point in Polygon Overlay
@@ -248,32 +233,27 @@ onto the regional rail station points.
 1.  Add the regional rail stations and the counties shapefiles (which
     you just created) to ArcMap. Review each of their attribute tables
     and note the fields that are included in each.
-
 2.  Right click the regional rail stations shapefile and choose Joins
     and Relates→Join.
-
 3.  In the new window, in the top drop down menu ‘What do you want to
     join to this layer’ choose `Join data from another based on spatial
     location`.
-    
-    > Note: As is so often the case, there’s an additional way to
-    > implement spatial join functions in ArcGIS generally, the “Spatial
-    > Join” tool. In Toolbox, click on Analysis Tools→Overlay→Spatial
-    > Join. You will see that compared to the route we are taking (Joins
-    > and Relates→Join), the more comprehensive Spatial Join tool offers
-    > quite a few additional options. It is worth exploring more fully
-    > if you are interested in getting a deeper understanding of point-
-    > and line-in-polygon operations.
+
+> Note: As is so often the case, there’s an additional way to implement
+> spatial join functions in ArcGIS generally, the “Spatial Join” tool.
+> In Toolbox, click on Analysis Tools→Overlay→Spatial Join. You will see
+> that compared to the route we are taking (Joins and Relates→Join), the
+> more comprehensive Spatial Join tool offers quite a few additional
+> options. It is worth exploring more fully if you are interested in
+> getting a deeper understanding of point- and line-in-polygon
+> operations.
 
 4.  Under Choose the layer to join to this layer, or load spatial data
     from disk: select the counties layer. You are also given a choice of
     how to associate each polygon with a given point. Here, choose “it
     falls inside”.
-
 5.  Name the new shapefile rail\_stations\_w\_counties
-
 6.  Press OK
-
 7.  View the new shapefile. Note that spatially it is identical to the
     original regional rail stations shapefile. Open the new shapefile’s
     attribute table. You will observe that the attributes from the
@@ -290,10 +270,8 @@ multiple point values to a single value for each polygon.
 1.  Right click on the counties shapefile and choose Joins and
     Relates→Join. In the new window, the top drop down menu should
     read “Join data from another based on spatial location”.
-
 2.  Choose the regional rail stations shapefile as the layer to join to
     the counties layer.
-
 3.  Note that it now reads “You are joining: Points to Polygons”. You
     are given a choice for how to summarize the point data. Option one
     counts the number of points within each polygon and then offers some
@@ -301,19 +279,15 @@ multiple point values to a single value for each polygon.
     points that fall within each polygon. Option two simply takes the
     point nearest the polygon, or if many points fall within a single
     polygon, it takes the first point that the algorithm comes to.
-
 4.  Here, choose the first option (you don’t have to choose any
     statistical summary option).
-
 5.  Name the output file counties\_w\_railstations.
-
 6.  View the new shapefile and open its attribute table. You should see
     a new field called Count that contains the number of regional rail
     station points that fall within each county polygon. Most counties
     have none, of course, since these are counties for all of
     Pennsylvania, but there should be many regional rail stations in
     Philadelphia county and the surrounding counties.
-
 7.  Remove all the layers from ArcMap.
 
 ## Polygon Overlay: Clip
@@ -323,24 +297,18 @@ layer (points, lines, or polygons) is clipped to the boundaries of
 another polygon data layer. As an example, we will clip the bus routes
 lines to the empowerment zones polygons.
 
-1.  Add the empowerment zones and bus routes shapefiles to ArcMap.
-    
+1.  Add the empowerment zones and bus routes shapefiles to ArcMap.  
     ![](images/Lab6Fig7.png) 
-
 2.  Go to the Geoprocessing file menu and select Clip. Note that the
     clip tool can also be accessed from ArcToolbox (ArcToolbox→Analysis
     Tools→Extract→Clip).
-
 3.  In the Clip dialog box, for Input Features select the bus routes
     layer. For clip Features select the empowerment zones layer. Name
     the output shapefile bus\_routes\_clip. Press OK.
-
 4.  View the new shapefile, which should include only the bus routes
     within the empowerment zones polygons. It may be helpful to turn off
-    the original bus routes layer.
-    
+    the original bus routes layer.  
     ![](images/Lab6Fig8.png) 
-
 5.  Open the attribute tables for the original bus routes layer and the
     new clipped bus routes layer. Note that they have the identical set
     of fields.
@@ -355,23 +323,18 @@ zones polygons (i.e. the complement of the previous clip operation).
 
 1.  Turn on only the empowerment zones and the original bus routes
     layers (or add them to ArcMap if you have removed them).
-
 2.  Go to the Geoprocessing file menu and select Search for Tools. In
     the text box type in erase and choose Erase (Analysis). Note that
     the erase tool can also be accessed from ArcToolbox
     (ArcToolbox→Analysis Tools→Overlay→Erase).
-
 3.  In the Erase dialog box, for Input Features select the bus routes
     layer. For Erase Features select the empower zones layer. Name the
     output shapefile bus\_routes\_erase. Press OK.
-
 4.  View the new shapefile, which should include only the bus routes
     which are NOT within the empowerment zones polygons. It may be
     helpful to turn off the original bus routes layer and make the
-    empowerment zones hollow.
-    
+    empowerment zones hollow.  
     ![](images/Lab6Fig9.png) 
-
 5.  Remove all data layers from ArcMap.
 
 ## Polygon Overlay: Intersect
@@ -385,31 +348,25 @@ here.
 
 1.  Add the empowerment zones layer and the corner stores layers to
     ArcMap.
-
 2.  Perform a buffer operation on the corner stores using a buffer
     distance of 1320 feet and using the dissolve all option. Name the
     new shapefile stores\_1320ft.
-
 3.  Turn off the corner stores layer. Change the symbology of the
     empowerment zones so it is hollow. Then order the layers so that the
     empowerment zones is on top. You can see the area of intersection –
     the area where the stores\_1320ft and the empowerment zones are
-    spatially coincident, or overlap each other.
-    
+    spatially coincident, or overlap each other.  
     ![](images/Lab6Fig10.png) 
-
 4.  Go to the Geoprocessing file menu and choose Intersect. Note that
     the intersect tool can also be accessed from ArcToolbox
     (ArcToolbox→Analysis Tools→Overlay→Intersect).
-
 5.  For Input Features first add the empowerment zones and then enter
     the stores\_1320ft layer (the order of entry does not matter). Name
     the output layer zones\_storebuf\_intersect. Press OK.
-
 6.  View the resulting shapefile. It may be helpful to toggle the other
     layers on and off to see it – the area within both the empowerment
-    zones and the store buffer layers. ![](images/Lab6Fig11.png) 
-
+    zones and the store buffer layers.  
+    ![](images/Lab6Fig11.png) 
 7.  Open the attribute table for the new shapefile. Note that it has
     fields from both the empowerment zones and the stores\_1320ft
     attribute tables. It also has only two records, though there are
