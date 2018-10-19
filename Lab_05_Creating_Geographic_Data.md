@@ -227,13 +227,15 @@ Lake in Utah <https://earthobservatory.nasa.gov/IOTD/view.php?id=88929>.
 
 Your objective is to investigate how much the Great Salt Lake in Utah
 has changed in size since 1889. You will start with an image file of a
-historical map of Utah, which is provided to
-    you:
+historical map of Utah, and a layour of Utah
+    counties:
 
   - [Utah\_1889.jpg](https://github.com/temple-geography/fundamentals-of-gis/raw/master/data/Utah_1889.jpg)
     is a JPEG image of an historical 1889 map of Utah [originally
     downloaded from
     DavidRumsey.com](https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~37442~1210316:Utah-?showTipAdvancedSearch=false&showShareIIIFLink=true&showTip=false&helpUrl=https%3A%2F%2Fdoc.lunaimaging.com%2Fdisplay%2FV73D%2FLUNA%2BViewer%23LUNAViewer-LUNAViewer&title=Search+Results%3A+List_No+equal+to+%272094.058%27&fullTextSearchChecked=&dateRangeSearchChecked=&advancedSearchUrl=https%3A%2F%2Fdoc.lunaimaging.com%2Fdisplay%2FV73D%2FSearching%23Searching-Searching&thumbnailViewUrlKey=link.view.search.url).
+  - Download zipped shapefile of modern Utah counties boundaries:
+    <https://drive.google.com/a/utah.gov/uc?id=0ByStJjVZ7c7mc3BGRXhKa0N0U2c&export=download>.
 
 For this assignment you are to georeference the image, digitize the
 perimeter of the Great Salt Lake, and compare the digitized historical
@@ -246,9 +248,11 @@ captured in satellite imagery within Google Earth.
 
 Be sure to include the following information:
 
-1.  A map of the digitized 1889 Great Salt Lake polygon you digitized
+1.  The RMSE of your control points, after you have completed
+    georeferencing the historical map.
+2.  A map of the digitized 1889 Great Salt Lake polygon you digitized
     overlain on the historical 1889 image of Utah.
-2.  A map/image of the digitized Great Salt Lake polygon overlain on the
+3.  A map/image of the digitized Great Salt Lake polygon overlain on the
     modern satellite imagery of the lake in Google Earth.
 
 The **Introduction** section should state the research objective and the
@@ -274,27 +278,13 @@ caption. The map should be cited in the text.
 
 ## Getting Started
 
-1.  Georeference Utah\_1889. Use the National Geographic World Map as
-    your basemap to georeference this map. This can be added by choosing
-    Add Basemap from the dropdown function of the Add Data button, or
-    the File→Add Data menu. In the Add Basemap dialog box, try the
-    National Geographic World Map.
-      - **If you are behind a corporate firewall:** On Temple campus, or
-        another campus or organizational network that requires proxy
-        authentication, you may be blocked from adding a basemap, which
-        ArcMap downloads from the internet. If this is the case, you can
-        authenticate as follows:
-        1.  Close ArcMap.
-        2.  Open a web browser, such as Google Chrome or Firefox. If you
-            have already authenticated in an open browser window, close
-            the browser and reopen it.
-        3.  Go to <https://livingatlas.arcgis.com/>.
-        4.  When the proxy server asks you to authenticate, enter your
-            network credentials. **NOTE:** This is not the same as
-            signing into the website, which is not necessary. This is
-            authenticating against your corporate proxy server. If you
-            do not get an authentication dialog, this may not be the
-            reason why Add Basemap is not working\!
+1.  Georeference Utah\_1889 to the modern county boundaries. There have
+    been changes in county boundaries between the historical and modern
+    period, so you should look for obvious points of correspondence,
+    beginning with the six corners of the state of Utah. Don’t forget to
+    note the RMSE when you are through digitizing, as the link table
+    will not be recoverable after you remove the (un-georeferenced)
+    historical image.
 2.  Digitize the perimeter of Great Salt Lake as a polygon.
 3.  Save the polygon shapefile as a Layer file and then convert to KML
     file for viewing in Google Earth. This will allow you to visually
@@ -316,5 +306,6 @@ caption. The map should be cited in the text.
     are in Google Earth you can access imagery since 1970 by clicking on
     the button that looks like a clock with an arrow pointing
     counterclockwise.
-5.  You can export the image as a jpg, with the lake polygon you added
-    overlain, by going to File→Save→Save Image.
+5.  After exploring the past imagery, set the clock to the most recent
+    available imagery. You can export the image as a jpg, with the lake
+    polygon you added overlain, by going to File→Save→Save Image.
