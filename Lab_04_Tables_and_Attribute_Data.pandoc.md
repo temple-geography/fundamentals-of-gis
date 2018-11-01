@@ -226,9 +226,9 @@ The **Tables and Figures** section should contain the table and maps noted above
 
 Several data sets are provided to you in the [Lab_4_assignment.zip](data/Lab_4_assignment.zip) file.
 
-* Police_Districts_Chicago is a polygon shapefile of the police districts in Chicago. The `DISTRICT` field is a unique number used by the police department that identifies each police district.
-* Selected_Crimes_in_Chicago is a point shapefile of the crime incidents in Chicago.  The `PRIMARY_DE` field indicates the type of crime (i.e. homicides versus other types of crime).  The `DISTRICT` field is a unique number used by the police department that identifies each police district. 
-* AirBnB_Data is a point shapefile of the Airbnb listings in Chicago.  The price field contains the nightly price for the listing.  The `number_of_` field contains the number of reviews for that listing.
+* Police_Districts_Chicago is a polygon shapefile of the police districts in Chicago. The `DISTRICT` field is a unique number used by the police department that identifies each police district. This data is from the City of Chicago Data Portal ([https://data.cityofchicago.org/](https://data.cityofchicago.org/)).
+* Selected_Crimes_in_Chicago is a point shapefile of the crime incidents in Chicago.  The `PRIMARY_DE` field indicates the type of crime (i.e. homicides versus other types of crime).  The `DISTRICT` field is a unique number used by the police department that identifies each police district. This data is from the City of Chicago Data Portal ([https://data.cityofchicago.org/](https://data.cityofchicago.org/)).
+* AirBnB_Data is a point shapefile of the Airbnb listings in Chicago.  The price field contains the nightly price for the listing.  The `number_of_` field contains the number of reviews for that listing. This data is provided by Inside AirBnb ([http://insideairbnb.com/](http://insideairbnb.com/)).
 
 It is not uncommon for data of unknown location to be geocoded oddly. For example, many of the points in the crimes layer appear at [Null Island](https://en.wikipedia.org/wiki/Null_Island). Most likely this means that when these crimes were reported, the exact location was unknown, and the database applied a default value of 0° Latitude, 0° Longitude. Three of the Airbnb properties are at the latitude of Chicago, but for some reason their longitude is 0° (the Prime Meridian).
 

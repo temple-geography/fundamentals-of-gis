@@ -12,8 +12,9 @@ California and Chicago, Illinois.
 
 ## Acquiring the Data
 
-You are provided the data for this lab in the Lab\_4\_tutorial.zip file,
-which includes the following files:
+You are provided the data for this lab in the
+[Lab\_4\_tutorial.zip](data/Lab_4_tutorial.zip) file, which includes the
+following files:
 
   - SF\_Tracts is a polygon shapefile representing the US Census Bureau
     tracts in San Francisco. A tract is statistical reporting unit used
@@ -405,20 +406,24 @@ should be cited in the text.
 
 ## Data
 
-Several data sets are provided to you in the Lab\_4\_assignment.zip
-file.
+Several data sets are provided to you in the
+[Lab\_4\_assignment.zip](data/Lab_4_assignment.zip) file.
 
   - Police\_Districts\_Chicago is a polygon shapefile of the police
     districts in Chicago. The `DISTRICT` field is a unique number used
-    by the police department that identifies each police district.
+    by the police department that identifies each police district. This
+    data is from the City of Chicago Data Portal
+    (<https://data.cityofchicago.org/>).
   - Selected\_Crimes\_in\_Chicago is a point shapefile of the crime
     incidents in Chicago. The `PRIMARY_DE` field indicates the type of
     crime (i.e. homicides versus other types of crime). The `DISTRICT`
     field is a unique number used by the police department that
-    identifies each police district.
+    identifies each police district. This data is from the City of
+    Chicago Data Portal (<https://data.cityofchicago.org/>).
   - AirBnB\_Data is a point shapefile of the Airbnb listings in Chicago.
     The price field contains the nightly price for the listing. The
     `number_of_` field contains the number of reviews for that listing.
+    This data is provided by Inside AirBnb (<http://insideairbnb.com/>).
 
 It is not uncommon for data of unknown location to be geocoded oddly.
 For example, many of the points in the crimes layer appear at [Null
