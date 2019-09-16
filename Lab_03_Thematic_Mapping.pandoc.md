@@ -12,11 +12,9 @@ First, complete the tutorial by following the steps below.  Then, using the skil
 
 ## Acquire State Population Data from the U.S. Census Bureau
 
-1. In a web browser, navigate to [https://www.census.gov/geo/maps-data/data/tiger-data.html](https://www.census.gov/geo/maps-data/data/tiger-data.html).
-2. Under '2010 Census' open Demographics Profile 1 - Shapefile Format.
-3. Scroll down and click on the 'States' link to download the 'State_2010Census_DP1.zip' file.\
-    ![](images/Lab3Fig1.jpg)\ 
-4. Copy the downloaded zip file into your workspace and unzip it.
+1. In a web browser, navigate to [https://www2.census.gov/geo/tiger/TIGER2010DP1/](https://www2.census.gov/geo/tiger/TIGER2010DP1/).
+2. Scroll down and click on 'State_2010Census_DP1.zip' to download.
+3. Copy the downloaded zip file into your workspace and unzip it.
 
 View the spatial and attribute data for the State_2010Census_DP1 shapefile in ArcCatalog.
 
