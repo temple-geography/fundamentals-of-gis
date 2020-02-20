@@ -228,11 +228,11 @@ Several data sets are provided to you in the [Lab_4_assignment.zip](data/Lab_4_a
 
 * Police_Districts_Chicago is a polygon shapefile of the police districts in Chicago. The `DISTRICT` field is a unique number used by the police department that identifies each police district. This data is from the City of Chicago Data Portal ([https://data.cityofchicago.org/](https://data.cityofchicago.org/)).
 * Selected_Crimes_in_Chicago is a point shapefile of the crime incidents in Chicago.  The `PRIMARY_DE` field indicates the type of crime (i.e. homicides versus other types of crime).  The `DISTRICT` field is a unique number used by the police department that identifies each police district. This data is from the City of Chicago Data Portal ([https://data.cityofchicago.org/](https://data.cityofchicago.org/)).
-* AirBnB_Data is a point shapefile of the Airbnb listings in Chicago.  The price field contains the nightly price for the listing.  The `number_of_` field contains the number of reviews for that listing. This data is provided by Inside AirBnb ([http://insideairbnb.com/](http://insideairbnb.com/)).
+* AirBnB_Data is a point shapefile of the Airbnb listings in Chicago.  The `price` field contains the nightly price for the listing.  The `number_of_` field contains the number of reviews for that listing. This data is provided by Inside AirBnb ([http://insideairbnb.com/](http://insideairbnb.com/)).
 
 It is not uncommon for data of unknown location to be geocoded oddly. For example, many of the points in the crimes layer appear at [Null Island](https://en.wikipedia.org/wiki/Null_Island). Most likely this means that when these crimes were reported, the exact location was unknown, and the database applied a default value of 0° Latitude, 0° Longitude. Three of the Airbnb properties are at the latitude of Chicago, but for some reason their longitude is 0° (the Prime Meridian).
 
-For this assignment you can ignore these misplaced features. Use Zoom to Layer on the police districts layer to zoom the map canvas to our area of interest. Optionally, you could extract only the features you are interested in by selecting them in the map canvas, then exporting the layers to new shapefiles.
+For this assignment you can ignore these misplaced features. Use Zoom to Layer on the police districts layer to zoom the map canvas to our area of interest. Optionally, you could use a Definition Query (ask your instructor how to do this) to exclude features, or you could extract only the features you are interested in by selecting them in the map canvas, then exporting the layers to new shapefiles.
 
 ## Getting Started
 
@@ -240,6 +240,6 @@ You will need to use several GIS operations you have learned from this lab and p
 
 1. Use operations in projections and coordinate systems to transform your data to UTM (research which UTM zone Chicago is in).
 2. Use operations in selection and data export to create a spatial data layer of only homicides (not including other crime types).
-3. Use the Summarize operation to calculate the number of homicides and Airbnb reviews, and average price, for each police district.
+3. Use the Summarize operation to calculate the number of homicides and Airbnb reviews, and average price, for each police district. Please note the you want the sum of Airbnb *reviews* which is contained in the `number_of_` field, not want the count of Airbnbs.
 4. Use the Field Calculator to calculate the density of homicides and density of Airbnb reviews for each police district.
 5. Use your thematic mapping skills to create the choropleth maps.

@@ -421,7 +421,7 @@ Several data sets are provided to you in the
     identifies each police district. This data is from the City of
     Chicago Data Portal (<https://data.cityofchicago.org/>).
   - AirBnB\_Data is a point shapefile of the Airbnb listings in Chicago.
-    The price field contains the nightly price for the listing. The
+    The `price` field contains the nightly price for the listing. The
     `number_of_` field contains the number of reviews for that listing.
     This data is provided by Inside AirBnb (<http://insideairbnb.com/>).
 
@@ -435,9 +435,10 @@ Chicago, but for some reason their longitude is 0° (the Prime Meridian).
 
 For this assignment you can ignore these misplaced features. Use Zoom to
 Layer on the police districts layer to zoom the map canvas to our area
-of interest. Optionally, you could extract only the features you are
-interested in by selecting them in the map canvas, then exporting the
-layers to new shapefiles.
+of interest. Optionally, you could use a Definition Query (ask your
+instructor how to do this) to exclude features, or you could extract
+only the features you are interested in by selecting them in the map
+canvas, then exporting the layers to new shapefiles.
 
 ## Getting Started
 
@@ -449,7 +450,9 @@ lab and previous labs:
 2.  Use operations in selection and data export to create a spatial data
     layer of only homicides (not including other crime types).
 3.  Use the Summarize operation to calculate the number of homicides and
-    Airbnb reviews, and average price, for each police district.
+    Airbnb reviews, and average price, for each police district. Please
+    note the you want the sum of Airbnb *reviews* which is contained in
+    the `number_of_` field, not want the count of Airbnbs.
 4.  Use the Field Calculator to calculate the density of homicides and
     density of Airbnb reviews for each police district.
 5.  Use your thematic mapping skills to create the choropleth maps.
